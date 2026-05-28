@@ -1,0 +1,2521 @@
+ %%%%%%%%%%%%%%%---SYNOPSIS--%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) Makarov V.G., Popov I.A., 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[book, 11pt]{report}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym}
+\usepackage{amssymb}
+%\documentclass[12pt,a4paper,twoside]{book}
+\usepackage{chngcntr}
+%\counterwithin{figure}{chapter}
+%\usepackage[nottoc]{tocbibind}
+\usepackage{changepage}
+\usepackage{wrapfig}
+\pagestyle{plain}
+\usepackage{makeidx}
+\usepackage{nomencl}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{epsf}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epstopdf}
+\usepackage{comment}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage{fancyhdr}
+\usepackage[english, russian]{babel}
+\usepackage{blindtext}
+\usepackage{ulem}
+\usepackage{upquote}
+%\usepackage[titletoc]{appendix}
+\usepackage{enumerate}
+\usepackage{lipsum}
+\usepackage{ragged2e}
+\usepackage[a4paper, inner=0cm, outer=0cm, top=0cm,bottom=0cm, bindingoffset=0cm, margin=0in]{geometry}
+\usepackage{colortbl}
+\usepackage{subfig}
+\textheight=235mm
+\topmargin=0mm
+\headheight=0mm
+\headsep=0mm
+\oddsidemargin=0mm
+\evensidemargin=0mm
+\makeindex
+\makeglossary
+\graphicspath{{./figures/}}
+\usepackage{float}
+\usepackage{stmaryrd}
+\usepackage{microtype}
+\usepackage[]{setspace}
+\singlespacing
+\usepackage{amssymb}
+\setstretch{1}
+\usepackage{cite}
+\usepackage{mathrsfs}
+\usepackage{calligra}
+\linespread{1}
+\renewcommand{\thesection}{\arabic{section}}
+\usepackage[english]{babel}
+\addto{\captionsenglish}{%
+  \renewcommand{\bibname}{\LARGE References}
+}
+
+%***********************************************************
+
+\begin{document}
+\newgeometry{top=1in,bottom=1in,right=1in,left=1in}
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+   {\Large\bf{КОНСПЕКТ ЛЕКЦИЙ} \\}
+		{\Large{\bf ПО МАТЕМАТИЧЕСКОМУ АНАЛИЗУ \\ 2 СЕМЕСТР \\ Усиленный поток \\Лектор: Сарафанов О.В. \\}}
+                   \vspace{0.3in}
+	      \includegraphics[width=0.40\linewidth]{SPbU-symbol.png}
+
+
+			   \vspace{2.0in}
+		     {\large\bf Санкт-Петербургский \\Государственный университет\\}
+			     {\large\bf  2026 }\\
+                \vspace{3cm}
+    \text{Макаров В.}
+\end{center}
+\date{}
+\vspace*{\fill}
+\setcounter{page}{0}
+\newpage
+\tableofcontents
+\newpage
+%****************************************************************
+\chapter*{Глава 1. Числовые ряды}
+\addcontentsline{toc}{chapter}{Глава 1. Числовые ряды}
+\section*{$\S$1. Определение числового ряда. Основные свойства}
+\addcontentsline{toc}{section}{$\S$1. Определение числового ряда. Основные свойства}
+    \subsection*{1. Определение числового ряда. Сходимость}
+    \addcontentsline{toc}{subsection}{1. Определение числового ряда. Сходимость}
+    \par{\textbf{Def 1: }\text{Числовым рядом называется пара последовательностей $\{a_n\}, \{S_N\}$, где} \\\text{$S_N=\displaystyle\sum_{n=1}^N a_{n}$. $S_N$ - частичные суммы, $a_n$ - члены ряда.}
+    \\ \text{$\displaystyle\sum_{n=1}^\infty a_{n}$ - обозначение, !НО не определение.}}
+    \vspace{1cm}
+    \par{\textbf{Def 2}: \text{Ряд называется сходящимся, если $\exists$ конечный $\displaystyle\lim_{N\to\infty} S_N$ = S,}
+    \\ \text{S - называется суммой ряда.}}
+    \vspace{1cm}
+    \par{\textbf{Def 3}: \text{Если $\nexists$ конечного $\displaystyle\lim_{N\to\infty} S_N$, то ряд называется расходящимся.}}
+    \vspace{0.5cm}
+    \par{\textbf{Примеры:} \\
+        \begin{equation*}
+        \sum_{n=1}^{\infty} q^{n} =  \lim_{N\to\infty} (q+q^2+...+q^N) =\lim_{N\to\infty} q \frac{1-q^N}{1-q} = \begin{cases} \frac{1}{1-q}, |q| < 1 \\ \text{расходится, |q| $\geq$ 1} \end{cases}
+        \end{equation*}
+    \begin{equation*}
+            \sum_{n=1}^{\infty}{1\over{n!}} = e-1
+        \end{equation*}
+        \begin{equation*}
+            \sum_{n=1}^{N} \ln{n} = N\ln{N}-N+\gamma + o(1) - \text{расходится}
+        \end{equation*}
+        }
+        \par{Дзета-функция Римана:
+        \begin{equation*}
+            \sum_{n=1}^{\infty} {{1}\over{n^p}} = \zeta(p) - \text{Дзета-функция Римана}
+        \end{equation*}}
+        \begin{itemize}
+            \item \par{\textbf{p<0}
+            \begin{equation*}
+                S_N = 1 + {{1}\over{2^p}}+...+{{1}\over{N^p}}=1+2^{-p>0}+...+N^{-p>0} > N \xrightarrow{N\to\infty} \infty
+            \end{equation*}}
+            \item \par{\textbf{$p \in [0, 1)$}
+            \begin{equation*}
+                S_N = 1 + {{1}\over{2^p}}+...+{{1}\over{N^p}}>{{1}\over{N^p}}+...+{{1}\over{N^p}}={{N}\over{N^p}}=N^{1-p} \xrightarrow{N\to\infty} \infty
+            \end{equation*}}
+            \newpage
+            \item \par{\textbf{p=1}
+            \begin{equation*}
+                S_N = 1 + {{1}\over{2}}+...+{{1}\over{N}}=1+{{1}\over{2}}+({{1}\over{3}}+{{1}\over{4}})+({{1}\over{5}}+{{1}\over{6}}+{{1}\over{7}}+{{1}\over{8}})+...+(...+{{1}\over{2^n}})+\text{остат} > 
+                \end{equation*}
+                \begin{equation*}
+                > 1 + {{1}\over{2}}+{{1}\over{4}}+{{1}\over{4}}+{{1}\over{8}}+{{1}\over{8}}+{{1}\over{8}}+{{1}\over{8}}+...+{{1}\over{(2^m)}}2^{m-1}=1+{{M}\over{2}}\xrightarrow{N\to\infty} \infty
+            \end{equation*}}
+            \item \par{\textbf{p>1}
+            \begin{equation*}
+                \text{Рассмотрим } S_{2^{N-1}}=1+({{1}\over{2^p}}+{{1}\over{3^p}})+...+({{1}\over{(2^{N-1}})^p}+{{1}\over{(2^{N-1}}+1)^p}+...+{{1}\over{(2^{N}}+1)^p})<
+            \end{equation*}
+            \textit{(выбираем и группируем так, чтобы каждое слагаемое начиналось со степени двойки)}
+            \begin{equation*}
+            < 1 + {{1}\over{2^p}}2+{{1}\over{4^p}}4 + \ldots+{{1}\over{(2^{N-1})^p}}2^{N-1}=1+2^{1-p}+...+(2^{N-1})^{1-p}=
+            \end{equation*}
+            \begin{equation*}
+            =(2^{1-p})^0+(2^{1-p})^1+(2^{1-p})^2+...+(2^{1-p})^{N-1}<{{1}\over{1-{{1}\over2^{p-1}}}}=z
+            \end{equation*}
+            \textit{ (применили формулу геометрической прогрессии)}\\
+            \text{Пусть $M\in\mathbb{N}$: $2^{N-1}\leq M < 2^N, S_M \leq S_{2^{N-1}} < z$, т.о. вся последовательность}\\
+            \text{ограничена числом z $\Rightarrow \exists \lim$.}}
+        \end{itemize}
+    \subsection*{2. Простейшие свойства}
+    \addcontentsline{toc}{subsection}{2. Простейшие свойства}
+    \par{\textbf{Лемма 1.} \text{Добавление или отбрасывание конечного числа элементов ряда не ме-}\\
+    \text{няет его сходимость.} \\ 
+    \textbf{Доказательство:} \text{Рассмотрим $\displaystyle\sum_{n=1}^{\infty} a_{n}\ , S_n$ и  $\displaystyle\sum_{n=1}^{\infty} \tilde{a}_{n}$, $\tilde{S}_n$ и пусть отбросили M слагаемых}\\ 
+    \text{и $N_0$ - максимальный номер отброшенного слагаемого.} \\
+    \text{Пусть N > $N_0$:}}
+    \par{
+    \begin{equation*}
+    S_N = S_{N_0} + \sum_{n=N_0+1}^{N} a_{n} \text{ , }
+    \end{equation*}
+    \begin{equation*}
+    \tilde{S}_{N-M} = \tilde{S}_{{N_0}-M} + \sum_{n=N_0+1}^{N}a_{n} \text{ - выкинули M слагаемых.}
+    \end{equation*}
+    \text{Выразим сумму и приравняем, а затем перенесём через знак равенства:}
+    \begin{equation*}
+    S_N=\tilde{S}_{N-M}-\tilde{S}_{N_0-M}+S_{N_0} 
+    \end{equation*}
+    \text{Заметим, что последние два слагаемые не зависят от выбора N, поэтому} \\
+    \text{являются const, а первое слагаемое является лишь сдвигом на M слагаемых.} \\
+    \text{Тогда в пределе $\lim{S_N}$ и $\lim{\tilde{S}_{N-M}}$ $\exists$ или $\nexists$ одновременно.} \\
+    \text{Для добавления доказательство аналогичное, только значки $\sim$ меняются местами.}
+    }
+    \par{{\raggedleft ч.т.д.\par}}
+    \par{{\textbf{Лемма 2.} Если ряд $\displaystyle\sum_{n=1}^{\infty} a_{n}$  сходится, то и ряд  $\displaystyle\sum_{n=1}^{\infty} ca_{n}\ $(c $\in$ $\mathbb{R}$) сходится, $\\$ причём $\displaystyle\sum_{n=1}^{\infty} ca_{n}$ = c$\displaystyle\sum_{n=1}^{\infty} a_{n}. \ $ }\\
+    }
+    \newpage
+    \par{{\textbf{Лемма 3.} Если ряды $\displaystyle\sum_{n=1}^{\infty} a_{n}$ и $\displaystyle\sum_{n=1}^{\infty} b_{n}$ сходятся, то и ряды  $\displaystyle\sum_{n=1}^{\infty}(a_{n} \pm b_{n})\ $ сходятся, $\\$ причём $\displaystyle\sum_{n=1}^{\infty}(a_{n} \pm b_{n})\ $ = $\displaystyle\sum_{n=1}^{\infty} a_{n} \pm \displaystyle\sum_{n=1}^{\infty} b_{n}$.\\
+    }
+    \textit{(доказательство лемм 2 и 3 следует из свойств пределов, необходимо рассмотреть конечные суммы)}}
+    \vspace{0.5cm}
+    \par{\textbf{Лемма 4.} Если ряд сходится, то общий член ряда стремится к нулю. \\
+    \textbf{Доказательство: } \text{Рассмотрим $a_n$: $a_n = S_n - S_{n-1}$, т.к. ряд сходится, то его частич-} \\ \text{ные суммы стремятся к S $\Rightarrow S_n - S_{n-1} \rightarrow S-S=0$.}
+    }
+    \par{{\raggedleft ч.т.д.\par}}
+    \text{ОБРАТНОЕ НЕВЕРНО! Пример: $\displaystyle\sum_{n=1}^{\infty} {{1}\over{n}}$ - расходится, хотя ${{1}\over{n}} \xrightarrow{N\to\infty} 0$. }
+    \vspace{0.5cm}
+    %*********************
+    \addcontentsline{toc}{subsubsection}{Критерий Коши для ряда}
+    \par{\textbf{Критерий Коши для ряда} \\
+    \text{$\displaystyle\exists \lim_{N\to\infty} S_N \Leftrightarrow \forall\varepsilon > 0 \ $ $\displaystyle\exists N_0 \in \mathbb{N}\ $: $\displaystyle\forall m > N_0, k \in \mathbb{N} \ $ верно $|S_{m+k}-S_m|=|a_{m+1}+...+a_{m+k}| <\varepsilon$} \\
+    \text{Доказательство следует из критерия Коши для последовательностей.}\\}
+    \vspace{0.3cm}
+    \par{
+    \textbf{Пример:} \text{$\displaystyle\sum_{n=1}^{\infty}\frac{\sin{nx}}{2^n}, x\in \mathbb{R}$.} \\
+    \text{Фикс. $\varepsilon > 0$ и рассмотрим $\displaystyle|S_{m+k}-S_m| = |\frac{\sin{(n+1)x}}{2^{n+1}}+...+\frac{\sin{(n+k)x}}{2^{n+k}}| \leq \ $} \\\text{$\displaystyle\leq|\frac{\sin{(n+1)x}}{2^{n+1}}|+...+|\frac{\sin{(n+k)x}}{2^{n+k}}|\leq(|sin|\leq1)\leq \frac{1}{2^{n+1}}+...+\frac{1}{2^{n+k}} < \ $ (геом.прогрессия) <} \\
+    \text{$\displaystyle<\frac{1}{2^{n+1}}\frac{1}{1-{{1}\over{2}}}=\frac{1}{2^n}<\varepsilon\Rightarrow-n\ln{2}<\ln{\varepsilon}\Rightarrow n>\frac{\ln{1\over{\varepsilon}}}{\ln{2}}\Rightarrow N_0=[\frac{\ln{1\over{\varepsilon}}}{\ln{2}}]+1. \ $} \\
+    }
+    %*******************$2*****************
+    \section*{$\S$2. Ряды с положительными членами}
+    \addcontentsline{toc}{section}{$\S$2. Ряды с положительными членами}
+    \subsection*{1. Определение. Признаки сравнения}
+    \addcontentsline{toc}{subsection}{1. Определение. Признаки сравнения}
+    \par{\textbf{Def 1:} \text{Если $a_n\geq0$, то ряд $\displaystyle\sum_{n=1}^{\infty}a_n \ $} называется рядом с положительными членами.}
+    \vspace{0.5cm}
+    \addcontentsline{toc}{subsubsection}{Лемма. Критерий сходимости положительного ряда}
+    \par{\textbf{Лемма. Критерий сходимости положительного ряда} \\
+    \text{Пусть $a_n\geq0$, тогда $\displaystyle\sum_{n=1}^{\infty} a_{n} \ $ сходится $\Leftrightarrow S_N$ ограничено.}\\
+    \textbf{Доказательство: } \text{т.к. $S_N-S_{N-1}=a_n\geq0$, то $S_N$ - монотонно возрастает. По теореме} \\\text{о "пределе монотонной последовательности" \  $\exists\lim{S_N}\Leftrightarrow S_N$ ограничена.}
+    }
+    \vspace{0.7cm}
+    \addcontentsline{toc}{subsubsection}{Теорема. Признак сравнения}
+    \par{\textbf{Теорема. "Признак сравнения"} \\
+    \text{Пусть, начиная с некоторого номера, $0\leq a_n\leq b_n$, тогда если ряд $\displaystyle\sum_{n=1}^{\infty}b_n \ $ сходится,} \\\text{тогда и ряд $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится. А если ряд $\displaystyle\sum_{n=1}^{\infty}a_n\ $ расходится, то и ряд $\displaystyle\sum_{n=1}^{\infty}b_n\ $ расходится.} \\
+        \textbf{Доказательство: } \text{согласно лемме 1 $\S$1 можно отбросить члены ряда так, чтобы} \newpage \text{выполнялось следующее: $0\leq a_n\leq b_n$ $\forall n\in\mathbb{N}$. Пусть $\displaystyle S_N=\sum_{n=1}^{\infty}a_n, \tilde{S}_N=\sum_{n=1}^{\infty}b_n $,}\\\text{тогда $S_N\leq \tilde{S}_N$ $\forall N\in \mathbb{N}$.} \\}
+        \vspace{0cm}
+        \begin{itemize}
+            \item \par{
+        \text{$\displaystyle\sum_{n=1}^{\infty}b_n\ $ сходится $\Leftrightarrow\displaystyle\exists\lim_{N\rightarrow\infty}{\tilde{S}_N}$. По лемме Критерий сходимости положительного ряда} \\
+        \text{$\tilde{S}_N$ ограничена, тогда $S_N\leq\tilde{S}_N\leq c$, тогда $S_N$ ограничена. По той же лемме} \\\text{$S_N$ ограничена $\displaystyle\Leftrightarrow \sum_{n=1}^{\infty}a_n\ $ сходится}.}
+        \item \par{
+        \text{Пусть $\displaystyle\sum_{n=1}^{\infty}a_n\ $ расходится. По лемме Критерий сходимости положительного ряда}\\
+        \text{это происходит тогда и только тогда, когда $S_N$ неограничена сверху. Т.е.}\\
+        \text{$\forall K\in\mathbb{R}$ $\exists N_0\in\mathbb{N}$: $N>N_0 \Rightarrow S_N>K \Rightarrow \tilde{S}_N\geq S_N>K$ $\forall N>N_0 \Rightarrow$} \\\text{$\Rightarrow \tilde{S}_N$ неограничена сверху $\Leftrightarrow\displaystyle\sum_{n=1}^{\infty}b_n\ $ расходится по Критерию сходимости.}
+        }
+        \end{itemize}
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{1cm}
+        \par{
+        \textbf{Следствие.} \text{Пусть $a_n>0$, $b_n>0$ и $\displaystyle\lim_{n\rightarrow\infty}{\frac{a_n}{b_n}}=K$, где $0\leq K\leq +\infty$.}}
+        \begin{enumerate}
+            \item \par{\text{Если K<+$\infty$ (конечно), то из $\displaystyle\sum_{n=1}^{\infty}b_n$ сходится $\displaystyle\Rightarrow\sum_{n=1}^{\infty}a_n\ $ сходится.}}
+            \item \par{\text{Если K>0, то из $\displaystyle\sum_{n=1}^{\infty}b_n$ расходится $\displaystyle\Rightarrow\sum_{n=1}^{\infty}a_n\ $ расходится.}}
+            \item \par{\text{Если 0<K<+$\infty$ (конечно), то $\displaystyle\sum_{n=1}^{\infty}a_n$ и $\displaystyle\sum_{n=1}^{\infty}b_n\ $ сходятся/расходятся одновременно.}}
+        \end{enumerate}
+        \par{\textbf{Доказательтство:}}
+        \begin{enumerate}
+            \item \par{\text{Пусть K конечно, т.е. $\forall\varepsilon>0$ $\exists N\in\mathbb{N}:$ $\forall n>N$ $K-\varepsilon<\frac{a_n}{b_n}<K+\varepsilon$ $\Rightarrow a_n<(K+\varepsilon)b_n$.}\\
+            \text{По лемме 2 из $\S$1 если $\displaystyle\sum_{n=1}^{\infty}b_n\ $ сходится, то и $\displaystyle\sum_{n=1}^{\infty}(K+\varepsilon)b_n\ $, т.к. $K+\varepsilon = const$,}\\
+            \text{тогда и ряд $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится (по теореме Признак сравнения).}\\\text{Действительно, $0<a_n<(K+\varepsilon)b_n$ - все условия для применения этой теоремы.}
+            }
+            \item \par{\text{Если К>0, то $\lim{\frac{b_n}{a_n}}$ конечен. Пусть $\displaystyle\sum_{n=1}^{\infty}b_n\ $ расходится, а ряд $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится.}\\\text{Тогда немедленно наступает $\lightning$ с п.1, ведь если знаменатель сходится, то и числитель}\\\text{сходится, а у нас $\displaystyle\sum_{n=1}^{\infty}a_n\ $(в знаменателе) сходится, а $\displaystyle\sum_{n=1}^{\infty}b_n\ $(в числителе) расходится.}
+            }
+            \item \par{\text{доказательство следует из п.1 и п.2 этого следствия.}}
+        \end{enumerate}
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \par{\textbf{Пример: } \text{$x_n=2\sqrt{n}-1-{{1}\over{\sqrt{2}}}-...-{{1}\over{\sqrt{n}}}$. $\displaystyle\sum_{n=1}^{\infty}(x_{n+1}-x_n)$.}\\
+        \begin{equation*}
+            S_N=(x_2-x_1)+(x_3-x_2)+...+(x_{N+1}-x_N)=x_{N+1}-x_1
+        \end{equation*}
+        \begin{equation*}
+            x_{n+1}-x_n=2\sqrt{n+1}-2\sqrt{n}-{{1}\over{\sqrt{n+1}}}=\textit{(разность квадратов)}=2\frac{(n+1)-(n)}{\sqrt{n+1}+\sqrt{n}}-{{1}\over{\sqrt{n+1}}}=
+        \end{equation*}
+        \begin{equation*}
+            ={{2}\over{\sqrt{n+1}}+\sqrt{n}}-{{1}\over{\sqrt{n+1}}}=\frac{\sqrt{n+1}-\sqrt{n}}{\sqrt{n+1}(\sqrt{n+1}+\sqrt{n})}=\textit{(разность квадратов)}=
+        \end{equation*}
+        \begin{equation*}
+            ={{1}\over{\sqrt{n+1}(\sqrt{n+1}+\sqrt{n})^2}} \sim {{1}\over{4n^{1.5}}}\text{ т.е. предел их отношения равен 1.}
+        \end{equation*}
+        \text{$\displaystyle\sum_{n=1}^{\infty}{{1}\over{4n^{1.5}}}\ $ сходится (см. $\S$1), тогда по следствию выше п.3 наш ряд тоже сходится.}
+        }
+        \vspace{0.6cm}
+        \addcontentsline{toc}{subsubsection}{Теорема. Признак Коши}
+        \par{\textbf{Теорема. "Признак Коши"}\\
+        \text{Пусть $a_n\geq 0$ и $\displaystyle\exists\lim_{n\rightarrow+\infty}\sqrt[n]{a_n}=q$. Тогда возможны три случая:}}
+        \begin{itemize}
+            \item \par{если q < 1, то $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится;}
+            \item \par{если q > 1, то $\displaystyle\sum_{n=1}^{\infty}a_n\ $ расходится;}
+            \item \par{если q = 1, то про сходимость $\displaystyle\sum_{n=1}^{\infty}a_n\ $ ничего сказать нельзя;}
+        \end{itemize}
+        \textbf{Доказательство:}
+        \begin{itemize}
+            \item \par{
+            \text{[q<1] Возьмём $\varepsilon>0$, т.ч. $q+\varepsilon<1$, тогда, начиная с некоторого номера,}\\
+            \text{$\sqrt[n]{a_n}<q+\varepsilon$ (правая часть определения предела) $\Rightarrow 0\leq a_n<(q+\varepsilon)^n$, т.к. $q+\varepsilon<1$, то}\\
+            \text{ряд $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится по признаку сравнения ($\displaystyle\sum_{n=1}^{\infty}(q+\varepsilon)^n \ $ сходится при $q+\varepsilon<1$).}
+            }
+            \item \par{
+            \text{[q>1] Возьмём $\varepsilon>0$, т.ч. $q-\varepsilon>1$, тогда, начиная с некоторого номера,}\\
+            \text{$q-\varepsilon<\sqrt[n]{a_n}$ (левая часть определения предела) $\Rightarrow (q-\varepsilon)^n<a_n$, т.к. $q-\varepsilon>1$, то}\\
+            \text{ряд $\displaystyle\sum_{n=1}^{\infty}a_n\ $ расходится по признаку сравнения ($\displaystyle\sum_{n=1}^{\infty}(q-\varepsilon)^n \ $ расходится при $q-\varepsilon>1$).}
+            }
+            \item \par{
+            \text{[q=1] Рассмотрим $a_n={{1}\over{n^p}}$. $\displaystyle\sqrt[n]{{1}\over{n^p}}={{1}\over{n^{{p}\over{n}}}}\xrightarrow{n\rightarrow+\infty}1\ $, но при разных p разная сходимость.}
+            }
+        \end{itemize}
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \addcontentsline{toc}{subsubsection}{Теорема. Признак Даламбера}
+        \par{\textbf{Теорема. "Признак Даламбера"}\\
+        \text{Пусть $a_n>0$ и $\displaystyle\exists\lim_{n\rightarrow+\infty}{{a_{n+1}}\over{a_n}}=q$. Тогда возможны три случая:}}
+        \begin{itemize}
+            \item \par{если q < 1, то $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится;}
+            \item \par{если q > 1, то $\displaystyle\sum_{n=1}^{\infty}a_n\ $ расходится;}
+            \item \par{если q = 1, то про сходимость $\displaystyle\sum_{n=1}^{\infty}a_n\ $ ничего сказать нельзя;}
+        \end{itemize}
+        \textbf{Доказательство:}
+        \begin{itemize}
+            \item \par{
+            \text{[q<1] Возьмём $\varepsilon>0$, т.ч. $q+\varepsilon<1$, тогда, начиная с некоторого номера $N_0\in\mathbb{N}$,}\\
+            \text{$\displaystyle{{a_{n+1}}\over{a_n}}<q+\varepsilon$ (правая часть определения предела).}\\
+            \text{Откуда $\displaystyle a_n<(q+\varepsilon)a_{n-1}<(q+\varepsilon)^2a_{n-2}<...<(q+\varepsilon)^{n-N_0}a_{N_0}$. Таким образом} \\
+            \text{получаем, что $\displaystyle a_n<\underbrace{(q+\varepsilon)^{-N_0}a_{N_0}}_{const=c}(q+\varepsilon)^n$. Если $q+\varepsilon<1$, то $\displaystyle c\sum_{n=1}^{\infty}(q+\varepsilon)^n\ $ сходится.}\\
+            \text{Тогда по признаку сравнения наш ряд тоже сходится.}
+            }
+            \item \par{
+            \text{[q>1] Возьмём $\varepsilon>0$, т.ч. $q-\varepsilon>1$, тогда, начиная с некоторого номера $N_0\in\mathbb{N}$,}\\
+            \text{$\displaystyle q-\varepsilon <{{a_{n+1}}\over{a_n}}$ (левая часть определения предела).}\\
+            \text{Откуда $\displaystyle a_n>(q-\varepsilon)a_{n-1}>(q-\varepsilon)^2a_{n-2}>...>(q-\varepsilon)^{n-N_0}a_{N_0}$. Таким образом} \\
+            \text{получаем, что $\displaystyle a_n>\underbrace{(q-\varepsilon)^{-N_0}a_{N_0}}_{const=c}(q-\varepsilon)^n$. Если $q-\varepsilon>1$, то $\displaystyle c\sum_{n=1}^{\infty}(q-\varepsilon)^n\ $ расходится.}\\
+            \text{Тогда по признаку сравнения наш ряд тоже расходится.}
+            }
+            \item \par{
+            \text{[q=1] Рассмотрим $a_n={{1}\over{n^p}}$. $\displaystyle{{a_{n+1}}\over{a_n}}=({{n}\over{n+1}})^p\xrightarrow{n\rightarrow+\infty}1\ $, но при}\\\text{разных p разная сходимость.}
+            }
+        \end{itemize}
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{1cm}
+        \par{
+        \textbf{Лемма 1. }\text{Пусть $\displaystyle M=\lim_{k\rightarrow\infty}\underbrace{sup\{a_k,a_{k+1},...\}}_{=M_k}$.
+        $\forall\varepsilon>0 \ \ \forall N\in\mathbb{N}$  $\exists n>N: \ \ a_n>M-\varepsilon$} \\
+        \textbf{Доказательство: }\text{Фикс. $\varepsilon>0$ и $N\in\mathbb{N}$, т.к. $M_k$ убывает к $M$, то $M_k\geq M$ $\forall k\in\mathbb{N}$.}\\
+        \text{Пусть $k>N$. При этом по орпеделению $sup$ $\exists n\geq k>N$, т.ч. $a_n>M_k-\varepsilon \Rightarrow$}\\\text{$\Rightarrow a_n>M_k-\varepsilon\geq M-\varepsilon$. (данная лемма из 1-ого семестра)}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \addcontentsline{toc}{subsubsection}{Теорема. Обобщённый признак Коши}
+        \par{\textbf{Теорема. "Обобщённый признак Коши"}\\
+        \text{Пусть $a_n\geq0$ и $\displaystyle\exists\overline{\lim_{n\rightarrow\infty}}\sqrt[n]{a_n}=q$. Тогда возможны три случая:}}
+        \begin{itemize}
+            \item \par{если q < 1, то $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится;}
+            \item \par{если q > 1, то $\displaystyle\sum_{n=1}^{\infty}a_n\ $ расходится;}
+            \item \par{если q = 1, то про сходимость $\displaystyle\sum_{n=1}^{\infty}a_n\ $ ничего сказать нельзя;}
+        \end{itemize}
+        \textbf{Доказательство:}
+        \begin{itemize}
+            \item \par{
+            \text{[q<1] Возьмём $\varepsilon>0$, т.ч. $q+\varepsilon<1$. Т.к. $\displaystyle\overline{\lim_{n\rightarrow\infty}}\sqrt[n]{a_n}=\limsup{\{\sqrt[n]{a_n},\sqrt[n+1]{a_{n+1}},...\}}$, то,}\\
+            \text{начиная с некоторого номера, $\sup\{\sqrt[n]{a_n},\sqrt[n+1]{a_{n+1}},...\}<q+\varepsilon\Rightarrow\sqrt[n]{a_n}\leq\sup\{...\}<q+\varepsilon$.}\\
+            \text{Т.е. $a_n<(q+\varepsilon)^n$. Т.к. $q+\varepsilon<1$, то по признаку сравнения $\displaystyle\sum_{n=1}^{\infty}a_n\ $ сходится. }
+            }
+            \item \par{
+            \text{[q>1] Возьмём $\varepsilon>0$, т.ч. $q-\varepsilon>1$. Т.к. $\displaystyle\overline{\lim_{n\rightarrow\infty}}\sqrt[n]{a_n}=\limsup{\{\sqrt[n]{a_n},\sqrt[n+1]{a_{n+1}},...\}}$, то  }\\
+            \text{по лемме 1 (см. выше) $\forall N\in\mathbb{N}$ $\exists k>N$, т.ч. $\sqrt[k]{a_k}>q-\varepsilon$. Т.о. строим $\{n_k\}$, что}\\
+            \text{$\displaystyle a_{n_k}>(q-\varepsilon)^{n_k}$, при этом $\displaystyle q-\varepsilon>1\Rightarrow a_{n_k}\xrightarrow{n_k\rightarrow\infty}\infty$. Если ряд сходится, то общий}\\
+            \text{член ряда стремится к 0. Поэтому наш ряд расходится.}
+            }
+            
+        \end{itemize}
+        \par{{\raggedleft ч.т.д.\par}}
+        \text{!Если сработал признак Даламбера, то и сработал признак Коши!}\\\text{ОБРАТНОЕ НЕВЕРНО!}
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{
+            \begin{equation*}
+                \sum_{n=1}^{\infty}\frac{3+(-1)^n}{2^n}. \ \ \frac{a_{n+1}}{a_n}=\frac{1}{2}*\frac{3+(-1)^{n+1}}{3+(-1)^n}= \begin{cases}
+                    {1\over{4}},\text{n - чётное}\\
+                    {1},\text{n - нечётное}
+                \end{cases} \Rightarrow \text{нет предела.}
+            \end{equation*}
+            \begin{equation*}
+                \sqrt[n]{a_n}={\sqrt[n]{3+(-1)^n}\over{2}}\rightarrow{1\over{2}} \text{ - из признака Коши.}
+            \end{equation*}
+            }
+            \item \par{
+            \begin{equation*}
+                a+ab+a^2b+a^2b^2+...+a^nb^{n-1}+a^nb^n+..., \ a>0, \ b>0.
+            \end{equation*}
+            \begin{equation*}
+                a_n=\begin{cases}
+                    a^kb^{k-1}, \ n=2k-1 \\
+                    a^kb^k \ \ \ , \ n = 2k
+                \end{cases}
+            \end{equation*}
+            \begin{equation*}
+                \sqrt[2k]{a^kb^k}=\sqrt{ab}, \ n=2k
+                \end{equation*}
+                \begin{equation*}
+                    \sqrt[2k-1]{a^kb^{k-1}}=\sqrt[2k-1]{a^{k-{1\over{2}}}b^{k-{1\over{2}}}a^{1\over{2}}b^{-{1\over{2}}}}=\sqrt{ab}\sqrt[2n]{a\over{b}}, \ n=2k-1
+            \end{equation*}
+            \begin{equation*}
+                \sqrt[n]{a_n}=\begin{cases} 
+                \sqrt{ab} \ \ \ \ \ \ , \ n=2k \\
+                \sqrt{ab}\sqrt[2n]{a\over{b}}, \ n=2k-1
+                \end{cases}
+                \xrightarrow{n\rightarrow\infty}\sqrt{ab}
+            \end{equation*}
+            \text{Если ab=1, то $a+ab+a^2b+a^2b^2+...=a+ab+ab(a)+(ab)^2+...=$} \\
+            \text{$=a+1+a+1+\ldots$ - расходится.}}
+        \end{enumerate}
+        \vspace{0.5cm}
+        \newpage
+        \addcontentsline{toc}{subsubsection}{Теорема. Интегральный признак сходимости ряда}
+        \par{\textbf{Теорема. Интегральный признак сходимости ряда} \\
+        \text{Пусть f - монотонно убывающая положительная функция на [1, +$\infty$), тогда ряд} \\
+        \text{$\displaystyle\sum_{n=1}^{\infty}f(n)$ сходится или расходится одновременно с интегралом $\displaystyle\int_{1}^{+\infty}f(x)dx$.}\\
+        \textbf{Доказательство:} \text{т.к. $f(x)$ монотонна, то она интегрируема на $\forall$ конечном интервале.} \\
+        \textbf{[$\Rightarrow$]}\text{из сходимости ряда докажем сходимость интеграла}\\
+        \text{$\displaystyle f(n+1)\leq f(x)\leq f(n)\Rightarrow\int_{n}^{n+1}f(n+1)dx\leq\int_{n}^{n+1}f(x)dx\leq\int_{n}^{n+1}f(n)dx$}
+        \begin{equation*}
+            \int_{n}^{n+1}\underbrace{f(n+1)}_{const}dx=f(n+1)\int_{n}^{n+1}dx=f(n+1)*(n+1-n)=f(n+1)
+        \end{equation*}
+        \text{Из аналогичных соображений получаем, что $\displaystyle\int_{n}^{n+1}f(n)dx=f(n)$.}\\
+        \text{$\displaystyle\int_{n}^{n+1}f(n+1)dx\leq\int_{n}^{n+1}f(x)dx\leq\int_{n}^{n+1}f(n)dx\Rightarrow f(n+1)\leq\int_{n}^{n+1}f(x)dx\leq f(n)$.}\\
+        \text{Просуммируем по n = 1, 2, ..., N:}
+        \begin{equation*}
+            \sum_{n=1}^Nf(n+1)\leq\sum_{n=1}^{N}\int_{n}^{n+1}f(x)dx\leq\sum_{n=1}^{N}f(n)\Rightarrow f(2)+...+f(N+1)\leq\underbrace{\int_{1}^{N+1}f(x)dx}_{\text{аддитивность}}\leq f(1)+...+f(N)
+        \end{equation*}
+        \text{$f(2)+...+f(N+1)=S_{N+1}-f(1)$, $f(1)+...+f(N)=S_N$}
+        \begin{equation}
+            \label{1}
+            S_{N+1}-f(1)\leq\int_{1}^{N+1}f(x)dx\leq S_N
+        \end{equation}
+        \text{Пусть $\displaystyle\sum_{n=1}^{\infty}f(n)$ сходится, тогда $S_N\leq c$ ограничена $\displaystyle\Rightarrow\int_{1}^{N+1}f(x)dx\leq S_N\leq c\Rightarrow$} \\
+        \text{последовательность $\displaystyle\int_{1}^{N+1}f(x)dx$ возрастает и ограничена $\displaystyle\Rightarrow\exists\lim_{N\rightarrow\infty}\int_{1}^{N}f(x)dx\Rightarrow$}\\
+        \vspace{0.3cm}
+        \text{$\Rightarrow$ наш интеграл сходится.}\\
+        \textbf{[$\Leftarrow$]}\text{из сходимости интеграла докажем скодимость ряда}\\
+        \text{В предыдущем пункте в формуле $\ref{1}$ заменим N+1 на N: $\displaystyle S_N-f(1)\leq\int_{1}^{N}f(x)dx\Rightarrow$}\\
+        \text{$\displaystyle\Rightarrow S_N\leq f(1)+\int_{1}^{N}f(x)dx\leq\int_{1}^{+\infty}f(x)dx + f(1)=C$, т.е. $S_N\leq C$ ограничена, а по лемме}\\
+        \text{Критерий сходимости ряда из $\S$2 $S_N$ ограничена $\Leftrightarrow$ ряд сходится, т.е. $\displaystyle\sum_{n=1}^{\infty}f(n)$ сходится.}}
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.5cm}
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{
+            \text{$\displaystyle\zeta(p)=\sum_{n=1}^{\infty}{1\over{n^p}}$, p>0 $\displaystyle f(x)={1\over{x^p}}\downarrow0\sim\int_{1}^{+\infty}{dx\over{x^p}} $ - }
+            $
+            \begin{cases}
+                \text{сходится при $p > 1$}\\
+                \text{расходится при $p \leq1$}
+            \end{cases}$
+         }
+         \item \par{
+         \text{$f(x)=$}$
+         \begin{cases}
+             \text{${1\over{x^2}}, \ x\notin\mathbb{N}$}\\
+             \text{${1\over{n}}, \ x\in\mathbb{N}$}
+         \end{cases}$
+         \text{ - пример, почему функция должна быть монотонна.}\\
+         \text{$\displaystyle\sum_{n=1}^{\infty}f(n)=\sum_{n=1}^{\infty}{1\over{n}}$ - расходится, а $\displaystyle\int_{1}^{+\infty}f(x)dx=\int_{1}^{+\infty}{dx\over{x^2}}$ - сходится.}
+         }
+         \newpage
+         \item \par{
+         \text{$\displaystyle\zeta(p)=\sum_{n=1}^{\infty}{1\over{n^p}}$, $p\rightarrow1$}\\
+         \text{$\displaystyle\sum_{n=2}^{N+1}f(n)\leq\int_{1}^{+\infty}f(x)dx\leq\sum_{n=1}^{N}f(n)$, из формулы \ref{1} получаем следующее неравенство:}
+         \begin{equation}
+             \int_{1}^{N+1}f(x)dx\leq\sum_{n=1}^{N+1}f(n)\leq\int_{1}^{N+1}f(x)dx+f(1)
+         \end{equation}
+         \text{Подставив в (2) функцию, приняв $p=1+z, \ z\rightarrow0, \ N\rightarrow+\infty$ получим:}
+         \begin{equation}
+             \int_{1}^{+\infty}{dx\over{x^{1+z}}}\leq\zeta(1+z)\leq\int_{1}^{+\infty}{dx\over{x^{1+z}}}+1
+         \end{equation}
+         \begin{equation}
+             \int_{1}^{+\infty}{dx\over{x^{1+z}}}=\frac{x^{-z}}{-z}\Bigg|_{1}^{+\infty}=0-{1\over{-z}}={1\over{z}}
+         \end{equation}
+         \text{Подставим (4) в (3) и получим, что $\displaystyle{1\over{z}}\leq\zeta(1+z)\leq{1\over{z}}+1\Rightarrow1\leq z\zeta(1+z)\leq1+z$.}\\
+         \text{При $z\rightarrow0$ по теореме О двух милиционерах $z\zeta(1+z)\rightarrow1$, т.е. $\zeta(1+z)={1\over{z}}+\gamma+o(1)$.}
+         }
+        \end{enumerate}
+        \vspace{0.7cm}
+        \setcounter{equation}{0}
+        %******************S3*******************
+                \section*{$\S$3. Ряды с членами произвольного знака}
+                \addcontentsline{toc}{section}{$\S$3. Ряды с членами произвольного знака}
+        \subsection*{1. Знакочередующийся ряд}
+        \addcontentsline{toc}{subsection}{1. Знакочередующийся ряд}
+        \par{\textbf{Def 1: } \text{$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}b_n$, где $b_n>0$ - знакочередующийся ряд.}
+        }
+        \vspace{0.6cm}
+        \addcontentsline{toc}{subsubsection}{Теорема. Признак Лейбница}
+        \par{
+        \textbf{Теорема. Признак Лейбница} \\
+        \text{Пусть задана $b_n$, т.ч. $b_n>b_{n+1}, \ \displaystyle\lim_{n\rightarrow\infty}b_n=0$. Тогда ряд $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}b_n$ сходится и}\\\text{его сумма S подчиняется неравенству $0<S<b_1$.} \\
+        \textbf{Доказательство: }\text{рассмотрим частичные суммы $S_n$ с n=2k номерами:}
+        \begin{equation}
+            S_{2N}=\underbrace{(b_1-b_2)}_{>0}+...+\underbrace{(b_{2N-1}-b_{2N})}_{>0}\Rightarrow S_{2N}<S_{2(N+1)}
+        \end{equation}
+        \begin{equation}
+            S_{2N}=b_1-\underbrace{(b_2-b_3)}_{>0}-...\underbrace{(b_{2N-2}-b_{2N-1})}_{>0}-\underbrace{b_{2N}}_{>0}<b_1
+        \end{equation}
+        \text{Из (1) делаем вывод, что $S_{2N}$ монотонно возрастает, а из (2) делаем вывод, что}\\
+        \text{она ограничена. Значит $\displaystyle\exists\lim_{N\rightarrow\infty}S_{2N}=S$.}
+        \text{Рассмотрим $\displaystyle S_{2N+1}=\underbrace{S_{2N}}_{\rightarrow S}+\underbrace{b_{2N+1}}_{\rightarrow0}\rightarrow S$:}\\
+        \text{Значит $\displaystyle\exists\lim_{N\rightarrow\infty}S_N=S$ и $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}b_n$ сходится.} 
+        \begin{equation}
+            0<S_2<S_{2N}<S \text{, где $S_2$ - сумма первых 2-х элементов ряда}
+        \end{equation}
+        \text{Посмотрим на $S_{2N+1}=b_1-(b_2-b_3)-...-(b_{2N}-b_{2N+1})\Rightarrow S_{2N+1}$ монотонно убывает, }\\
+        \newpage
+        \text{при этом недавно выяснили, что она стремится к S $\Rightarrow S<S_{2N+1}\Rightarrow$:}
+        \begin{equation}
+            S<S_1=b_1
+        \end{equation}
+        \text{Объединив (3) и (4), получаем, что $0<S<b_1$.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.5cm}
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{
+            \textbf{Ряд Лейбница} \text{: $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}$ сходится, т.к. $b_n = {1\over{n}}$ монотонно идёт к 0.}
+            }
+            \item \par{
+            \text{пример, почему нельзя избавиться от монотонности: $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{2+(-1)^{n}}{n}$}
+            \begin{equation*}
+                \sum_{n=1}^{\infty}(-1)^{n-1}\frac{2+(-1)^{n}}{n}=2\underbrace{\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}}_{\text{сходится}}-\underbrace{\sum_{n=1}^{\infty}\frac{1}{n}}_{\text{расходится}}
+            \end{equation*}
+            \text{$\Rightarrow$ и наш ряд тоже расходится.}
+            }
+        \end{enumerate}
+        \vspace{0.5cm}
+        \subsection*{2. Признаки Абеля и Дирихле}
+        \addcontentsline{toc}{subsection}{2. Признаки Абеля и Дирихле}
+        \setcounter{equation}{0}
+        \par{
+        \text{Рассмотрим $\displaystyle\sum_{n=1}^{\infty}a_nb_n$. Обозначим за $\displaystyle B_n=\sum_{n=1}^{N}b_n$, тогда $b_n=B_n-B_{n-1}$.}\\
+        \text{При этом $\displaystyle S_N=\sum_{n=1}^{N}a_nb_n=a_1B_1+a_2(B_2-B_1)+...+a_N(B_N-B_{N-1})$, тогда получим:}
+        \begin{equation}
+            \sum_{n=1}^{N}a_nb_n=a_NB_N+\sum_{n=1}^{N-1}(a_n-a_{n+1})B_n \text{ - суммирование по частям.}
+        \end{equation}
+        }
+        \vspace{0.5cm}
+        \addcontentsline{toc}{subsubsection}{Теорема. Признак Абеля}
+        \par{
+        \textbf{Теорема. Признак Абеля}\\
+        \text{Пусть $\displaystyle\sum_{n=1}^{\infty}b_n$ сходится, а последовательность $\{a_n\}$ монотонна и ограничена, тогда}\\
+        \text{ряд $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ сходится.}\\
+        \textbf{Доказательство: }\text{распишем критерий Коши: фикс. $\varepsilon>0$, т.к. $\displaystyle\sum_{n=1}^{\infty}b_n$ сходится, то}\\
+        \text{$\exists N\in\mathbb{N}: \ \forall n>N, \ p\in\mathbb{N} \ \ |b_{n+1}+\ldots+b_{n+p}|=|\tilde{B}_p|<\varepsilon$.}\\
+        \text{Фикс. $n>N$, тогда для $\displaystyle\tilde{B}_p=\sum_{m=1}^pb_{n+m}$ верно, что $|\tilde{B}_p|<\varepsilon$. Т.к. $a_n$ ограничена, то}\\
+        \text{$\exists c>0: \ |a_n|\leq c \ \ \ \forall n\in\mathbb{N}$.}
+        \newpage
+        \begin{equation*}
+            |\sum_{q=1}^pa_{n+q}b_{n+q}|=|a_{n+p}\tilde{B}_p+\sum_{q=1}^{p-1}(a_{n+q}-a_{n+q+1})\tilde{B}_q\leq|a_{n+p}|\underbrace{|\tilde{B}_p|}_{<\varepsilon}+\sum_{q=1}^{p-1}(|a_{n+q}-a_{n+q+1}|\underbrace{|\tilde{B}_q|}_{<\varepsilon}) <
+        \end{equation*}
+        \begin{equation}
+            <\varepsilon(|a_{n+p}|+\sum_{q=1}^{p-1}|a_{n+q}-a_{n+q+1}|)
+        \end{equation}
+        \text{Предположим, что $a_n$ монотонно убывает, тогда (2) можно переписать ввиде:}
+        \begin{equation}
+            \varepsilon(|a_{n+p}|+a_{n+1}-a_{n+2}+a_{n+2}-a_{n+3}+\ldots-a_{n+p})=\varepsilon(|a_{n+p}|+\underbrace{(a_{n+1}-a_{n+p})}_{>0})
+        \end{equation}
+        \text{Предположим, что $a_n$ монотонно возрастает, тогда (2) можно переписать ввиде:}
+        \begin{equation}
+            \varepsilon(|a_{n+p}|-a_{n+1}+a_{n+2}-a_{n+2}+a_{n+3}-\ldots+a_{n+p})=\varepsilon(|a_{n+p}|-\underbrace{(a_{n+1}-a_{n+p})}_{<0})
+        \end{equation}
+        \text{Заметим, что в (3) и (4) $a_{n+1}-a_{n+p}$ стоят с разными знаками, значит в итоговой}\\\text{форме мы напишем просто модуль:}
+        \begin{equation}
+            (2) = \varepsilon(|a_{n+p}|+|a_{n+1}-a_{n+p}|)\leq\varepsilon(\underbrace{|a_{n+p}|}_{<c}+\underbrace{|a_{n+1}|}_{<c}+\underbrace{|a_{n+p}|}_{<c})\leq3c\varepsilon
+        \end{equation}
+        \text{Из (5) следует, что $\tilde{B}_p$ можно сделать сколь угодно малым $\forall p\in\mathbb{N}$. Тогда по} \\
+        \text{критерию Коши ряд $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ сходится.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.7cm}
+        \addcontentsline{toc}{subsubsection}{Теорема. Признак Дирихле}
+        \setcounter{equation}{0}
+        \par{
+        \textbf{Теорема. Признак Дирихле}\\
+        \text{Пусть $\displaystyle B_N=\sum_{n=1}^Nb_n$ (последовательность частичных сумм) ограничена, а последова-}\\\text{тельность $\{a_n\}$ монотонно стремится к нулю. Тогда ряд $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ сходится.}\\
+        \textbf{Доказательство: } \text{фикс. $\varepsilon>0$, т.к. $a_n\rightarrow0$, то $\exists N\in\mathbb{N}$, т.ч. $\forall n>N \ \ |a_n|<\varepsilon$.} \\
+        \text{Т.к. $B_N$ ограничена $|B_N|\leq c \ \ \forall N\in\mathbb{N}$, то $|\tilde{B}_p|=|B_{n+p}-B_n|\leq|B_{n+p}|+|B_n|\leq2c$.}\\
+        \text{Фикс. $n\geq N$, тогда}
+        \begin{equation*}
+            |\sum_{q=1}^pa_{n+q}b_{n+q}|=|a_{n+p}\tilde{B}_p+\sum_{q=1}^{p-1}(a_{n+q}-a_{n+q+1})\tilde{B}_q|\leq|a_{n+p}|\underbrace{|\tilde{B}_p|}_{<2c}+\sum_{q=1}^{p-1}(|a_{n+q}-a_{n+q+1}|\underbrace{|\tilde{B}_q|}_{2c}) <
+        \end{equation*}
+        \begin{equation}
+            <2c(|a_{n+p}|+\sum_{q=1}^{p-1}|a_{n+q}-a_{n+q+1}|)
+        \end{equation}
+        \text{Предположим, что $a_n$ монотонно убывает, тогда (1) можно переписать ввиде:}
+        \begin{equation}
+            2c(|a_{n+p}|+a_{n+1}-a_{n+2}+a_{n+2}-a_{n+3}+\ldots-a_{n+p})=2c(|a_{n+p}|+\underbrace{(a_{n+1}-a_{n+p})}_{>0})
+        \end{equation}
+        \newpage
+        \text{Предположим, что $a_n$ монотонно возрастает, тогда (2) можно переписать ввиде:}
+        \begin{equation}
+            2c(|a_{n+p}|-a_{n+1}+a_{n+2}-a_{n+2}+a_{n+3}-\ldots+a_{n+p})=2c(|a_{n+p}|-\underbrace{(a_{n+1}-a_{n+p})}_{<0})
+        \end{equation}
+        \text{Заметим, что в (2) и (3) $a_{n+1}-a_{n+p}$ стоят с разными знаками, значит в итоговой}\\\text{форме мы напишем просто модуль:}
+        \begin{equation}
+            (1) = 2c(|a_{n+p}|+|a_{n+1}-a_{n+p}|)\leq2c(\underbrace{|a_{n+p}|}_{<\varepsilon}+\underbrace{|a_{n+1}|}_{<\varepsilon}+\underbrace{|a_{n+p}|}_{<\varepsilon})\leq6c\varepsilon
+        \end{equation}
+        \text{Из (4) следует, что $\tilde{B}_p$ можно сделать сколь угодно малым $\forall p\in\mathbb{N}$. Тогда по} \\
+        \text{критерию Коши ряд $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ сходится.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.5cm}
+        \par{
+        \textbf{Пример:}
+        }
+        \par{\text{$\displaystyle\sum_{n=1}^{\infty}\frac{\sin{nx}}{n^p}, \ p>0. \ {1\over{n^p}}\downarrow0 $ и $|\sin{nx}|<1$. Тогда $\displaystyle B_N=\sum_{n=1}^N\sin{nx}=\frac{\sin{Nx\over{2}}\sin{{N+1\over2}x}}{\sin{x\over2}}$.}\\
+        \text{Если $\sin{x\over2}=0$, то $\sin{nx}=0$ и все члены ряда тоже 0, т.е. ряд сходится. Иначе} \\
+        \text{$\displaystyle|B_N|=|\sum_{n=1}^N\sin{nx}|=|\frac{\sin{Nx\over{2}}\sin{{N+1\over2}x}}{\sin{x\over2}}|\leq{1\over{\sin{x\over2}}}$ - ограничена.}
+        \begin{equation*}
+            \sum_{n=1}^N\sin{nx}=\sum_{n=1}^N{(e^{ix}-e^{-ix})\over{2i}}={1\over{2i}}(\sum_{n=1}^Ne^{ix}-\sum_{n=1}^Ne^{-ix})={1\over{2i}}(\frac{e^{ix}(e^{iNx}-1)}{e^{ix}-1}-\frac{e^{-ix}(e^{-iNx}-1)}{e^{-ix}-1})=
+        \end{equation*}
+        \begin{equation*}
+            ={1\over{2i}}(\frac{e^{ix\over2}(e^{iNx}-1)
+                }{e^{ix\over2}-e^{-ix\over2}}+\frac{e^{-ix\over{2}}(e^{-iNx}-1)}{e^{ix\over2}-e^{-ix\over2}})={1\over{2i}}\frac{(e^{i(N+{1\over{2}})x}+e^{-i(N+{1\over{2}})x})-(e^{i{1\over{2}}x}+e^{-i{1\over{2}}x})}{e^{ix\over2}-e^{-ix\over2}}=
+        \end{equation*}
+        \begin{equation*}
+            =-\frac{(e^{i(N+{1\over{2}})x}+e^{-i(N+{1\over{2}})x})-(e^{i{1\over{2}}x}+e^{-i{1\over{2}}x})}{4\sin{x\over{2}}}=-\frac{\cos{(N+{1\over2})x}-\cos{{1\over2}x}}{2\sin{x\over2}}=\frac{\sin{Nx\over{2}}\sin{{N+1\over2}x}}{\sin{x\over2}}
+        \end{equation*}
+        }
+        \vspace{0.7cm}
+        \subsection*{3. Абсолютная и условная сходимость}
+        \addcontentsline{toc}{subsection}{3. Абсолютная и условная сходимость}
+        \par{
+        \textbf{Лемма 1. } \text{Пусть ряд $\displaystyle\sum_{n=1}^{\infty}|a_n|$ сходится, тогда и ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится.} \\
+        \textbf{Доказательство: } \text{применим критрерий Коши: из сходимости ряда $\displaystyle\sum_{n=1}^{\infty}|a_n|$:} \\
+        \text{$\displaystyle\forall\varepsilon>0 \ \ \ \exists N\in\mathbb{N}$: $\forall n>N$, $p\in\mathbb{N}$ $|a_{n+1}|+\ldots+|a_{n+p}|<\varepsilon$.} \\
+        \text{При тех же $N$ и $p$ $|a_{n+1}+\ldots+a_{n+p}|\leq|a_{n+1}|+\ldots+|a_{n+p}|<\varepsilon\Rightarrow\displaystyle\sum_{n=1}^{\infty}a_n$ сходится} \\
+        \text{по критерию Коши.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.5cm}
+        \par{
+        \textbf{Def 1: }\text{Ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ называется абсолютно сходящимся, если ряд $\displaystyle\sum_{n=1}^{\infty}|a_n|$ сходится.}\\
+        \text{По лемме выше абсолютно сходящийся ряд сходится.}
+        }
+        \newpage
+        \par{
+        \textbf{Def 2: }\text{Ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ называется условно сходящимся, если ряд $\displaystyle\sum_{n=1}^{\infty}|a_n|$ расходится,}\\
+        \text{но сам ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится.}
+        }
+        \vspace{0.5cm}
+        \par{
+        \textbf{Пример: }\text{Ряд $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}$ - сходится, а $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ расходится.}
+        }
+        \par{\text{Рассмотрим произвольный ряд $\displaystyle\sum_{n=1}^{\infty}a_n$. Обозначим за $p_k$ неотрицательные члены,} \\
+        \text{а за $-q_m$ - отрицательные. При этом нумерация $-q_m$ и $p_k$ не зависит от нумерации ряда. }\\
+        \text{Например, первые два неотрицательных члена в $a_n: a_{2}$ и $a_{8}$. Тогда $p_1=a_2$, $p_2=a_8$.} \\
+        \text{Т.е. нумерация происходит по мере их появления.}
+        }
+        \vspace{0.6cm}
+        \setcounter{equation}{0}
+        \par{
+        \textbf{Лемма 2.} \text{Ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится абсолютно $\Leftrightarrow$ оба ряда $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ сходятся.} \\
+        \text{Важно отметить, что при этом не исключён случай, когда один из рядов конечен} \\
+        \text{или вовсе отсутствует.} \\
+        \textbf{Доказательство: } \text{$S_N=\displaystyle\sum_{n=1}^{N}a_n=\displaystyle\sum_{k=1}^{K}p_k-\displaystyle\sum_{m=1}^{M}q_m$, $N=K+M$. Тогда получим:}\\
+        \begin{equation}
+            S_N:=P_K-Q_M
+        \end{equation}
+        \text{$\tilde{S}_N=\displaystyle\sum_{n=1}^{N}|a_n|=\displaystyle\sum_{k=1}^{K}p_k+\displaystyle\sum_{m=1}^{M}q_m=P_K+Q_M.$ Тогда получим следующее равенство:}
+        \begin{equation}
+            \tilde{S}_N=P_K+Q_M
+        \end{equation}
+        \text{Сумма (1) + (2) даёт нам $P_K={1\over2}(\tilde{S}_N+S_N)$, а разность (2) - (1) - $Q_M={1\over2}(\tilde{S}_N-S_N)$.} \\
+        \textbf{[$\Rightarrow$]}\text{из абсолютной сходимости ряда докажем сходимость $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$:}\\
+        \text{Действительно, если ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ абсолютно сходится, то $\exists$ конечные $\displaystyle\lim_{N\rightarrow\infty}S_N$ и $\displaystyle\lim_{N\rightarrow\infty}\tilde{S}_N$.}\\
+        \text{Тогда существуют и конечные пределы $P_K={1\over2}(\tilde{S}_N+S_N)$ и $Q_M={1\over2}(\tilde{S}_N-S_N)$.}\\
+        \textbf{[$\Leftarrow$]}\text{из сходимости $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ докажем сходимость $\displaystyle\sum_{n=1}^{\infty}a_n$:}\\
+        \text{Если в них бесконечное кол-во элементов, то $\exists$ их конечные пределы. Тогда по}\\
+        \text{формулам (1) и (2) $\exists$ конечные $\displaystyle\lim_{N\rightarrow\infty}S_N$ и $\displaystyle\lim_{N\rightarrow\infty}\tilde{S}_N$. Если же один ряд конечен,}\\
+        \text{а другой сходится, то тоже всё хорошо. Просто будет фигурировать один из пределов.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.5cm}
+        \par{
+        \textbf{Лемма 3. } \text{Пусть $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится условно, тогда ряды $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ расходятся.} \\
+        \text{Замечание: здесь, в отличие от леммы 2, лишь необходимое условие.}\\
+        \textbf{Доказательство: } {$\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ точно не конечны. Переберём все другие варианты:}
+        }
+        \begin{itemize}
+            \item \par{
+            \text{Пусть $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ сходятся, тогда по лемме 2 наш ряд сходится абсолютно. $\lightning$}
+            }
+            \newpage
+            \item \par{
+            \text{Пусть $\displaystyle\sum_{k}p_k$ сходится, а $\displaystyle\sum_{m}q_m$ расходится. Пусть $P=\displaystyle\sum_{k=1}^{\infty}p_k$, тогда}\\
+            \text{$S_N=\underbrace{P_K}_{\leq P}- \ Q_M \leq P-Q_M \rightarrow -\infty.$ Но тогда $S_N$ тоже стремится к $-\infty$.}\\
+            \text{Тогда $\displaystyle\sum_{n=1}^{\infty}a_n$ расходится, что приводит к противоречию с предположением. $\lightning$}
+            }
+            \item \par{
+            \text{Пусть $\displaystyle\sum_{k}p_k$ расходится, а $\displaystyle\sum_{m}q_m$ сходится обобщается на предыдущий случай}\\
+            \text{домножением на -1. По лемме 2 $\S1$ этот ряд тоже расходится. $\lightning$}\\
+            }
+            \text{Все остальные случаи приводят к противоречию, тогда остаётся единственный}\\
+            \text{случай, когда ряды $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ расходятся.}
+        \end{itemize}
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.5cm}
+        \par{
+        \textbf{Теорема 1. }\text{Пусть ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится абсолютно, тогда ряд $\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n$, полученный}\\
+        \text{из ряда $\displaystyle\sum_{n=1}^{\infty}a_n$ перестановкой слагаемых, сходится абсолютно и имеет ту же сумму.}\\
+        \textbf{Доказательство: }\text{Пусть $\displaystyle\sum_{n=1}^{\infty}a_n$ положителен. Рассмотрим $\tilde{S}_{\tilde{N}}=\displaystyle\sum_{n=1}^{\tilde{N}}\tilde{a}_n$. Где $\tilde{a}_n=a_{f(n)}$,}\\
+        \text{где $f(n)$ - некоторая функция перестановки слагаемых. Пусть $N=\max f(n)$, $n=1,2,...,\tilde{N}$.}\\
+        \text{Т.е. мы пронумеровали элементы после перестановки по порядку и при помощи функции}\\
+        \text{получили порядковые номера элементов, которые были у них до перестановки.}\\
+        \text{Тогда $S_N\geq \tilde{S}_{\tilde{N}}$, ведь в $S_N$ содержатся все элементы $\tilde{S}_{\tilde{N}}$. По условию ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится}\\
+        \text{абсолютно. Тогда по лемме Критерий сходимости положительного ряда из $\S2$ следует, что}\\
+        \text{$S_N$ ограничен, т.е. $S_N\leq C$. Тогда $\tilde{S}_{\tilde{N}}\leq S_N\leq C$, т.е. $\tilde{S}_{\tilde{N}}$ тоже ограничен. По той же лемме}\\
+        \text{$\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n$ сходится. Т.к. $\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n$ положителен, то он сходится абсолютно (модуль элемента}\\
+        \text{равен элементу). Обозначим за $\displaystyle\tilde{S}=\lim_{\tilde{N}\rightarrow\infty}\tilde{S}_{\tilde{N}}$, тогда $S_N\geq \tilde{S}_{\tilde{N}} \Rightarrow S\geq\tilde{S}$.}\\
+        \text{Пересталяя члены ряда $\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n$ вернёмся к ряду $\displaystyle\sum_{n=1}^{\infty}a_n$. По доказанному $S\leq\tilde{S}$. Тогда}\\
+        \text{$S\leq\tilde{S}\leq S \Rightarrow S=\tilde{S}$.} \\
+        \text{Пусть $\displaystyle\sum_{n=1}^{\infty}a_n$ - произвольный абсолютно сходящийся ряд. Тогда по лемме 2 на предыд.}\\
+        \text{странице положительные ряды $\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ сходятся. Тогда в силу первой части}\\
+        \text{доказательства $\displaystyle\sum_{k}\tilde{p}_k$ и $\displaystyle\sum_{m}\tilde{q}_m$, полученные перестановками слагаемых, сходятся, а их}\\
+        \text{суммы не меняются. Тогда в силу леммы 2 с предыдущей страницы $\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n=\displaystyle\sum_{k}\tilde{p}_k-\displaystyle\sum_{m}\tilde{q}_m$}\\
+        \text{тоже сходится абсолютно. В данном случае мы не ссылаемся на лемму о сумме рядов, }\\
+        \text{но ссылаемся на теорему о переходе к пределу.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \addcontentsline{toc}{subsubsection}{Теорема (Риман)}
+        \setcounter{equation}{0}
+        \par{
+        \textbf{Теорема (Риман) о условно сходящихся рядах.}\\
+        \text{Путь $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится условно, тогда перестановкой членов ряда можно добиться,}\\
+        \text{чтобы $\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n$ сходился к любому наперёд заданному числу $S$ или вовсе расходился.}\\
+        \textbf{Доказательство: } 
+        \text{Так как ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится условно, то по лемме выше ряды}\\
+        \text{$\displaystyle\sum_{k}p_k$ и $\displaystyle\sum_{m}q_m$ расходятся, т.е. содержат бесконечное кол-во элементов. Будем идти по}\\
+        \text{шагам и набирать элементы так, чтобы выполнялись следующие неравенства:}
+        \begin{enumerate}
+            \item \par{
+            \begin{enumerate}
+                \item \par{\text{$p_1+p_2+\ldots+p_{k_1-1}\leq S$ - набрали $k_1-1$ положительных элементов}}
+                \item \par{\text{$p_1+p_2+\ldots+p_{k_1-1}+p_{k_1}> S$ - набрали $k_1$ый положит. элемент}}
+            \end{enumerate}
+            }
+            \item \par{
+            \begin{enumerate}
+                \item \par{$p_1+p_2+\ldots+p_{k_1}-q_1-q_2-\ldots-q_{m_1-1}\geq S$
+            }
+            \item \par{$p_1+p_2+\ldots+p_{k_1}-q_1-q_2-\ldots-q_{m_1-1}-q_{m_1}< S$
+            }
+            \end{enumerate}
+            }
+            \item \par{
+            \begin{enumerate}
+                \item \par{\text{$p_1+\ldots+p_{k_1}+p_{k_1+1}+\ldots+p_{k_2-1}-q_1-\ldots-q_{m_1}\leq S$}}
+                \item \par{\text{$p_1+\ldots+p_{k_1}+p_{k_1+1}+\ldots+p_{k_2-1}+p_{k_2}-q_1-\ldots-q_{m_1}> S$}}
+            \end{enumerate}
+            }
+            \item \par{
+            \begin{enumerate}
+                \item \par{\text{$p_1+\ldots+p_{k_2}-q_1-\ldots-q_{m_1}-q_{m_1+1}-\ldots-q_{m_2-1}\geq S$}}
+                \item \par{\text{$p_1+\ldots+p_{k_2}-q_1-\ldots-q_{m_1}-q_{m_1+1}-\ldots-q_{m_2-1}-q_{m_2}< S$}}
+            \end{enumerate}
+            }
+        \end{enumerate}
+        \par{\text{$\ldots$}}
+        }
+        \par{Таким образом на шаге n-1 верны неравенства:}
+        \begin{equation*}
+            p_1+\ldots+p_{k_{n-1}-1}-q_1-\ldots-q_{m_{n-2}}\leq S
+        \end{equation*}
+        \begin{equation*}
+            p_1+\ldots+p_{k_{n-1}}-q_1-\ldots-q_{m_{n-2}} > S
+        \end{equation*}
+        \begin{equation}
+            p_1+\ldots+p_{k_{n-1}}-q_1-\ldots-q_{m_{n-1}-1}\geq S
+        \end{equation}
+        \begin{equation}
+            \underbrace{p_1+\ldots+p_{k_{n-1}}-q_1-\ldots-q_{m_{n-1}}}_{S_{k_{n-1}+m_{n-1}}}< S
+        \end{equation}
+        \par{Таким образом на шаге n верны неравенства:}
+        \begin{equation}
+            p_1+\ldots+p_{k_{n}-1}-q_1-\ldots-q_{m_{n-1}}\leq S
+        \end{equation}
+        \begin{equation}
+            \underbrace{p_1+\ldots+p_{k_{n}}-q_1-\ldots-q_{m_{n-1}}}_{S_{k_{n}+m_{n-1}}} > S
+        \end{equation}
+        \begin{equation}
+            p_1+\ldots+p_{k_{n}}-q_1-\ldots-q_{m_{n}-1}\geq S
+        \end{equation}
+        \begin{equation*}
+            p_1+\ldots+p_{k_{n}}-q_1-\ldots-q_{m_{n}}< S
+        \end{equation*}
+        \par{\text{Чуточку поясним наши шаги на картинке:}\\
+        \includegraphics[width=0.9\linewidth]{28png.png}\\
+        \text{Римские цифры 1,2,3,4 обозначают текущее положение нашей суммы. Данными}\newpage
+        \text{шагами мы всё время приближаемся к нашей сумме, но промахиваемся мимо.}\\
+        \text{Идя т.о. по индукции, мы задействуем весь ряд, ведь на каждом шаге мы добавляем}\\
+        \text{хотя бы 1 элемент из нашего ряда, при том чередуем набор + и - элементов ряда.}\\
+        }
+        \par{\text{Пусть мы не добрали элементов до S, тогда рассмотрим шаг $n$ пункт 1:}\\
+        \text{пусть мы набрали N элементов, тогда верно:}}
+        \begin{equation}
+            \underbrace{k_{n-1}+m_{n-1}}_{\text{на предыд. шаге}}<N\leq \underbrace{k_n-1+m_{n-1}}_{\text{на текущ. шаге}}
+        \end{equation}
+        \text{Тогда $S_N$ точно больше, чем сумма, полученная на предыдущем шаге (2), т.к.}\\
+        \text{элементов мы не добрали и не смогли перескочить S. Тогда:}
+        \begin{equation}
+            S_{k_{n-1}+m_{n-1}}<S_N
+        \end{equation}
+        \text{В силу правой части (6) мы находимся не более чем на шаге $n$ пункте 1, а в силу}\\
+        \text{этого шага (3):}
+        \begin{equation}
+            S_N\leq S
+        \end{equation}
+        \text{Для ограничения $S_{k_{n-1}+m_{n-1}}$ воспользуемся (1): действительно, до $S_{k_{n-1}+m_{n-1}}$ левой}\\
+        \text{части (1) не хватает элемента $q_{m_{n-1}}$. Давайте вычтем его справа и слева, получим:}
+        \begin{equation}
+            S-q_{m_{n-1}}\leq S_{k_{n-1}+m_{n-1}}
+        \end{equation}
+        \text{Объединив (7), (8) и (9), получим следующее неравенство:}
+        \begin{equation}
+            S-q_{m_{n-1}}\leq S_{k_{n-1}+m_{n-1}} <S_N\leq S
+        \end{equation}
+        \par{\text{Пусть мы перебрали элементов и перескочили S, тогда для N}\\\text{справедливо неравенство:}\\
+        \begin{equation}
+            \underbrace{k_n+m_{n-1}}_{\text{на предыд. шаге}}< N\leq\underbrace{k_n+m_n-1}_{\text{текущий шаг}}<\underbrace{k_n+m_n}_{\text{на след. шаге}}
+        \end{equation}
+        \text{Тогда $S_N$ точно меньше, чем сумма, полученная на следующем шаге (4), т.к.}\\
+        \text{перебрали и добавили ещё один положительный элемент. Тогда: }
+        \begin{equation}
+            S_N<S_{k_n+m_{n-1}}
+        \end{equation}
+        \text{$k_n+m_n-1\leq N$, что соответсвует условию (5), но тогда:}
+        \begin{equation}
+            S\leq S_N
+        \end{equation}
+        \text{Но что такое $S_{k_n+m_{n-1}}$? Посмотрим на (3) и заметим, что если слева добавить $p_{k_n}$,}\\
+        \text{то тогда получим нужную сумму. Но тогда и справа необходимо добавить $p_{k_n}$. Тогда:}
+        \begin{equation}
+            S_{k_n+m_{n-1}}\leq S+p_{k_n}
+        \end{equation}
+        \text{Объединив (12), (13), (14), получим следующую цепочку неравенств:}
+        \begin{equation}
+            S\leq S_N<S_{k_n+m_{n-1}}\leq S+p_{k_n}
+        \end{equation}
+        \text{Заметим, что (10) и (15) были получены из абсолютно аналогичных соображений.}\newpage
+        \text{Теперь объединим наше знание:}
+        \begin{equation}
+            S-p_{k_n}<S\leq S_N<S+p_{k_n}
+        \end{equation}
+        \begin{equation}
+            S-q_{m_{n-1}} < S_N \leq S <S+q_{m_{n-1}}
+        \end{equation}
+        \text{Тогда возьмём $\max\{p_{k_n} \ , \ q_{m_{n-1}}\}$, тогда из (16) и (17) для любого шага верно, что}
+        \begin{equation}
+            S-\max\{p_{k_n} \ , \ q_{m_{n-1}}\} < S_N  <S+\max\{p_{k_n} \ , \ q_{m_{n-1}}\}
+        \end{equation}
+        \text{А из (18) следует, что $|S_N-S|<\max\{p_{k_n} \ , \ q_{m_{n-1}}\}$. Т.к. ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится, то $a_n\rightarrow 0$}\\
+        \text{по лемме 4 $\S1$, а отсюда следует, что $\max\{p_{k_n} \ , \ q_{m_{n-1}}\}\rightarrow0\Rightarrow\displaystyle\sum_{n=1}^{\infty}\tilde{a}_n=S$.}
+        }
+        \par{
+        \text{Пусть $S=\pm\infty$. Тогда будем идти такими шагами:}
+        \begin{enumerate}
+            \item \par{
+            \begin{enumerate}
+                \item \par{$p_1+\ldots+p_{k_1-1}\leq1$}
+                \item \par{$p_1+\ldots+p_{k_1-1}+p_{k_1}>1$}
+            \end{enumerate}}
+            \item \par{
+            \begin{enumerate}
+                \item \par{$p_1+\ldots+p_{k_1}-q_1+p_{k_1+1}+\ldots+p_{k_2-1}\leq2$}
+                \item \par{$p_1+\ldots+p_{k_1}-q_1+p_{k_1+1}+\ldots+p_{k_2-1}+p_{k_2}>2$}
+            \end{enumerate}
+            }
+        \end{enumerate}
+        } 
+        \ldots \\
+        \text{Тогда на шаге $n$ получим следующее соотношение:}
+        \begin{equation*}
+            p_1+\ldots+p_{k_n-1}-q_1-\ldots-q_{n-1} \leq n
+        \end{equation*}
+        \begin{equation}
+            \underbrace{p_1+\ldots+p_{k_n}-q_1-\ldots-q_{n-1}}_{S_{{k_n}+n-1}} > n
+        \end{equation}
+        \text{Тогда на шаге $n+1$ получим следующее соотношение:}
+        \begin{equation*}
+            p_1+\ldots+p_{k_{n+1}-1}-q_1-\ldots-q_{n} \leq n+1
+        \end{equation*}
+        \begin{equation*}
+            p_1+\ldots+p_{k_{n+1}}-q_1-\ldots-q_{n} > n+1
+        \end{equation*}
+        \text{Пусть мы сейчас на шаге $n+1$ и уже выбрали N слагаемых. Тогда можно сказать, что}
+        \begin{equation}
+            \underbrace{k_n}_{+}+\underbrace{n}_{-}<N\leq \underbrace{k_{n+1}+n}_{\text{текущий шаг}}
+        \end{equation}
+        \text{Тогда из (20) следует, что $S_N$ уже точно больше $S_{{k_n}+n}$, т.к. $S_N$ был получен на шаге}\\
+        \text{$n+1$ из $S_{{k_n}+n}$ из шага $n$ путём добавления неотрицательных слагаемых (по построению).}\\
+        \begin{equation}
+            S_{{k_n}+n}<S_N
+        \end{equation}
+        При этом из (19) следует, что
+        \begin{equation}
+            n-q_n<S_{k_n+n}
+        \end{equation}
+        \text{Объединив (21) и (22), получим, что $n-q_n<S_N$, при этом $n\rightarrow\infty$, а $q_n\rightarrow0$. Отсюда}\\
+        \text{Следует, что $S_N$ при таком построении тоже стремится к бесконечности.}\\
+        \text{При этом наше построение возможно, т.к. на каждом шаге мы берём не менее 1}\\
+        \text{отрицательного и не менее 1 положительного членов. Т.о. покроем весь изначальный ряд.}\\
+        \text{Для $-\infty$ нужно поменять p и q местами, т.е. набирать "больше" \ q, чем p.}
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        
+        %*********************************S4*****************************************
+        \section*{$\S$4. Функциональные ряды}
+        \addcontentsline{toc}{section}{$\S$4. Функциональные ряды}
+        \subsection*{1. Равномерная сходимость}
+        \addcontentsline{toc}{subsection}{1. Равномерная сходимость}
+        \par{\text{$\displaystyle\sum_{n=1}^{\infty}f_n(x), \ S_N(x)=\sum_{n=1}^{N}f_n(x)$. Ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится $\Leftrightarrow \exists\displaystyle\lim_{N\rightarrow\infty}S_N(x)$.}\\}
+        \par{\textbf{Def 1: }\text{Последовательность $\{S_N\}$ сходится к S равномерно на множестве I,}\\
+        \text{если $\forall\varepsilon>0 \ \exists N_0\in\mathbb{N}$, т.ч. $\forall n>N_0$ и $\forall x\in I$: $|S_N(x)-S(x)|<\varepsilon$.}\\
+        \text{Замечание: $N_0$ зависит от $\varepsilon$, но не зависит от $x$. Обозначают $\displaystyle S_N(x){\rightrightarrows}_{N\rightarrow\infty}S(x)$.}
+        }
+        \par{\textbf{Def 2: } \text{Ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится к $S(x)$ равномерно на мн-ве $I$, если $S_N(x)\rightrightarrows S(x)$ на I.}}
+        \textbf{Примеры:}
+        \begin{enumerate}
+            \item \par{
+            \text{$S_N(x)=x^N$, $x\in(0,1)$: $\displaystyle\lim_{N\rightarrow\infty}x^N=0$ $\forall x\in(0,1)$}\\
+            \text{Пусть $\varepsilon_0={1\over2}$ и $N_0$ - любое. Тогда $x^N={1\over2}$, $x=\sqrt[N]{1\over2}\xrightarrow[N\rightarrow\infty]{}1\in(0, 1)$.}\\
+            \text{Т.е. $x^N<{1\over2}$ неверно $\forall x\in(0,1)$.}
+            }
+            \item \par{\text{$S_N(x)=x^N$, $x\in[0, q]$, где $q\in(0,1)$. Тогда $x^N\leq q^N<\varepsilon \Rightarrow e^{N\ln{q}}<e^{\ln{\varepsilon}}\Rightarrow$}\\
+            \text{$\Rightarrow N>\frac{\ln{\varepsilon}}{\ln{q}}$. Тогда возьмём $N_0=[\frac{\ln{\varepsilon}}{\ln{q}}]$}
+            }
+            \item \par{
+            \text{$\displaystyle\sum_{n=0}^{\infty}x^n={1\over{1-x}}, \ x\in(-1,1)$. $S_N(x)=\frac{x^{N+1}-1}{x-1}$ $\underbrace{[q_0, q_1]}_{\text{равномерно}} \subset \underbrace{(-1,1)}_{\text{неравномерно}}$.}
+            }
+        \end{enumerate}
+        \par{}
+        \vspace{0.8cm}
+        \addcontentsline{toc}{subsubsection}{Теорема (Критерий Коши для равномерной сходимости)}
+        \setcounter{equation}{2}
+        \par{
+        \textbf{Теорема (Критерий Коши для равномерной сходимости)}\\
+        \text{(1) Последовательность $S_N$ сходится равномерно на множестве $I \Leftrightarrow \forall\varepsilon>0 \ \exists N_0\in\mathbb{N}$, т.ч.}\\
+        \text{$\forall N,M>N_0 \ \ \ \forall x\in I \ \ \ \ |S_N(x)-S_M(x)|<\varepsilon$.}\\
+        \text{(2) Ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится равномерно на множестве $I \Leftrightarrow \forall\varepsilon>0 \ \exists N_0\in\mathbb{N}$, т.ч.} \\
+        \text{$\forall n>N$ $\forall p\in\mathbb{N}$ $\forall x\in I$: $|f_{n+1}(x)+f_{n+2}(x)+\ldots+f_{n+p}(x)|<\varepsilon$.} \\ \\
+        \textbf{Доказательство: } \textbf{[$\Rightarrow$] } \text{Пусть $S_N \rightrightarrows S(x)$ на I, т.е. $\forall\varepsilon>0 \ \exists N_0\in\mathbb{N}$: $\forall N>N_0$ $\forall x\in I$}\\
+        \text{$|S_N(x)-S(x)| < \varepsilon$. Тогда $\forall N,M>N_0$ имеем: }\\
+        \text{$|S_N(x)-S_M(x)|\leq|S_N(x)-S(x)|+|S_M(x)-S(x)|<2\varepsilon$ $\forall x\in I$.}\\
+        \\
+        \textbf{[$\Leftarrow$] } \text{Пусть $\forall\varepsilon>0 \ \exists N_0\in\mathbb{N}$: $\forall N,M>N_0 \ \ \ \forall x\in I$ выполнено следующее соотношение:}\\
+        \begin{equation}
+            |S_N(x)-S_M(x)|<{\varepsilon\over2}
+        \end{equation}
+        \text{Фикс. $x\in I$, тогда $S_N(x)$ - числовая последовательность, удовлетворяющая}\\
+        \text{критерию Коши для числовых последовательностей. По кр. Коши $\displaystyle\exists\lim_{N\rightarrow\infty}S_N(x)=S(x)$.}\\
+        \text{Устремим $M\rightarrow\infty$. Тогда $S_M(x)\rightarrow S(x)$. При переходе к пределу в (3) получим, что}\\
+        \text{$|S_N(x)-S(x)|\leq{\varepsilon\over2}<\varepsilon$ $\forall x\in I$.}
+        \\ \\
+        \text{Докажем (2): ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится равномерно $\Leftrightarrow S_N(x)$ сходится равномерно.} \\
+        \text{Применим первую часть доказательства при $M=N+p$: $\forall\varepsilon>0 \ \exists N_0\in\mathbb{N}$, т.ч.}\\
+        \text{$\forall n>N_0$: $|S_{N+p}-S_N|=|f_{n+1}(x)+f_{n+2}(x)+\ldots+f_{n+p}(x)|<\varepsilon$.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \subsection*{2. Признаки равномерной сходимости}
+        \addcontentsline{toc}{subsection}{2. Признаки равномерной сходимости}
+        \par{\ }
+        \addcontentsline{toc}{subsubsection}{Теорема (признак Вейерштрасса)}
+        \par{\textbf{Теорема (признак Вейерштрасса)}\\
+        \text{Пусть $f_n$ определена на множестве $I\subset\mathbb{R}$ и $|f_n(x)|\leq a_n$ $\forall x\in I$ и ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится.} \\
+        \text{Тогда ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится абсолютно $\forall x\in I$ и равномерно на $I$.}\\
+        \textbf{Доказательство: } \text{Ряд $\displaystyle\sum_{n=1}^{\infty}a_n$ сходится и $|f_n(x)|\leq a_n$ $\forall x\in I$, тогда по признаку}\\
+        \text{сравнения ряд $\displaystyle\sum_{n=1}^{\infty}|f_n(x)|$ сходится, тогда ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится абсолютно.}\\
+        \text{Зафиксируем $\varepsilon>0$ и выберем $N\in\mathbb{N}$, т.ч. $a_{n+1}+\ldots+a_{n+p}<\varepsilon$ $\forall n>N, p\in\mathbb{N}$. Тогда}\\
+        \text{для указанных $n$ и $p$ $|f_{n+1}(x)+\ldots+f_{n+p}(x)|\leq|f_{n+1}(x)|+\ldots+|f_{n+p}(x)| \leq$}\\
+        \text{$\leq a_{n+1}+\ldots+a_{n+p}<\varepsilon$ $\forall x\in I$. Тогда по кр. Коши $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится равномерно на $I$.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.8cm}
+        \par{
+        \textbf{Пример: } \text{$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^n}{n}x^n, x\in[0,1]$. $\frac{x^n}{n}$ монотонно убывает к 0, тогда по признаку}\\
+        \text{Лейбница ряд сходится $\forall x\in I$. Пусть $x\in[0,q]$, где $q<1$, тогда $|\frac{(-1)^n}{n}x^n|\leq q^n$ и $q<1$.}\\
+        \text{Ряд $\displaystyle\sum_{n=1}^{\infty}q^n$ сходится, тогда по признаку Вейерштрасса наш ряд сходится равномерно.}
+        }
+        \vspace{0.5cm}
+        \par{\textbf{Следствие 1. Признак Коши}\\
+        \text{Пусть $f_n$ определена на $I\subset\mathbb{R}$ и, начиная с некоторого номера, 
+        $\sqrt[n]{|f_n(x)|}\leq q_0<1$ $\forall x\in I$,}\\
+        \text{тогда ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится равномерно на $I$.}\\
+        \textbf{Доказательство: } \text{$\displaystyle|f_n(x)|\leq q_0^n$. $\displaystyle\sum_{n=1}^{\infty}q_0^n$ сходится $\Rightarrow$ по теореме выше ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$}\\
+        \text{сходится абсолютно $\forall x\in I$ и равномерно на $I$.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.8cm}
+        \setcounter{equation}{0}
+        \subsection*{3. Свойства суммы равномерно сходящегося ряда}
+        \addcontentsline{toc}{subsection}{3. Свойства суммы равномерно сходящегося ряда}
+        \par{\ }
+        \par{\textbf{Теорема 1. } \text{Пусть последовательность $S_n(x)$ равномерно сходится на $I\subset\mathbb{R}$.}\\
+        \text{Если $S_n(x)$ непрерывна на $I$, то и $S(x)$ непрерывна на $I$.}\\
+        \textbf{Доказательство: } \text{фикс. $\varepsilon>0$ и выберем $N\in\mathbb{N}$ так, что $\forall n>N$ и $\forall x\in I$:}\\
+        \begin{equation}
+            |S_n(x)-S(x)|<\varepsilon
+        \end{equation}
+        \text{Пусть $x_0$ - любая точка, $n_0>N$ - фиксировано. Т.к. $S_n$ непрерывна в точке $x_0$, то}\\
+        \text{$\exists\delta>0$, что $\forall x\in B_{\delta}(x_0)\cap I$ верно:}
+        \begin{equation}
+            |S_{n_0}(x)-S_{n_0}(x_0)|<\varepsilon
+        \end{equation}
+        \newpage
+        \text{Тогда для таких x: $|S(x)-S(x_0)|=|S(x)-S_{n_0}(x)+S_{n_0}(x)-S_{n_0}(x_0)+S_{n_0}(x_0)-S(x_0)|\leq$}\\
+        \text{$\leq\underbrace{|S(x)-S_{n_0}(x)|}_{<\varepsilon\text{ из (1)}}+\underbrace{|S_{n_0}(x)-S_{n_0}(x_0)|}_{<\varepsilon\text{ из (2)}}+\underbrace{|S_{n_0}(x_0)-S(x_0)|}_{<\varepsilon\text{ из (1)}}<3\varepsilon$}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \par{\textbf{Следствие 1. } \text{Пусть ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится равномерно на $I\subset\mathbb{R}$, а его члены}\\
+        \text{непрерывны на $I$. Тогда $S(x)=\displaystyle\sum_{n=1}^{\infty}f_n(x)$ непрерывна на $I$.}\\
+        \textbf{Доказательство: } \text{Т.к. $f_n$ непрерывна, то и $S_N$ непрерывна на $I$. Т.к. $S_N(x)\rightrightarrows S(x)$,}\\
+        \text{то по теореме выше $S(x)$ непрерывна на $I$.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.8cm}
+        \setcounter{equation}{0}
+        \par{\textbf{Теорема 2 (интегрируемость)} \\
+        \text{Пусть последовательность $S_n(x)$ равномерно сходится к $S(x)$ на $[a, b]\subset\mathbb{R}$. Если}\\
+        \text{$S_n(x)$ интегрируема на $[a,b]$, то и $S(x)$ интегрируема на $[a,b]$.}\\
+        \textbf{Доказательство: } \text{фикс. $\varepsilon>0$ и выберем $N\in\mathbb{N}$, что $\forall n>N$ и $\forall x\in [a,b]$ верно}\\
+        \text{$|S_n(x)-S(x)|<\varepsilon$. Рассмотрим какое-нибудь разбиение $a=x_0<x_1<\ldots<x_{N+1}=b$.}\\
+        \text{Пусть $\displaystyle\sum^* f(\xi_i)\Delta x_i$ - верхняя сумма Дарбу, а$\displaystyle\sum_* f(\xi_i)\Delta x_i$ - нижняя сумма Дарбу.}\\
+        \begin{equation}
+            \sum_{i=0}^{N+1}\varepsilon\Delta x_i=\varepsilon\sum_{i=0}^{N+1}\Delta x_i=\varepsilon(x_1-x_0+x_2-x_1+\ldots+x_{N+1})=\varepsilon(x_{N+1}-x_0)=\varepsilon(b-a)
+        \end{equation}
+        \text{Тогда из $S_n(x)-\varepsilon<S(x)<S_n(x)+\varepsilon$ домножением на $\Delta x_i$ и суммированием получаем,}\\
+        \begin{equation*}
+            \sum_*S_n(\xi_i)\Delta x_i-\underbrace{\varepsilon(b-a)}_{\text{из (1)}}\leq\sum_*S(\xi_i)\Delta x_i\leq\sum^*S(\xi_i)\Delta x_i\leq\sum^*S_n(\xi_i)\Delta x_i+\underbrace{\varepsilon(b-a)}_{\text{из (1)}}
+        \end{equation*}
+        \text{Тогда из этой формулы следует, что}
+        \begin{equation}
+            \sum^*S(\xi_i)\Delta x_i-\sum_*S(\xi_i)\Delta x_i\leq\sum^*S_n(\xi_i)\Delta x_i-\sum_*S_n(\xi_i)\Delta x_i+2\varepsilon(b-a)
+        \end{equation}
+        \text{Пусть $n>N$ фиксировано, тогда $\exists\delta>0$, что из $\lambda<\delta\Rightarrow$ (3).}
+        \begin{equation}
+            \sum^*S_n(\xi_i)\Delta x_i-\sum_*S_n(\xi_i)\Delta x_i <\varepsilon
+        \end{equation}
+        \text{Подставив (3) в правую часть (2) получим следующее неравенство:}
+        \begin{equation*}
+            \sum^*S(\xi_i)\Delta x_i-\sum_*S(\xi_i)\Delta x_i<\varepsilon+2\varepsilon(b-a)
+        \end{equation*}
+        \text{Т.е. разница между верхней и нижней суммами Дарбу меньше наперёд заданного числа.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \par{
+        \textbf{Следствие из теоремы 2: }\text{Если $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ равномерно сходится к $S(x)$ на $[a,b]$, а}\\
+        \text{$f_n$ интегрируема на $[a,b]$, то и $S$ интегрируема на $[a,b]$.}
+        }
+        \newpage
+        \subsection*{4. Предельный переход под знаком интеграла. Интегрирование рядов}
+        \addcontentsline{toc}{subsection}{4. Предельный переход под знаком интеграла. Интегрирование рядов}
+        \par{\ }
+        \par{\textbf{Теорема 3. }\text{Пусть $S_n(x)$ интегрируема на $[a,b]$ и $S_n(x)\rightrightarrows S(x)$ на $[a,b]$. Тогда}\\
+        \text{последовательность $\displaystyle\{\int_{x_0}^{x}S_n(t)dt\}$ сходится к $\displaystyle\int_{x_0}^{x}S(t)dt$ равномерно по $x\in[a,b]$ при}\\
+        \text{$\forall$ фиксированном $x_0\in[a,b]$. Т.е. $\displaystyle\lim_{n\rightarrow\infty}\int_{x_0}^{x}S_n(t)dt=\int_{x_0}^{x}(\lim_{n\rightarrow\infty}S_n(t))dt$.}\\
+        \textbf{Доказательство: }\text{т.к. $S_n$ интегрируема на $[a,b]$ и $S_n(x)\rightrightarrows S(x)$ на $[a,b]$, то по теореме 2}\\
+        \text{$S$ интегрируема на $[a,b]$. Зафиксируем $\varepsilon>0$, тогда из $S_n(x)\rightrightarrows S(x)\Rightarrow\exists N\in\mathbb{N}$, что}\\
+        \text{$\forall n>N$ и $\forall t\in[a,b]$ выполнено: $|S_n(t)-S(t)|<\varepsilon$. Тогда $\forall n>N$ и $\forall x,x_0\in[a,b]$ выполнено:}\\
+        \text{$\displaystyle|\int_{x_0}^{x}S_n(t)dt-\int_{x_0}^{x}S(t)dt|=|\int_{x_0}^{x}(S_n(t)-S(t))dt|\leq|\int_{x_0}^{x}|S_n(t)-S(t)|dt|\leq|\int_{x_0}^{x}\varepsilon \ dt|<$}\\
+        \text{$\displaystyle<\varepsilon|\int_{x_0}^{x}dt|=\varepsilon|x-x_0|\leq\varepsilon(b-a)$. Т.е. $\displaystyle\int_{x_0}^{x}S_n(t)dt\rightarrow\int_{x_0}^{x}S(t)dt$ равномерно на $x\in[a,b]$.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \par{\textbf{Def 3: } \text{Пусть $f_n$ интегрируема на $[a,b]$ и ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)=S(x)$ $\forall x\in[a,b]$.}\\
+        \text{Будем говорить, что $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ почленно интегрируем на $[a,b]$, если его сумма $S(x)$}\\
+        \text{интегрируема на $[a,b]$ и $\displaystyle\sum_{n=1}^{\infty}\int_{x_0}^{x}f_n(t)dt=\int_{x_0}^{x}S(t)dt$ для $\forall x,x_0\in[a,b]$.}
+        }
+        \vspace{0.8cm}
+        \par{
+        \textbf{Следствие: }\text{Пусть члены ряда $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ интегрируемы на $[a,b]$ и $\displaystyle\sum_{n=1}^{\infty}f_n(x)\rightrightarrows S(x)$,}\\
+        \text{тогда ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ почленно интегрируем на $[a,b]$, причём $\displaystyle\sum_{n=1}^{\infty}\int_{x_0}^{x}f_n(t)dt$ сходится}\\
+        \text{к $\displaystyle\int_{x_0}^{x}S(t)dt$ равномерно по $x\in[a,b]$ для $\forall$ фиксированного $x_0\in[a,b].$}\\
+        \textbf{Доказательство: }\text{т.к. $f_n$ интегрируема на $[a,b]$, то и $S_N$ интегрируема на $[a,b]$. Т.к. }\\
+        \text{$S_N\rightrightarrows S$ на $[a,b]$, то $S$ интегрируема на $[a,b]$ и по теореме 3 $\displaystyle\int_{x_0}^{x}S_n(t)dt\rightrightarrows\int_{x_0}^{x}S(t)dt$}\\
+        \text{по $x\in[a,b]$ $\forall x_0\in[a,b]$.}}
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \par{\textbf{Пример: } \text{$S_n=nx^n(1-x^n)$, $x\in[0,1]$.}
+        \begin{equation*}
+            \int^1_0S_n(t)dt=\int^1_0nt^n(1-t^n)dt=n(\frac{x^{n+1}}{n+1}-\frac{x^{2n+1}}{2n+1})\Bigg|^1_0=\frac{n^2}{(n+1)(2n+1)}\rightarrow{1\over2}
+        \end{equation*}
+        \text{Но при этом $S_n(x)\rightarrow0$ при $\forall x\in[0,1]$. Нетрудно заметить, что нарушена равномер-}\\
+        \text{ная сходимость.}
+        }
+        \newpage
+        \setcounter{equation}{0}
+        \subsection*{5. Дифференцирование функциональных рядов}
+        \addcontentsline{toc}{subsection}{5. Дифференцирование функциональных рядов}
+        \par{\ }
+        \par{
+        \textbf{Теорема 4 (дифференцирование функциональных рядов)}\\
+        \text{Пусть последовательность $S_n(x)$ удовлетворяет следующим трём условиям:}
+        \begin{enumerate}
+            \item \par{$S'_n(x)$ $\exists$ и непрерывна на $[a,b]$;}
+            \item \par{$S'_n(x)\rightrightarrows\sigma(x)$ на $[a,b]$;}
+            \item \par{Для некоторого $x_0\in[a,b]$ $\displaystyle\exists\lim_{n\rightarrow\infty}S_n(x_0)=l$.}
+        \end{enumerate}
+        \text{Тогда $\sigma$ непрерывна на $[a,b]$ и $\displaystyle\exists\lim_{n\rightarrow\infty}S_n(x)=\int^{x}_{x_0}\sigma(t)dt+l$, сходимость равномерно по}\\
+        \text{\ }\\
+        \text{$x\in[a,b].$ Т.е. предел $S(x)$ дифференцируем и $S'(x)=\sigma(x).$}\\
+        \text{$S'=\sigma\Leftrightarrow(\lim S_n(x))'=\lim S'_n(x)$}\\
+        \textbf{Доказательство: }\text{т.к. $S_n'$ непрерывна и $S'_n(x)\rightrightarrows\sigma(x)$ на $[a,b]$, то $\sigma$ непрерывна на $[a,b]$,}\\
+        \text{а потому интегрируема на $[a,b]$. Т.к. $S'_n(x)\rightrightarrows\sigma(x)$ на $[a,b]$, то}\\
+        \begin{equation}
+            \int_{x_0}^{x}S'_n(t)dt\rightrightarrows\int_{x_0}^{x}\sigma(t)dt
+        \end{equation}
+        \text{по $x\in[a,b]$ и с $x_0$ из пункта 3 данной теоремы, а для него верно:}\\
+        \begin{equation}
+            \exists\lim_{n\rightarrow\infty}S_n(x_0)=l
+        \end{equation}
+        \text{Применяя формулу Ньютона-Лейбница к $S'_n(x)$ получим:}
+        \begin{equation}
+            S_n(x)=S_n(x_0)+\int_{x_0}^{x}S'_n(t)dt
+        \end{equation}
+        \text{Но в силу (1) и (2), конструкция (3) стремится равномерно по $x\in[a,b]$ к (4)}
+        \begin{equation}
+            S_n(x)\rightrightarrows l+\int_{x_0}^{x}\sigma(t)dt
+        \end{equation}
+        \text{Т.к. $\sigma$ непрерывна, то $S'(x)=\sigma(x)$ в силу теоремы о дифференцировании определённого}\\
+        \text{интеграла по переменному верхнему пределу.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.3cm}
+        \par{\textbf{Следствие: } \text{Пусть ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ удовлетворяет следующим трём условиям:}
+        \begin{enumerate}
+            \item \par{\text{$f_n(x)$ непрерывно дифференцируема на $[a,b]$;}}
+            \item \par{\text{$\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится равномерно на $[a,b]$;}}
+            \item \par{\text{$\exists x_0\in[a,b]$ такой, что $\displaystyle\sum_{n=1}^{\infty}f_n(x_0)$ сходится.}}
+        \end{enumerate}
+        \text{Тогда ряд $\displaystyle\sum_{n=1}^{\infty}f'_n(x)$ сходится равномерно на $[a,b]$ и $\displaystyle\sum_{n=1}^{\infty}f_n(x)=\sum_{n=1}^{\infty}f_n(x_0)+\int^{x}_{x_0}\bigg(\sum_{n=1}^{\infty}f'_n(t)\bigg)dt$,}\\
+        \text{т.е. сумма ряда дифференцируема и $\displaystyle\bigg(\sum_{n=1}^{\infty}f_n(x)\bigg)' = \sum_{n=1}^{\infty}f'_n(x)$.}
+        }
+        \newpage
+        \par{\textbf{Пример: } \text{$\displaystyle\sum_{n=1}^{\infty}\frac{\sin({n^2x})}{n^2}$, $x\in\mathbb{R}$. $\displaystyle\Bigg|\frac{\sin({n^2x})}{n^2}\Bigg|\leq\frac{1}{n^2}\Rightarrow$ ряд сходится, но при этом ряд}\\
+        \text{из производных $\displaystyle\sum_{n=1}^{\infty}\frac{2\cos({n^2x})}{n}$ расходится.}
+        }
+        \vspace{0.8cm}
+        \setcounter{equation}{0}
+        \section*{$\S$5. Степенные ряды}
+        \addcontentsline{toc}{section}{$\S$5. Степенные ряды}
+        \subsection*{1. Определение. Радиус сходимости}
+        \addcontentsline{toc}{subsection}{1. Определение. Радиус сходимости}
+        \par{\text{$\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ - степенной ряд, $a_n$ - коэффициенты ряда.}}
+        \vspace{0.3cm}
+        \addcontentsline{toc}{subsubsection}{Теорема (Абель)}
+        \par{\textbf{Теорема (Абель)}\\
+        \text{Пусть ряд $\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ сходится при $x=x_1$, тогда он сходится абсолютно}\\
+        \text{$\forall x\in(x_0-|x_0-x_1|, \ x_0+|x_0-x_1|)$ и равномерно на $\forall$ отрезке из этого интервала.}\\
+        \textbf{Доказательство: }\text{если $\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ сходится, то $a_n(x_1-x_0)^n\rightarrow0$, тогда $|a_n(x_1-x_0)^n|\leq c$}\\
+        \text{$\forall n\in\mathbb{N}$. Отсюда получаем, что}
+        \begin{equation}
+            |a_n|\leq\frac{c}{|x_1-x_0|^n}
+        \end{equation}
+        \text{Рассмотрим отрезок $[a,b]\subset(x_0-|x_0-x_1|, \ x_0+|x_0-x_1|)$ и $x\in[a,b]$, тогда}
+        \begin{equation}
+            |x-x_0|<|x_1-x_0| \text{ и при этом из (1) }\Rightarrow |a_n(x-x_0)^n|\leq c\bigg|\frac{x-x_0}{x_1-x_0}\bigg|^n 
+        \end{equation}
+        \text{Пусть a - наиболее удалённая точка на $[a,b]$ от $x_0$, тогда из $\displaystyle(2)\Rightarrow |a_n(x-x_0)^n|\leq c\bigg|\frac{a-x_0}{x_1-x_0}\bigg|^n$.}\\
+        \text{Т.к. $|a-x_0|<|x_1-x_0|$, то ряд $\displaystyle\sum_{n=0}^{\infty}c\bigg|\frac{a-x_0}{x_1-x_0}\bigg|^n$ сходится по признаку Коши, то наш ряд}\\
+        \text{$\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ сходится по признаку Вейерштрасса абсолютно $\forall x\in[a,b]$ и равномерно}\\
+        \text{на $[a,b]$. Т.к. $[a,b]\subset(x_0-|x_0-x_1|, \ x_0+|x_0-x_1|)$ выбирался произвольно, то ряд}\\
+        \text{$\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ сходится абсолютно $\forall x$ из этого интервала.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \par{\textbf{Обозначим за R} \text{радиус сходимости, а за область сходимости - интервал $<x_0-R, \ x_0+R>$.}\\
+        \text{При этом < - это [ или (. Т.е. про концы такого отрезка теорема Абеля ничего сказать не может.}
+        }
+        \par{
+        \textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{\text{$\displaystyle\sum_{n=1}^{\infty}(nx)^n$}. R=0, т.к. $(nx)^n\nrightarrow0$}
+            \item \par{\text{$\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n!}=e^x \ \forall x\in\mathbb{R}\Rightarrow R=\infty$.}}
+            \newpage
+            \item \par{\text{$\displaystyle\sum_{n=1}^{\infty}x^n={1\over{1-x}}$ $\forall x\in(-1,1).$ Отсюда R=1.}}
+        \end{enumerate}
+        \subsection*{2. Формулы для R}
+        \addcontentsline{toc}{subsection}{2. Формулы для R}
+        \par{\ }
+        \addcontentsline{toc}{subsubsection}{Теорема (формула для радиуса сходимости)}
+        \par{\textbf{Теорема (формула для радиуса сходимости)}\\
+        \text{Пусть R - радиус сходимости ряда $\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$. Тогда $\displaystyle{1\over{R}}=\overline{\lim_{n\rightarrow\infty}}\sqrt[n]{a_n}$.}\\
+        \textbf{Доказательство: }\text{Выразим обобщённый признак Коши через радиус сходимости:}
+        \begin{equation}
+            \displaystyle\overline{\lim_{n\rightarrow\infty}}\sqrt[n]{a_n(x-x_0)^n}=|x-x_0|\overline{\lim_{n\rightarrow\infty}}\sqrt[n]{a_n}=|x-x_0|{1\over{R}}
+        \end{equation}
+        \begin{itemize}
+            \item \par{\text{Пусть $|x-x_0|<R$, тогда $(3)<1\Rightarrow$ ряд сходится по обобщённому пр-ку Коши;}}
+            \item \par{\text{Пусть $|x-x_0|>R$, тогда $(3)>1\Rightarrow$ ряд расходится по обобщённому пр-ку Коши;}}
+        \end{itemize}
+        \text{Тогда формула для $\displaystyle1\over{R}$ удовлетворяет условиям.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.3cm}
+        \par{\text{Также $\displaystyle{1\over{R}}=\lim_{n\rightarrow\infty}\bigg|\frac{a_{n+1}}{a_n}\bigg|$. Упражнение: доказать самостоятельно.}\\
+        \textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{\text{$\displaystyle\sum_{n=0}^{\infty}(nx)^n$. $a_n=n^n$, $\sqrt[n]{a_n}=n\rightarrow\infty$ $\Rightarrow$ $R=0$}}
+            \item \par{\text{$\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$, $\displaystyle a_n={1\over{n!}}$. $\displaystyle \frac{a_{n+1}}{a_n}={1\over{n+1}}\rightarrow0\Rightarrow R\rightarrow+\infty$}}
+            \item \par{\text{$\displaystyle\sum_{n=0}^{\infty}x^n$, $a_n=1\Rightarrow R=1$}}
+        \end{enumerate}
+        \par{\text{Концы, однако, придётся рассматривать отдельно. Формулы для радиуса не дают}\\
+        \text{никакой информации о концах.}}
+        \par{\text{Например, ряд $\displaystyle \sum_{n=0}^{\infty}\frac{(x-x_0)^n}{n}$, $\displaystyle a_n={1\over n}\Rightarrow R=1$. Но при $x-x_0=1$ - расходится, а при}\\
+        \text{$x-x_0=-1$ - сходится.}}
+        \vspace{0.7cm}
+        \subsection*{3. Равномерная сходимость в окрестности концов интервала сходимости}
+        \addcontentsline{toc}{subsection}{3. Равномерная сходимость в окрестности концов интервала сходимости}
+        \par{\ }
+        \setcounter{equation}{0}
+        \par{\textbf{Теорема. } \text{Пусть ряд $\displaystyle\sum_{n=0}^{\infty}c_n(x-x_0)^n$ сходится в точке $x_0+R$ (соотв. $x_0-R$), тогда он}\\
+        \text{сходится равномерно на [$x_0$, $x_0+R$] (соотв. на [$x_0-R$, $x_0$]). Вместо $x_0$ можно выбрать}\\
+        \text{$\forall x_1\in(x_0-R, x_0+R)$.}\\
+        \textbf{Доказательство: }\text{рассмотрим $\displaystyle\sum_{q=1}^{p}c_{n+q}(x-x_0)^{n+q}=\sum_{q=1}^{p}(c_{n+q}R^{n+q})\bigg(\frac{x-x_0}{R}\bigg)^{n+q}$ - для}\newpage
+        \text{подсказки см. критерий Коши.}\\
+        \text{Применим преобразование Абеля: $\displaystyle\tilde{B}_p=\sum_{q=1}^{p}c_{n+q}R^{n+q}$, тогда получим:}
+        \begin{equation*}
+            \sum_{q=1}^{p}c_{n+q}(x-x_0)^{n+q}=\bigg(\frac{x-x_0}{R}\bigg)^{n+p}\tilde{B}_p+\sum_{q=1}^{p-1}\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+q}-\bigg(\frac{x-x_0}{R}\bigg)^{n+q+1}\Bigg)\tilde{B}_q\Rightarrow
+        \end{equation*}
+        \begin{equation*}
+            \Rightarrow\Bigg|\sum_{q=1}^{p}c_{n+q}(x-x_0)^{n+q}\Bigg|=\Bigg|\bigg(\frac{x-x_0}{R}\bigg)^{n+p}\tilde{B}_p+\sum_{q=1}^{p-1}\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+q}-\bigg(\frac{x-x_0}{R}\bigg)^{n+q+1}\Bigg)\tilde{B}_q\Bigg|\leq
+        \end{equation*}
+        
+        \begin{equation}
+            \leq\Bigg|\bigg(\frac{x-x_0}{R}\bigg)^{n+p}\tilde{B}_p\Bigg|+\Bigg|\sum_{q=1}^{p-1}\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+q}-\bigg(\frac{x-x_0}{R}\bigg)^{n+q+1}\Bigg)\tilde{B}_q\Bigg|
+        \end{equation}
+        \text{Т.к. $x\in[x_0, x_0+R]$, то $x-x_0\geq 0$, поэтому $\displaystyle\Bigg|\bigg(\frac{x-x_0}{R}\bigg)^n\Bigg|=\bigg(\frac{x-x_0}{R}\bigg)^n$, но ещё $x-x_0\leq R \Rightarrow$}\\
+        \text{$\Rightarrow\displaystyle\bigg(\frac{x-x_0}{R}\bigg)^{n+q}-\bigg(\frac{x-x_0}{R}\bigg)^{n+q+1}\geq0$, поэтому у (1) частично можно убрать модули:}
+        \begin{equation}
+            (1)=\bigg(\frac{x-x_0}{R}\bigg)^{n+p}|\tilde{B}_p|+\sum_{q=1}^{p-1}\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+q}-\bigg(\frac{x-x_0}{R}\bigg)^{n+q+1}\Bigg)|\tilde{B}_q|
+        \end{equation}
+        \text{Т.к. ряд по условию сходится в точке $x=x_0+R$, то отсюда следует, что ряд $\displaystyle\sum_{n=0}^{\infty}c_nR^n$}\\
+        \text{тоже сходится. Поэтому имеем право применить для него критерий Коши:}\\
+        \text{$\forall\varepsilon>0$ $\exists N\in\mathbb{N}:$ $\forall n>N$ и $\forall p\in\mathbb{N}$ верно, что $|c_{n+1}R^{n+1}+\ldots+c_{n+p}R^{n+p}|=|\tilde{B}_p|<\varepsilon$ $\Rightarrow$}
+        \begin{equation}
+            \Rightarrow (2)<\varepsilon\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+p}+\sum_{q=1}^{p-1}\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+q}-\bigg(\frac{x-x_0}{R}\bigg)^{n+q+1}\Bigg)
+        \end{equation}
+        \text{Заметим, что степени $n+q$ и $n+q+1$ чередуются, а потому сокращаются между собой,}\\
+        \text{а остаются лишь степени $n+1$ и $n+p$ $\Rightarrow$}
+        \begin{equation}
+            (3)=\varepsilon\Bigg(\bigg(\frac{x-x_0}{R}\bigg)^{n+p}+\bigg(\frac{x-x_0}{R}\bigg)^{n+1}-\bigg(\frac{x-x_0}{R}\bigg)^{n+p}\Bigg)=\varepsilon\bigg(\frac{x-x_0}{R}\bigg)^{n+1}\leq\varepsilon
+        \end{equation}
+        \text{т.к. $x\in[x_0, x_0+R]$, то $\displaystyle x-x_0\leq R \Rightarrow\bigg(\frac{x-x_0}{R}\bigg)^{n+1}\leq1$.}\\
+        \text{В силу того, что $n$ не зависит от $x$ по построению, мы имеем право применить критерий}\\
+        \text{Коши и сказать, что из (4) ряд $\displaystyle\sum_{n=0}^{\infty}c_n(x-x_0)^n$ сходится равномерно на $[x_0, x_0+R]$.}\\
+        \text{Случай $x_1\in[x_0-R, x_0]$ сводится к предыдущему заменой $y=\mu x_0-x\in[x_0, x_0+R]$.}\\
+        \text{Рассмотрим $[x_1, x_0+R]=\underbrace{[x_1,x_0]}_{\text{по Абелю}}\cup\underbrace{[x_0,x_0+R]}_{\text{по теореме выше}} \Rightarrow$ на отрезке $[x_1, x_0+R]$ ряд сходится.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.3cm}
+        \par{\textbf{Следствие 1: }\text{Если степенной ряд сходится на замкнутом отрезке, то на замкнутом}\\
+        \text{отрезке ряд сходится равномерно.}}
+        \par{\textbf{Следствие 2: }\text{Сумма степенного ряда непрерывна в любой точке его промежутка}\\\text{сходимости.}\newpage
+        \textbf{Доказательство: }\text{Пусть $x\in[a,b]\subset(x_0-R,x_0+R)$. По теореме Абеля степенной ряд}\\
+        \text{сходится равномерно на [a,b]. Т.к. $c_n(x-x_0)^n$ непрерывны, то и сумма ряда непрерывна}\\
+        \text{на [a,b] $\Rightarrow$ непрерывна в точке $x$. Сейчас осталось рассмотреть его границы: $x=x_0+R$,}\\
+        \text{тогда мы имеем дело с рядом $\displaystyle\sum_{n=0}^{\infty}c_nR^n$: пусть он сходится, тогда функциональный ряд}\\
+        \text{сходится равномерно на $[x_0, x_0+R]$ по теореме выше. А ещё члены ряда непрерывны,}\\
+        \text{тогда сумма ряда непрерывна на $[x_0, x_0+R]$. Случай $x=x_0-R$ аналогичен.}
+        }
+        \subsection*{4. Интегрирование и дифференцирование степенных рядов}
+        \addcontentsline{toc}{subsection}{4. Интегрирование и дифференцирование степенных рядов}
+        \par{\ }
+        \par{\textbf{Теорема 1. } \text{Пусть ряд $\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ сходится на [a,b], тогда он почленно}\\
+        \text{интегрируем на нём, т.е. ряд $\displaystyle \sum_{n=0}^{\infty}a_n\int_{x_1}^{x}(t-x_0)^ndt$ сходится и его сумма равна}\\
+        \text{$\displaystyle\int_{x_1}^{x}\bigg(\sum_{n=0}^{\infty}a_n(t-x_0)^n\bigg)dt$ $\forall x,x_1\in[a,b]$.}\\
+        \textbf{Доказательство: }\text{члены ряда интегрируемы, степенной ряд сходится равномерно на }\\
+        \text{любом отрезке $[a,b]\subset$ $<x_0-R, x_0+R>$ $\Rightarrow$ ряд почленно интегрируем.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.7cm}
+        \setcounter{equation}{0}
+        \par{\textbf{Теорема 2. } \text{пусть R - радиус сходимости ряда $\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ и $R\not=0$. Тогда}\\
+        \text{ряд $\displaystyle\sum_{n=1}^{\infty}a_n\cdot n(x-x_0)^{n-1}$ сходится на $(x_0-R, x_0+R)$ к $\bigg(\displaystyle\sum_{n=1}^{\infty}a_n(x-x_0)^{n}\bigg)'$. Радиус}\\ \text{сходимости при этом тоже равен R.}\\
+        \textbf{Доказательство: }\text{1) члены ряда дифференцируемы;}\\
+        \text{2) пусть $[a,b]\subset(x_0-R,x_0+R)$. Выберем такое $r\in(0,R)$, что ряд $\displaystyle\sum_{n=0}^{\infty}a_nr^n$ сходится и}\\
+        \text{$[a,b]\subset(x_0-r,x_0+r)$.}\\
+        \begin{center}
+            \includegraphics[width=0.4\linewidth]{image.png}
+        \end{center}
+        \text{Так как ряд сходится, то $|a_nr^n|\leq c$ $\forall n\in\mathbb{N}$. Обозначим $r_0=\max|x-x_0|<r$. Обозначим}\\
+        \text{$\displaystyle q={r_0\over{r}}<1$ по введённому $r_0$. Тогда верно, что}
+        \begin{equation}
+            \bigg|\frac{x-x_0}{r}\bigg|\leq \frac{r_0}{r}=q<1
+        \end{equation}
+        \text{Тогда верна следующая цепочка неравенств:}
+        \begin{equation}
+            |f_n(x)|=|n\cdot a_n(x-x_0)^{n-1}|=n\cdot|a_n|\cdot|x-x_0|^{n-1}\leq n\frac{c}{r}\bigg|\frac{x-x_0}{r}\bigg|^{n-1}\leq n\frac{c}{r}q^{n-1}=n\frac{c}{rq}q^n
+        \end{equation}
+        \text{Т.к. $q<1$ из (1), тогда ряд $\displaystyle\frac{c}{rq}\sum_{n=1}^{\infty}nq^n$ сходится, то по признаку Вейерштрасса ряд из}\newpage
+        \text{производных $\displaystyle\sum_{n=1}^{\infty}n\cdot a_n(x-x_0)^{n-1}$ сходится равномерно на [a,b].}\\
+        \text{Напоминание: признак Вейерштрасса гласит о том, что если $|f_n(x)|\leq b_n$ $\forall x\in I$ и}\\
+        \text{ряд $\displaystyle\sum_{n=1}^{\infty}c_n$ сходится, то ряд $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ сходится абсолютно $\forall x\in I$ и равномерно на $I$.}\\
+        \text{В нашем случае $I=[a,b]$, $f_n(x)=n\cdot a_n(x-x_0)^{n-1}$, $\displaystyle b_n=\frac{c}{rq}nq^n$ и $\displaystyle\frac{c}{rq}=const$. При этом}\\
+        \text{$|f_n(x)|\leq b_n$ из (2). Сходимость ряда из $b_n$ мы доказали. Тогда ряд из производных}\\
+        \text{тоже сходится и при том сходится равномерно на $I=[a,b]$.}\\
+        \text{3) в точке $x=a$ ряд сходится, т.к. $[a,b]\subset(x_0-R,x_0+R)$. Тогда по следствию теоремы}\\
+        \text{о дифференцировании функциональных рядов из п.5 $\S$4 $\displaystyle\sum_{n=1}^{\infty}n\cdot a_n(x-x_0)^{n-1}=$}\\
+        \text{$\displaystyle=\bigg(\sum_{n=0}^{\infty}a_n(x-x_0)^n\bigg)'$ $\forall x\in[a,b]$.}\\
+        \text{Радиус сходимости ряда остаётся равным R: при дифференцировании радиус}\\
+        \text{сходимости не уменьшается, но при обратном действии (интегрировании) радиус}\\
+        \text{сходимости снова не уменьшается, но при этом вновь равен R.}}
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.7cm}
+        \setcounter{equation}{0}
+        \par{
+        \textbf{Замечание: }\text{при дифференцировании сходимость на концах может исчезнуть.}\\
+        \textbf{Пример: }\text{ряд $\displaystyle\sum_{n=1}^{\infty}(-1)^n\frac{x^n}{n}=-\ln{(1+x)}$ сходится при $x=1$, а производная от него}\\
+        \text{$\displaystyle\sum_{n=1}^{\infty}(-1)^nx^{n-1}$ расходится при $x=1$. Радиус сходимости при этом не поменялся.}
+        }
+        \vspace{0.6cm}
+        \subsection*{5. Ряд Тейлора}
+        \addcontentsline{toc}{subsection}{5. Ряд Тейлора}
+        \par{\textbf{Пример для $e^x$:}\\
+        \begin{equation*}
+            f(x)=\sum_{n=0}^{\infty}\frac{x^n}{n!}, \ \ \ R=\infty
+        \end{equation*}
+        \begin{equation*}
+            f'(x)=\sum_{n=1}^{\infty}\frac{x^{n-1}}{(n-1)!}=f(x)\Rightarrow\frac{f'(x)}{f(x)}=1\Rightarrow\frac{d[f(x)]}{f(x)dx}=1\Rightarrow\frac{d[f(x)]}{f(x)}=dx\Rightarrow
+        \end{equation*}
+        \begin{equation*}
+            \Rightarrow\int\frac{d[f(x)]}{f(x)}=\int dx\Rightarrow \ln{f(x)}=x+c\Rightarrow f(x)=e^ce^x
+        \end{equation*}
+        \text{Пусть x = 0, тогда}
+        \begin{equation*}
+            \sum_{n=0}^{\infty}\frac{x^n}{n!}=f(x)=e^{x+c}\Rightarrow e^c=1\Rightarrow c=0\Rightarrow f(x)=e^x
+        \end{equation*}
+        }
+        \newpage
+        \par{\textbf{Ряды: }\text{Рассмотрим $\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n=f(x)$ и $R\ne0$, а ещё $\exists f^{(n)}$ $\forall n\in\mathbb{N}$.}\\
+        \begin{equation*}
+            f^{(k)}(x)=\sum_{n=k}^{\infty}a_nn(n-1)\ldots(n-k+1)(x-x_0)^{n-k}\Rightarrow f^{(k)}(x_0)=a_kk!\Rightarrow a_k=\frac{f^{(k)}(x_0)}{k!}
+        \end{equation*}
+        \text{Тогда $\displaystyle f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$. Рассмотрим функцию $f(x)\in C^{\infty}(\mathbb{R)}$, т.е. функцию,}\\
+        \text{у которой производная любого порядка определена и непрерывна на всём $\mathbb{R}.$}\\
+        \text{Куда сходится её ряд Тейлора?}\\
+        \\
+        \textbf{Пример:}
+        \begin{equation*}
+            f_0(x)=\begin{cases}
+                {\large e^{-\frac{1}{(x-x_0)^2}}},  \ x\ne x_0\\
+                0, \ \ \ \ \ \ \ \ \ \ \ x=x_0
+            \end{cases}
+        \end{equation*}
+        \begin{equation*}
+            \sum_{n=0}^{\infty}\frac{f_0^{(n)}(x_0)}{n!}(x-x_0)^n=0
+        \end{equation*}
+        \text{Т.о. ряд сходится при $\forall x\in\mathbb{R}\Rightarrow f+c_0f_0$ имеют один и тот же ряд Тейлора.}
+        }
+        \vspace{0.6cm}
+        \par{
+        \textbf{Теорема. } \text{Пусть $f$ имеет все производные в интервале $(x_0-R,x_0+R)$ и}\\
+        \text{$|f^{(n)}(x)|\leq M$ $\forall n\in\mathbb{N}$ $\forall x\in(x_0-R,x_0+R)$. Тогда ряд Тейлора сходится к $f(x)$}\\
+        \text{$\displaystyle \sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n=f(x)$ $\forall x\in(x_0-R,x_0+R)$.}\\
+        \textbf{Доказательство: }\text{по формуле Тейллора с остатком в интегральной форме}
+        \begin{equation*}
+            f(x)=\sum_{n=0}^{N}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+{1\over{N!}}\int_{x_0}^{x} f^{(N+1)}(t)\cdot(x-t)^Ndt \text{ при }|x-x_0|<R
+        \end{equation*}
+        \text{По условию $|f^{(n)}(x)|\leq M$ $\forall n\in\mathbb{N}$ $\forall x\in(x_0-R,x_0+R)$.}
+        \begin{itemize}
+            \item \text{пусть $x>x_0$}\\
+        \end{itemize}
+        \begin{equation*}
+            \bigg|f(x)-\sum_{n=0}^{N}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n\bigg|=\frac{1}{N!}\int_{x_0}^{x}\bigg|f^{(N+1)}(t)\bigg|\bigg|(x-t)^N\bigg|dt\leq
+        \end{equation*}
+        \begin{equation*}
+            \leq\frac{1}{N!}\int_{x_0}^{x}\bigg|f^{(N+1)}(t)\bigg|\bigg|(\underbrace{x_0-t}_{\leq0})^N\bigg|dt=\frac{1}{N!}\int_{x_0}^{x}\bigg|f^{(N+1)}(t)\bigg|(t-x_0)^Ndt\leq\frac{M}{N!}\int_{x_0}^{x}(t-x_0)^Ndt=
+        \end{equation*}
+        \begin{equation*}
+            \frac{M}{(N+1)!}(t-x_0)^{N+1}\Bigg|_{x_0}^{x}=\frac{M}{(N+1)!}(x-x_0)^{N+1}<\frac{M}{(N+1)!}R^{N+1}\xrightarrow{N\to\infty}0
+        \end{equation*}
+        \begin{itemize}
+            \item \text{пусть $x<x_0$}\\
+        \end{itemize}
+        \begin{equation*}
+            \bigg|f(x)-\sum_{n=0}^{N}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n\bigg|\leq\frac{1}{N!}\int_{x_0}^{x}\bigg|f^{(N+1)}(t)\bigg|(x_0-t)^Ndt\leq\frac{M}{N!}\int_{x_0}^{x}(x_0-t)^Ndt=
+        \end{equation*}
+        \begin{equation*}
+            \frac{M}{(N+1)!}(x_0-t)^{N+1}\Bigg|_{x_0}^{x}=\frac{M}{(N+1)!}(x_0-x)^{N+1}<\frac{M}{(N+1)!}R^{N+1}\xrightarrow{N\to\infty}0
+        \end{equation*}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \par{
+        \textbf{Примеры:}
+        \begin{enumerate}
+            \item \par{\text{$\displaystyle\sum_{n=0}^{\infty}x^n=\frac{1}{1-x}$, R=1}}
+            \item \par{\text{$\displaystyle\sum_{n=0}^{\infty}x^{2n}=\frac{1}{1+x^2}$, R=1 - особенности в $i$ и $-i$}}
+        \end{enumerate}
+        }
+        \setcounter{equation}{0}
+        %*****************************ГЛАВА2************************************************
+        \chapter*{Глава 2. Дифференциальное исчисление функций нескольких переменных}
+        \addcontentsline{toc}{chapter}{Глава 2. Дифференциальное исчисление функций нескольких переменных}
+        \section*{$\S$1. Предел и непрерывность}
+        \addcontentsline{toc}{section}{$\S$1. Предел и непрерывность}
+        \subsection*{1. Открытые и замкнутые множества в $\mathbb{R}^n$}
+        \addcontentsline{toc}{subsection}{1. Открытые и замкнутые множества в $\mathbb{R}^n$}
+        \par{\text{$\displaystyle<x,y>=\sum_{j=1}^{n}x_jy_j$, $\displaystyle<x,x>=\sum_{j=1}^{n}x_j^2\geq0$, $||x||=\sqrt{<x,x>}$ - длина (норма) $x$.}}
+        \begin{enumerate}
+            \item \par{\text{$<x,y>\leq||x||\cdot||y||$}}
+            \item \par{\text{$||x||\geq0$, $||x||=0\Leftrightarrow x=0$}}
+            \item \par{\text{$||\alpha x||=|\alpha|\cdot||x||$ \ \ $\forall x\in\mathbb{R}^n$, $\alpha\in\mathbb{R}$}}
+            \item \par{\text{$||x+y||\leq||x||+||y||$, \ \ \ $\forall x,y\in\mathbb{R}^n$}}
+        \end{enumerate}
+            \par{\textbf{Def 1: }\text{Пусть $\delta>0$. Множество $B_{\delta}(x)=\{y\in\mathbb{R}^n:||x-y||<\delta\}$ называется}\\
+            \text{открытым шаром радиуса $\delta$ с центром в точке $x$.}
+        }
+        \par{\textbf{Def 2: }\text{Множество $U\subset\mathbb{R}^n$ называется открытым, если $\forall x\in U$ $\exists\delta>0$ такое,}\\\text{что $B_{\delta}(x)\subset U$.}}
+        \vspace{0.6cm}
+        \par{\textbf{Примеры:}}
+        \begin{wrapfigure}{r}{0.5\textwidth} % r - справа, l - слева; ширина
+        \centering
+        \includegraphics[width=0.25\textwidth]{rispar1gl2.png}
+        \end{wrapfigure}
+        \begin{enumerate}
+            \item \par{$\mathbb{R}^n$ открыто}
+            \item \par{$\emptyset$ тоже открыто}
+            \item \par{$B_a(x)$ является открытым множеством}
+            \item \par{Множество $\{y\in\mathbb{R}^n:||x-y||>a\}$ является открытым множеством}
+            \item \par{\text{$\overline{B_a(x)}=\{y\in\mathbb{R}^n:||x-y||\leq a\}$ не является открытым, т.к. за точкой на сфере}\\\text{нет точек $\Rightarrow$ не найдётся такого шара из определения.}}
+        \end{enumerate}
+        \par{\textbf{Доказательство примера 3:} \text{$y\in B_a(x)$. Возьмём $\delta=a-||x-y||$ и пусть}\\
+        \text{$z\in B_{\delta}(y)$. Проверим, что $B_{\delta}(y)\subset B_a(x):$ $||z-x||\leq||(z-y)+(y-x)||\leq$}\\
+        \text{$\leq||z-y||+||y-x||<\delta+||y-x||=\delta+|-1|\cdot\underbrace{||x-y||}_{=a-\delta}=a$ $\Rightarrow z\in B_a(x)\Rightarrow$}\\
+        \text{$\Rightarrow B_{\delta}(y)\subset B_a(x)$ $\forall y\in B_a(x)$. Тогда по определнию верно.}
+        }
+        \vspace{0.6cm}
+        \par{\textbf{Def $2'$: } \text{$U\subset\mathbb{R}^n$ открыто $\Leftrightarrow \forall x\in U$ \ \ \ $\exists\delta>0, \ y\in U: \ \ x\in B_{\delta}(y)\subset U$.}
+        }
+        \par{\textbf{Утверждение: }\text{определения $2$ и $2'$ эквивалентны.}\\
+        \textit{(доказательство следует из решения пр. 3 и из того, что можем взять весь шар)}
+        }
+        \vspace{0.6cm}
+        \par{\textbf{Def 3: }\text{множество $F\subset\mathbb{R}^n$ называется замкнутым, если $\mathbb{R^n}\backslash F$ открыто.}
+        }
+        \vspace{0.4cm}
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{$\mathbb{R}^n\backslash\mathbb{R}^n=\emptyset$ (открыто) $\Rightarrow\mathbb{R}^n$ замкнуто.}
+            \item \par{$\emptyset$ замкнуто, т.к. $\mathbb{R}^n\backslash\emptyset=\mathbb{R}^n$ открыто.}
+            \item \par{\text{$\overline{B_a(x)}=\{y\in\mathbb{R}^n:||x-y||\leq a\}$ замкнуто.}}
+            \item \par{\text{Сфера $S_a(x)=\{y\in\mathbb{R}^n:||x-y||= a\}$ замкнута.}}
+        \end{enumerate}
+        \par{\textbf{Def 4: }\text{проколотой окрестностью точки $x\in\mathbb{R}^n$ называется множество}\\
+        \text{$\mathring{U}_{\delta}(x)=\mathring{B}_{\delta}(x)=\{y\in\mathbb{R}^n:0<||y-x||<\delta\}$.}}
+        \vspace{0.5cm}
+        \par{\textbf{Def 5: }\text{точка $x\in\mathbb{R}^n$ называется предельной точкой множества $M\subset\mathbb{R}^n$, если}\\
+        \text{$\forall\delta>0$ $\mathring{U}_{\delta}(x)\cap M\neq\emptyset$.}
+        }
+        \vspace{0.4cm}
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{\text{$M=(0,1)\subset\mathbb{R}$. $[0,1]\subset\mathbb{R}$ - множество предельных точек.}}
+            \item \par{\text{$M=(0,1)\cup\{2\}\subset\mathbb{R}$. $[0,1]\subset\mathbb{R}$ - множество предельных точек.}}
+        \end{enumerate}
+        \par{\text{Из примеров можно сделать выводы, что предельная точка может не лежать в M,}\\
+        \text{а ещё, что не все точки из M являются предельными.}}
+        \vspace{0.6cm}
+        \par{\textbf{Теорема (критерий замкнутости)}\\
+        \text{множество $M\subset\mathbb{R}^n$ замкнуто $\Leftrightarrow$ оно содержит все свои предельные точки.}\\
+        \textbf{Доказательство: $[\Rightarrow]$ }\text{$M$ замкнуто:}\\
+        \text{$M$ замкнуто и точка $x\not\in M$ $\Rightarrow x\in\mathbb{R}^n\backslash M$ открыто $\Rightarrow\exists\delta>0:$ $B_{\delta}(x)\subset\mathbb{R}^n\backslash M\Rightarrow$}\\
+        \text{$\Rightarrow\mathring{U}_{\delta}(x)\cap M=\emptyset$ $\Rightarrow x$ не является предельной точкой.}\\
+        \text{$[\Leftarrow]$ $M$ содержит все свои предельные точки:}\\
+        \text{рассмотрим $x\in\mathbb{R}^n\backslash M\Rightarrow$ $x$ не является предельной точкой для $M$, т.е. $\exists\delta>0:$}\\
+        \text{$\mathring{U}_{\delta}(x)\cap M=\emptyset$ $\Rightarrow$ $B_{\delta}(x)\cap M=\emptyset\Rightarrow B_{\delta}(x)\subset\mathbb{R}^n\backslash M$ открыто, тогда $М$ замкнуто.}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \subsection*{2. Сходимость в $\mathbb{R}^n$}
+        \addcontentsline{toc}{subsection}{2. Сходимость в $\mathbb{R}^n$}
+        \par{\ }
+        \par{\textbf{Def 6: }\text{пусть $\{x_k\}$ - последовательность в $\mathbb{R}^n$} и $a\in\mathbb{R}^n$ - фиксированная точка.}\\
+        \text{Предел последовательности $\{x_k\}$ равен $a$, если $\displaystyle\lim_{n\to\infty}||x-a||=0$.}
+        \vspace{0.4cm}
+        \par{\textbf{Def 7: }\text{последовательность $\{x_k\}\subset\mathbb{R}^n$ называется фундаментальной, если}\\
+        \text{$\forall\varepsilon>0$ $\exists N\in\mathbb{N}: \forall n,m>N$ $||x_n-x_m||<\varepsilon$.}
+        }
+        \newpage
+        \par{\textbf{Теорема (критерий Коши)}\\
+        \text{Последовательность имеет предел $\Leftrightarrow$ она фундаментальна.}\\
+        \textbf{Доказательство: }\text{пусть $x_{k_i}$ - i-ая координата элемента $x_k$}\\
+        \textbf{[$\Rightarrow$] } \textit{последовательность имеет предел}\\
+        \text{Распишем определение предела: $\forall\varepsilon>0$ $\exists N\in\mathbb{N}:$ $\forall k>N$ $||x_k-a||<\varepsilon$, подставим:}\\
+        \text{$||x_k-x_m||\leq||x_k-a+a-x_m||\leq||x_k-a||+||x_m-a||<2\varepsilon$}\\
+        \textbf{[$\Leftarrow$] }\textit{последовательность фундаментальна}\\
+        \text{$||x_{k_i}-x_{m_i}||\leq||x_k-x_m||\to0$, т.к. последовательность фундаментальна, тогда}\\
+        \text{$||x_{k_i}-x_{m_i}||\to0\Rightarrow$ последовательность $\{x_{k_i}\}$ тоже фундаментальна $\displaystyle\Rightarrow\exists\lim_{k\to\infty}x_{k_i}=x_i$.}\\
+        \text{Рассмотрим $x=(x_1,\ldots,x_n)$: фикс. $\varepsilon>0$ и $\forall i=1,\ldots,n$ выберем $N_i(\varepsilon)\in\mathbb{N}$ такое, что}\\
+        \text{$||x_{k_i}-x_{m_i}||<\frac{\varepsilon}{\sqrt{n}}$ $\forall k>N$. Знаем, что $|x_i|\leq||x||$, тогда выберем $N=\max\{N_1,\ldots,N_n\}$,}\\
+        \text{тогда при $k>N$ верно:}
+        \begin{equation*}
+            ||x_k-x||=\bigg(\sum_{i=1}^{n}(x_{k_i}-x_i)^2\bigg)^{1\backslash2}\leq\bigg(\sum_{i=1}^{n}(\frac{\varepsilon}{\sqrt{n}})^2\bigg)^{1\backslash2}=\varepsilon
+        \end{equation*}
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \subsection*{3. Предел функции нескольких переменных}
+        \addcontentsline{toc}{subsection}{3. Предел функции нескольких переменных}
+        \par{\ }
+        \par{\textbf{Def 8: }Пусть $f$ задана на $V\subset\mathbb{R}^n$ и принимает значения из $\mathbb{R}$, $a$ - предельная точка \\ множества $V\subset\mathbb{R}^n$, $l\in\mathbb{R}$. Говорят, что \underline{$f$ имеет предел в точке $a$ равный $l$}, и пишут \\ $\displaystyle\lim_{x\to a}f(x)=l$, если $\forall\varepsilon>0$ $\exists\delta>0: x\in V\cap\mathring{U}_{\delta}(a) \ \ |f(x)-l|<\varepsilon$.}
+        \vspace{0.3cm}
+        \par{\textbf{Def $8'$: }Пусть $f$ задана на $V\subset\mathbb{R}^n$ и принимает значения из $\mathbb{R}$, $a$ - предельная точка \\ множества $V\subset\mathbb{R}^n$, $l\in\mathbb{R}$ (те же, что и в опр. 8). Предел функции $f$ в точке $a$ существует\\ и равен $l$ $\Leftrightarrow\forall\{x_k\}\subset V, x_k\ne a, x_k\to a$ $\displaystyle\exists\lim_{k\to\infty}f(x_k)=l$.}
+        \vspace{0.3cm}
+        \par{\textbf{Утверждение: }определения 8 и $8'$ эквивалентны.\\
+        \textbf{Доказательство: } \\
+        \textbf{[$\Rightarrow$]} $\displaystyle\exists\lim_{x\to a}f(x)=l$ и $x_k\to a$\\
+        Фикс. $\varepsilon>0$ и выберем $\delta>0:\forall x\in V\cap\mathring{U}_{\delta}(a)$ $|f(x)-l|<\varepsilon$. Т.к. $x_k\to a$, то $\exists N\in\mathbb{N}:\forall k>N$ $x_k\subset V\cap\mathring{B}_{\delta}(a)$, тогда $|f(x_k)-l|<\varepsilon$.\\
+        \textbf{[$\Leftarrow$]} (от противного)\\
+        Пусть $\forall\{x_k\}\subset V\backslash\{a\}$, $x_k\to a$ верно, что $\displaystyle\lim_{k\to\infty}f(x_k)=l$, но $\displaystyle\lim_{x\to a}f(x)\ne l$. Тогда $\displaystyle\exists\varepsilon_0>0:\forall\delta>0 \ \ \exists x\in V\cap\mathring{B}_{\delta}(a)$, в которой $|f(x)-l|\geq\varepsilon_0$. Рассмотрим $\delta={1\over k}$ и $x_k$ - соотв. точка из $V\cap\mathring{B}_{1\over k}(a)$, тогда $\displaystyle||x_k-a||<{1\over k}\xrightarrow[k\to\infty]{}0$, т.е. $x_k\to a$, но $|f(x_k)-l|\geq\varepsilon_0$, т.е. $\displaystyle\lim_{k\to\infty}f(x_k)\ne l$. Тогда приходим к $\lightning$ с предположением.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \par{\textbf{Пусть $n=2$} и пусть существуют пределы $\displaystyle\lim_{(x,y)\to(x_0,y_0)}f(x,y)$, $\displaystyle\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)$ и \\$\displaystyle\lim_{x\to x_0}\lim_{y\to y_0}f(x,y)$, тогда они равны. Но если существуют только два из них, то про третий ничего сказать нельзя.}
+        \newpage
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{$f(x,y)=\begin{cases}
+                x\sin{1\over y}, \ y\ne0 \\
+                0 \ \ \ \ \ \ \ , \ y=0
+            \end{cases}$
+            $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=0$, т.к. $x\to0$, а $|\sin{1\over y}|\leq1$, ещё \\
+            $\displaystyle\exists\lim_{y\to0}\lim_{x\to0}f(x,y)=0$, но $\displaystyle\nexists\lim_{x\to0}\lim_{y\to0}f(x,y)$, т.к. $\displaystyle\nexists\lim_{y\to0}\sin{1\over y}$.}
+            \item \par{$f(x,y)=\begin{cases}
+                \displaystyle\frac{xy}{x^2+y^2}, \ x^2+y^2\ne0 \\
+                \ \ \ \ \ 0 \ \ \ \ , \ x=y=0
+            \end{cases}$ У такой функции существуют оба повторных предела, но не существует двойного предела, т.к. определение $8'$ не выполняется ($f(0,{1\over k})\to0 \ne {1\over2}\xleftarrow{}f({1\over k}, {1\over k})$).}
+        \end{enumerate}
+        \vspace{0.6cm}
+        \par{\textbf{Следствие: }Пусть сущетсвуют пределы $\displaystyle\lim_{x\to a}f(x)=l$ и $\displaystyle\lim_{x\to a}g(x)=m$, тогда существуют и пределы функций $f\pm g$, $f\cdot g$, $\displaystyle\frac{f}{g}$ при $m\ne0$, равные соотв. $l\pm m$, $l\cdot m$, $\displaystyle\frac{l}{m}$. Доказательство следует из определения $8'$.}
+        \vspace{0.7cm}
+        \par{\textbf{Def 9: }Множество $V\subset\mathbb{R}^n$ называется ограниченым, если $\exists c\geq0:||x||\leq c$ $\forall x\in V$. Последовательность $\{x_k\}\subset\mathbb{R}^n$ называется ограниченной, если множество $\{x_k, \ k\in\mathbb{N}\}$ ограничено, т.е. $\exists c\geq0: ||x_k||\leq c \ \ \ \forall k\in\mathbb{N}$.}
+        \vspace{0.4cm}
+        \par{\textbf{Теорема }Из любой ограниченной последовательности можно выделить сходящуюся подпоследовательность. \\
+        \textbf{Доказательство: }докажем по индукции. База $n=1$ (теорема Больцано-Вейерштрасса). \\
+        Пусть в $\mathbb{R}^n$ можно выделить сходящуюся подпоследовательность. Рассмотрим $\{x_k\}\subset\mathbb{R}^{n+1}$. $x_k=(x_k',x_{k,n+1})$, т.е. добавили координату $n+1$. Т.к. $|x_{k,n+1}|\leq||x_k||\leq c$ и\\ $||x_k'||\leq||x_k||\leq c$, то обе последовательности $\{x_{k,n+1}\}$ и $\{x_k'\}$ ограничены. По индукционному предположению из $\{x_k'\}$ можно выделить сходящуюся подпоследовательность\\ $\{x_{k_m}'\}\xrightarrow{m\to\infty}x'$. Воспользовавшись базой индукции, выделим из последовательности $\{x_{k_m,n+1}\}$ (она ограничена) сходящуюся подпоследовательность $\{x_{k_{m_l} \ ,n+1}\}\to x_{n+1}$. Теперь рассмотрим последовательность $\{x_{k_{m_l}}', \ x_{k_{m_l} , \ n+1}\}\to\{x',x_{n+1}\}$. 
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \subsection*{4. Непрерывность}
+        \addcontentsline{toc}{subsection}{4. Непрерывность}
+        \par{\ }
+        \par{\textbf{Def 10: }Пусть $f$ задана на $V\subset\mathbb{R}^n$ и принимает вещественные значения, $a\in V$ является предельной точкой $V$. Функция $f$ непрерывна в точке $a$, если $\displaystyle\lim_{x\to a}f(x)=f(a)$. \\
+        Функция $f$ непрерывна на множестве $A\subset V$, если $f$ непрерывна в любой точке из этого множества.
+        }
+        \vspace{0.4cm}
+        \par{\textbf{Примеры:}}
+        \begin{enumerate}
+            \item \par{$f(x)=||x||$ непрерывна. $\bigg|||x||-||a||\bigg|\leq||x-a||\xrightarrow{x\to a}0$.}
+            \item \par{$f(x,y)=\begin{cases}
+                \displaystyle\frac{xy}{x^2+y^2}, \ x^2+y^2\ne0 \\
+                \ \ \ \ \ 0 \ \ \ \ , \ x=y=0
+            \end{cases}$ разрывна, т.к. в точке (0,0) не существует двойного предела.}
+        \end{enumerate}
+        \newpage
+        \par{\textbf{Def 11: }Пусть функция $f$ задана на множестве $V\subset\mathbb{R}^n$. $f$ равномерно непрерывна на $[a,b]$, если $\forall\varepsilon>0 \ \exists\delta>0:\forall x,x'\in V \ \ ||x-x'||<\delta \Rightarrow |f(x)-f(x')|<\varepsilon$.}
+        \vspace{0.3cm}
+        \par{\textbf{Теорема (Кантор)}\\
+        Пусть $V\subset\mathbb{R}^n$ - замкнутое и ограниченное множество, а $f$ непрерывна на $V$, тогда $f$ равномерно непрерывна на $V$.\\
+        \textbf{Доказательство: }Пусть $V$ замкнуто и ограничено, а $f$ непрерывна на нём, но не равномерно. Т.е. $\exists\varepsilon_0>0:\forall\delta>0 \ \exists x,x'\in V, ||x-x'||<\delta$, но $|f(x)-f(x')|\geq\varepsilon_0$. Рассмотрим $\delta_k={1\over k}$, $k\in\mathbb{N}$: для них $\exists x_k,x_k'$ такие, что $||x_k-x_k'||<\delta={1\over k}$, но $|f(x_k)-f(x_k')|>\varepsilon$. $\{x_k\}\subset V$ ограничена, т.к. $V$ органичено, тогда существует сходящаяся подпоследовательность $x_{k_m}\to x$. Т.к. $V$ замкнуто, то $x\in V$. Рассмотрим $x_{k_m}'$:
+        \begin{equation*}
+            ||x_{k_m}'-x||=||x_{k_m}'-x_{k_m}+x_{k_m}-x||\leq||x_{k_m}'-x_{k_m}||+||x_{k_m}-x||\to0
+        \end{equation*}
+        Тогда $x_{k_m}'\to x$. Т.к. $f$ непрерывна на $V$, то она непрерывна в точке $x$, тогда
+        \begin{equation*}
+        \displaystyle\lim_{m\to\infty}f(x_{k_m}')=\lim_{m\to\infty}f(x_{k_m})=f(x)
+        \end{equation*}
+        Но вернёмся к равномерной сходимости: $|f(x_{k_m})-f(x_{k_m}')|\geq\varepsilon_0$. Мы выяснили, что левая часть стремится к нулю. Тогда $0\geq\varepsilon_0>0$, что приводит нас к $\lightning$.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \vspace{0.6cm}
+        \par{\textbf{Теорема (Вейерштрасс)}\\
+        Пусть $V\subset\mathbb{R}^n$ замкнутое и ограниченное множество, а $f$ непрерывна на $V$, тогда $f$ ограничена на $V$ и достигает своего наибольшего и наименьшего значения. Т.е. $\exists a_1,a_2\in V: f(a_1)\leq f(x)\leq f(a_2)$.\\
+        \textbf{Доказательство: }пусть $f$ неограничена сверху, т.е. $\forall k\in\mathbb{N}$ $\exists x_k\in V:f(x_k)\geq k$. $\{x_k\}\subset V$ ограничена, т.к. множество ограничено, тогда $\exists x_{k_m}$, которая сходится. Но т.к. $f(x_{k_m})\geq k_m$, то $\displaystyle\lim_{m\to\infty}f(x_{k_m})=+\infty$, что приводит нас к $\lightning$, т.к. $\displaystyle\lim_{m\to\infty}f(x_{k_m})=f(x)$ в силу непрерывности. Ну тогда функции придётся быть ограниченной сверху на $V$. Рассмотрим функцию $-f$: она ограничена сверху (доказали), тогда $f$ ограничена снизу.\\
+        Т.к. $f$ ограничена сверху, то $A=\sup f(x)$ $x\in V$ конечен. По определению sup $\forall k\in\mathbb{N}$ $\exists x_k\in V:$ $f(x_k)>A-{1\over k}$. $\{x_k\}\subset V$ ограничена, т.к. множество ограничено, тогда $\exists x_{k_m}\to x\in V$ и $\displaystyle\lim_{m\to\infty}f(x_{k_m})=f(x)$ в силу непрерывности. Тогда выпишем неравенство:
+        \begin{equation*}
+            A-{1\over k}<f(x_{k_m})\leq A
+        \end{equation*}
+        А в пределе получим
+        \begin{equation*}
+            A\leq f(x)\leq A
+        \end{equation*}
+        Тогда $f(x)=A$, т.е. sup является значением.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \section*{$\S$2. Дифференциальное исчисление функций нескольких переменных}
+        \addcontentsline{toc}{section}{$\S$2. Дифференциальное исчисление функций нескольких переменных}
+        \subsection*{1. Дифференцируемость}
+        \addcontentsline{toc}{subsection}{1. Дифференцируемость}
+        \par{\ }
+        \par{\textbf{Def 1: }Пусть $f$ задана на $V\subset\mathbb{R}^n$ и $x\in V$ лежит в $V$ вместе с некоторым шаром $B_{\delta}(x)$. Функция $f:V\to\mathbb{R}$ называется дифференцируемой в точке $x$, если приращение $\Delta f(x,\Delta x)=f(x+\Delta x)-f(x)$ допускает представление $\Delta f(x,\Delta x)=A_1\Delta x_1+\ldots+A_n\Delta x_n+\bar{\bar{o}}(\Delta x)$ при $\Delta x\to0$.}
+        \vspace{0.4cm}
+        \par{\textbf{Замечание: }если $f$ дифференцируема в точке $x$, то она непрерывна в точке $x$.\\\textbf{Обратное неверно! Пример: } $f(x)=||x||$ в точке $x=0$ данная функция непрерывна, но не дифференцируема.\\ \textbf{Пусть $x\neq0:$}
+        \begin{equation}
+            ||x+\Delta x||-||x||=\frac{||x+\Delta x||^2-||x||^2}{||x+\Delta x||+||x||}
+        \end{equation}
+        Рассмотрим $||x+\Delta x||^2-||x||^2$:
+        \begin{equation*}
+            ||x+\Delta x||^2-||x||^2=\sum_{i=1}^{n}(x_i+\Delta x_i)^2-\sum_{i=1}^{n}x_i^2=2\sum_{i=1}^nx_i\Delta x_i+\sum_{i=1}^n\Delta x_i^2=
+        \end{equation*}
+        \begin{equation}
+            =2\sum_{i=1}^nx_i\Delta x_i+||\Delta x||^2=2\sum_{i=1}^nx_i\Delta x_i+\bar{\bar{o}}(\Delta x)
+        \end{equation}
+        Рассмотрим $\frac{1}{||x+\Delta x||+||x||}$ \textit{(честно-честно это так)}:
+        \begin{equation}
+            \frac{1}{||x+\Delta x||+||x||}=\frac{1}{2||x||}+\bar{\bar{o}}(\Delta x)
+        \end{equation}
+        Подставим сейчас (2) и (3) в (1):
+        \begin{equation}
+            (1)=\sum_{i=1}^n\frac{x_i}{||x||}\Delta x_i + \bar{\bar{o}}(x)
+        \end{equation}
+        Тогда из (4) следует, что функция дифференцируема в точках $x\neq0$.\\
+        \textbf{Пусть $x=0:$ }, тогда $||x+\Delta x||-||x||=||\Delta x||=A_1\Delta x_1+\ldots+A_n\Delta x_n+\bar{\bar{o}}(\Delta x)$. Рассмотрим случаи, когда есть приращение только по координате с номером $k$, т.е. $\Delta x_i=0$ при $i\ne k$:
+        \begin{equation}
+            ||\Delta x||=||\Delta x_k||=A_k\Delta x_k+\bar{\bar{o}}(\Delta x_k)
+        \end{equation}
+        Тогда из (5) получаем, что
+        \begin{equation}
+            1=A_k\frac{\Delta x_k}{||\Delta x_k||}+\bar{\bar{o}}(1)
+        \end{equation}
+        Тогда предела правой части нет, ведь тогда пределы справа и слева должны совпадать, но они имеют разные знаки. Это значит, что $f(x)=||x||$ не дифференцируема в нуле.
+        }
+        \newpage
+        \subsection*{2. Частные производные}
+        \addcontentsline{toc}{subsection}{2. Частные производные}
+        \par{Пусть $k$ фикс. $(k=1,\ldots,n)$ и пусть $\Delta x_i=0$ $\forall i\ne k$. \\
+        Обозначим за $\Delta f(x, \Delta x_k)=f(x_1, \ldots,x_k+\Delta x_k,\ldots,x_n)-f(x_1,\ldots,x_n)$.\\ \\
+        Частной производной функции $f$ по переменной $x_k$ называется предел (если он существует) $\displaystyle\frac{\partial f(x)}{\partial x_k}=\lim_{\Delta x_k\to0}\frac{\Delta f(x,\Delta x_k)}{\Delta x_k}$ (все обозначения введены выше).
+        }
+        \vspace{0.6cm}
+        \par{\textbf{Замечание:}\\
+        Пусть $f$ дифференцирована в точке $x$, тогда $\Delta f(x,\Delta x_k)=A_k\Delta x_k+\bar{\bar{o}}(\Delta x_k)$, тогда $\frac{\Delta f(x)}{\Delta x_k}=A_k+\bar{\bar{o}}(1)\Rightarrow\frac{\partial f(x)}{\partial x_k}=A_k$.
+        }
+        \setcounter{equation}{0}
+        \vspace{0.2cm}
+        \par{\textbf{Обратное неверно! Пример:}\\
+        $f(x,y)=\begin{cases}
+                \displaystyle\frac{xy}{x^2+y^2}, \ x^2+y^2\ne0 \\
+                \ \ \ \ \ 0 \ \ \ \ , \ x=y=0
+            \end{cases}$ разрывна в точке $(0,0)\Rightarrow$ не дифференцируема, но при этом обе её частные производные равны 0.}
+        \vspace{0.8cm}
+        \par{\textbf{Теорема. }Пусть $f$ имеет частные производные $\displaystyle\frac{\partial f}{\partial x_i}$ $\forall i=1,\ldots,n$ в некотором шаре $B_{\delta}(x)$, причём $\displaystyle\frac{\partial f}{\partial x_i}$ непрерывна в точке $x$. Тогда $f$ дифференцируема в точке $x$.\\
+        \textbf{Доказательство: }$\Delta f(x,\Delta x)=f(x+\Delta x)-f(x)=\bigg(f(x_1+\Delta x_1,\ldots,x_n+\Delta x_n)-$\\$-f(x_1,x_2+\Delta x_2,\ldots,x_n+\Delta x_n)\bigg)+\ldots+\bigg(f(x_1,\ldots,x_{n-1},x_n+\Delta x_n)-f(x_1,\ldots,x_n)\bigg).$\\
+        Обозначим
+        \begin{equation}
+            \frac{\partial f}{\partial x_i}(\theta_i)=\frac{\partial f}{\partial x_i}(x_1,\ldots,x_{i-1},x_i+\theta_i x_i,x_{i+1}+\Delta x_{i+1},\ldots,x_n+\Delta x_n)
+        \end{equation}
+        Тогда по теореме Лагранжа для функции одной переменной\\
+        \textit{Напоминание: теорема Лагранжа для функции одной переменной гласит, что если эта ф-ция замкнута на $[a,b]$ и имеет конечную $f'(x)$ $\forall x\in(a,b)$, то $\exists c\in(a,b): \frac{f(b)-f(a)}{b-a}$.}
+        \begin{equation}
+            \Delta f(x,\Delta x)=\frac{\partial f}{\partial x_1}(\theta_1)\Delta x_1+\ldots+\frac{\partial f}{\partial x_n}(\theta_n)\Delta x_n
+        \end{equation}
+        Добавим и вычтем $\displaystyle\frac{\partial f(x)}{\partial x_i}\Delta x_i$:
+        \begin{equation}
+            (2)=\frac{\partial f(x)}{\partial x_1}\Delta x_1+\bigg(\frac{\partial f}{\partial x_1}(\theta_1)-\frac{\partial f(x)}{\partial x_1}\bigg)\Delta x_1+\ldots+\frac{\partial f(x)}{\partial x_n}\Delta x_n+\bigg(\frac{\partial f}{\partial x_n}(\theta_n)-\frac{\partial f(x)}{\partial x_n}\bigg)\Delta x_n
+        \end{equation}
+        В силу непрерывности частных производных делаем вывод, что
+        \begin{equation}
+            \bigg(\frac{\partial f}{\partial x_1}(\theta_1)-\frac{\partial f(x)}{\partial x_1}\bigg)\Delta x_1+\ldots+ \bigg(\frac{\partial f}{\partial x_n}(\theta_n)-\frac{\partial f(x)}{\partial x_n}\bigg)\Delta x_n=\bar{\bar{o}}(\Delta x)
+        \end{equation}
+        Тогда, применив (4) к (3), получим $\displaystyle\Delta f(x,\Delta x)=\sum_{i=1}^n\frac{\partial f(x)}{\partial x_i}\Delta x_i+\bar{\bar{o}}(\Delta x)$. Таким образом функция действительно дифференцируема в точке $x$.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \setcounter{equation}{0}
+        \subsection*{3. Производная сложной функции}
+        \addcontentsline{toc}{subsection}{3. Производная сложной функции}
+        \par{\ }
+        \par{\textbf{Теорема. }Пусть функции $g_1,\ldots,g_m$ дифференцируемы в точке $x\in\mathbb{R}^n$, а функция $f$ дифференцируема в точке $y=\bigg(g_1(x),\ldots,g_m(x)\bigg)\in\mathbb{R}^m$. Тогда сложная функция \\ $x\mapsto f\bigg(g_1(x),\ldots,g_m(x)\bigg)$ дифференцируема в точке $x$, причём
+        \begin{equation*}
+            \frac{\partial}{\partial x_k}f(g_1(x),\ldots,g_m(x))=\sum_{i=1}^m\frac{\partial f(g_1(x),\ldots,g_m(x))}{\partial g_i}\frac{\partial g_i}{\partial x_k}
+        \end{equation*}
+        \textbf{Доказательство: }т.к. $f$ дифференцируема в точке $y$, то 
+        \begin{equation}
+            \Delta f(y,\Delta y)=\sum_{i=1}^m\frac{\partial f(y)}{\partial y_i}\Delta y_i+\bar{\bar{o}}(\Delta y)
+        \end{equation}
+        Рассмотрим $y_i=g_i(x)$ и $\Delta y_i$:
+        \begin{equation}
+            \Delta y_i=\Delta g_i(x,\Delta x)=\sum_{k=1}^n\frac{\partial g_i(x)}{\partial x_k}\Delta x_k+\bar{\bar{o}}(\Delta x)
+        \end{equation}
+        Докажем, что $\bar{\bar{o}}(\Delta y)=\bar{\bar{o}}(\Delta x)$:
+        \begin{equation}
+            \frac{\bar{\bar{o}}(\Delta y)}{||\Delta x||}=\underbrace{\frac{\bar{\bar{o}}(\Delta y)}{||\Delta y||}}_{\bar{\bar{o}}(1)}\cdot\frac{||\Delta y||}{||\Delta x||}
+        \end{equation}
+        Осталось рассмотреть частное норм $||\Delta y||$ и $||\Delta x||$:
+        \begin{equation}
+            \bigg|\frac{\Delta y_i}{||\Delta x||}\bigg|=\bigg|\sum_{k=1}^n\frac{\partial g_i(x)}{\partial x_k}\frac{\Delta x_k}{||\Delta x||} +\frac{\bar{\bar{o}}(\Delta x)}{||\Delta x||}\bigg|\leq\sum_{k=1}^n\underbrace{\bigg|\frac{\partial g_i(x)}{\partial x_k}\bigg|}_{const}\cdot\underbrace{\frac{|\Delta x_k|}{||\Delta x||}}_{\leq1}+\underbrace{|\bar{\bar{o}}(1)|}_{\textit{ограничена}}
+        \end{equation}
+        Следовательно вся конструкция (4) ограничена, тогда и частное норм $||\Delta y||$ и $||\Delta x||$, состоящее из конструкций (4), тоже ограничено. Тогда из (3) $\Rightarrow$ $\bar{\bar{o}}(\Delta y)=\bar{\bar{o}}(\Delta x)$.\\
+        Теперь в (1) подставим (2) и $\bar{\bar{o}}(\Delta y)=\bar{\bar{o}}(\Delta x)$ и получим:
+        \begin{equation*}
+            \Delta f[g_1(x),\ldots,g_m(x), \Delta x]=f[g_1(x+\Delta x),\ldots,g_m(x+\Delta x)]-f[g_1(x),\ldots,g_m(x)]=
+        \end{equation*}
+        \begin{equation*}
+            =\sum_{i=1}^m\frac{\partial f[g_1(x),\ldots,g_1(x)]}{\partial g_i}\cdot\sum_{k=1}^n\frac{\partial g_i(x)}{\partial x_k}\Delta x_k+\bar{\bar{o}}(\Delta x)=
+        \end{equation*}
+        \begin{equation*}
+            =\sum_{i=1}^m\sum_{k=1}^n\frac{\partial f[g_1(x),\ldots,g_1(x)]}{\partial g_i}\cdot\frac{\partial g_i(x)}{\partial x_k}\Delta x_k+\bar{\bar{o}}(\Delta x)=
+        \end{equation*}
+        \begin{equation}
+            =\sum_{k=1}^n\underbrace{\Bigg(\sum_{i=1}^m\frac{\partial f[g_1(x),\ldots,g_1(x)]}{\partial g_i}\cdot\frac{\partial g_i(x)}{\partial x_k}\Bigg)}_{\frac{\partial}{\partial x_k}f(g_1(x),\ldots,g_m(x))}\Delta x_k+\bar{\bar{o}}(\Delta x)
+        \end{equation}
+        В (5) получили разложение по $\Delta x_k$, где все значки имеют смысл (по условию), поэтому наша функция дифференцируема в точке $x$.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \newpage
+        \setcounter{equation}{0}
+        \subsection*{4. Производная по направлению. Градиент}
+        \addcontentsline{toc}{subsection}{4. Производная по направлению. Градиент}
+        \par{\ }
+        \par{\textbf{Def 2: } пусть $f$ определена на $V\subset\mathbb{R}^n$, $x\in B_{\delta}(x)\subset V$, $l\in\mathbb{R}^n$, $||l||=1$, $t\in\mathbb{R}$. \\
+        Производной по направлению $\frac{\partial f(x)}{\partial l}$ называется величина
+        \begin{equation*}
+            \frac{d}{dt}f(x+lt)\bigg|_{t=0}=\lim_{\Delta t\to0}\frac{f(x+l\Delta t)-f(x)}{\Delta t}
+        \end{equation*}
+        }
+        \vspace{0.5cm}
+        \par{\textbf{Теорема.} Пусть $f$ дифференцируема в точке $x$ и пусть $l\in\mathbb{R}^n$, $||l||=1$, тогда $\exists\frac{\partial f(x)}{\partial l}$ и справедлива формула
+        \begin{equation*}
+            \frac{\partial f(x)}{\partial l}=\sum_{i=1}^n\frac{\partial f(x)}{\partial x_i}l_i
+        \end{equation*}
+        \textbf{Доказательство: }$k=1$, $x_1=t$, $g_i(t)=x_i+t\cdot l_i$
+        \begin{equation*}
+            \frac{d}{dt}f(x+lt)=\sum_{i=1}^n\frac{\partial f(x+lt)}{\partial x_i}\cdot\frac{d}{dt}(x_i+l_it)=\sum_{i=1}^n\frac{\partial f(x+lt)}{\partial x_i}\cdot l_i
+        \end{equation*}
+        И при $t=0$ получим формулу.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \noindent\hrulefill\noindent
+        \par{\textbf{Пример:} \textit{(нельзя избавиться от дифференцируемости)} \\
+        \begin{equation*}
+            f(x,y)=\sqrt[3]{x^2y} \ \ \ \ \ l=(l_x,l_y), \ l_x^2+l_y^2=1
+        \end{equation*}
+        Рассмотрим в точке $(0,0)$:
+        \begin{equation*}
+            \lim_{\Delta t\to0}\frac{f(0+l_x\Delta t, \ 0+l_y\Delta t)-f(0,0)}{\Delta t}=\lim_{\Delta t\to0}\frac{\sqrt[3]{l_x^2l_y\cdot\Delta t^3}}{\Delta t}=\sqrt[3]{l_x^2l_y}\neq0
+        \end{equation*}
+        Рассмотрим частные производные:
+        \begin{equation*}
+            \frac{\partial f(0,0)}{\partial x}=\frac{\partial f(0,0)}{\partial y}=0
+        \end{equation*}
+        Тогда формула $\displaystyle\frac{\partial f(x)}{\partial l}=\sum_{i=1}^n\frac{\partial f(x)}{\partial x_i}l_i$ не работает, т.к. $0\neq\sqrt[3]{l_x^2l_y}=0\cdot l_x+0\cdot l_y=0$. Причина заключается в том, что функция не дифференцируема.}
+        \par
+        \noindent\hrulefill\noindent
+        \par{\ }
+        \par{\textbf{Градиент: } $\displaystyle\nabla f(x)=\bigg(\frac{\partial f(x)}{\partial x_1},\ldots,\frac{\partial f(x)}{\partial x_n}\bigg)$ и $\displaystyle\frac{\partial f(x)}{\partial l}=<\nabla f(x), \ l>=||\nabla f(x)||\cdot\cos{\varphi}$.\\
+        Градиент — это векторная величина, показывающая направление наискорейшего изменения (роста) какой-либо величины.}
+        \newpage
+        \subsection*{5. Формула Лагранжа}
+        \addcontentsline{toc}{subsection}{5. Формула Лагранжа}
+        \par{\ }
+        \par{\textbf{Теорема (Лагранж)}\\
+        Пусть $f$ задана и непрерывна на $V\subset\mathbb{R}^n$ и $x_1,x_0\in V$ вместе с $I=\{y\in\mathbb{R}^n:y=x_0+t(x-x_0), t\in[0,1]\}$. Пусть ещё $f$ дифференцируема во всех внутренних точках $I$. Тогда $\exists c\in I:f(x)-f(x_0)=<\nabla f(c),x-x_0>$.\\
+        \textbf{Доказательство: }Рассмотрим $g(t)=f(x_0+t(x-x_0))$, она непрерывна на $[0,1]$ и дифференцируема $\forall t\in(0,1)$ в силу соответсвующих свойств функции $f$. По теореме Лагранжа для функции одной переменной (а наша $g$ является таковой) $\exists\theta\in(0,1):$
+        \begin{equation}
+            \underbrace{g(1)}_{=f(x)}-\underbrace{g(0)}_{=f(x_0)}=g'(\theta)=\sum_{i=1}^n\frac{\partial f(x_0+\theta(x-x_0))}{\partial x_i}\cdot(x_i-x_{i_0})
+        \end{equation}
+        Тогда из (1) получим, что $f(x)-f(x_0)=<\nabla f(c),x-x_0>$ и $c=x_0+\theta(x-x_0)$.
+        }
+        \par{{\raggedleft ч.т.д.\par}}
+        \subsection*{6. Производные высших порядков}
+        \addcontentsline{toc}{subsection}{6. Производные высших порядков}
+        \setcounter{equation}{0}
+        \par{\ }
+        \par{\textbf{Def 3: }$\displaystyle\frac{\partial^mf(x)}{\partial x_{i_1}\cdot\ldots\cdot\partial x_{i_m}}=\frac{\partial}{\partial x_1}\bigg(\frac{\partial^{m-1}f(x)}{\partial x_{i_2}\cdot\ldots\cdot\partial x_{i_m}}\bigg)$ - частная производная порядка $m$ (определение по индукции). В данном случае $x_{i_k}$ может быть любым.}
+        \par
+        \noindent\hrulefill\noindent
+        \par{\ }
+        \par{\textbf{Пример: }\textit{(существует проблема с порядком дифференцирования)}
+        \begin{equation*}
+            f(x,y)=\begin{cases}
+                xy\frac{x^2-y^2}{x^2+y^2}, \ x^2+y^2\ne0 \\
+                0 \ \ \ \ \ \ \ \ \ , \ x=y=0
+            \end{cases}
+        \end{equation*}
+        Рассмотрим производную логарифма функции:
+        \begin{equation*}
+            \frac{\partial}{\partial x_1}\ln{f}=\frac{1}{f}\cdot\frac{\partial f}{\partial x_1}\Rightarrow\frac{\partial f}{\partial x_1}=f\frac{\partial}{\partial x_1}\ln{f}
+        \end{equation*}
+        Теперь используем это в нашем примере (сразу распишем логарифм произведений, как сумму логарифмов):
+        \begin{equation*}
+            \frac{\partial}{\partial x}\bigg(\ln{x}+\ln{y}+\ln{(x^2-y^2)}-\ln{(x^2+y^2)}\bigg)=\frac{1}{x}+\frac{2x}{x^2-y^2}-\frac{2x}{x^2+y^2}
+        \end{equation*}
+        }
+        Теперь необходимо умножить на саму функцию и привести хоть к какому-нибудь виду:
+        \begin{equation*}
+            \frac{\partial f}{\partial x}=xy\frac{x^2-y^2}{x^2+y^2}\bigg(\frac{1}{x}+\frac{2x}{x^2-y^2}-\frac{2x}{x^2+y^2}\bigg)=\frac{y(x^2-y^2)}{x^2+y^2}+\frac{2x^2y}{x^2+y^2}-\frac{2x^2y(x^2-y^2)}{(x^2+y^2)^2}=
+        \end{equation*}
+        \begin{equation*}
+            =\frac{y(x^4-y^4)+2x^2y(x^2+y^2)-2x^2y(x^2-y^2)}{(x^2+y^2)^2}=\frac{y(x^2+y^2)^2-2y^5}{(x^2+y^2)^2}=y-\frac{2y^5}{(x^2+y^2)^2}
+        \end{equation*}
+        Рассмотрим $\frac{\partial f}{\partial x}$ в точке $(0,y)$:
+        \begin{equation*}
+            \frac{\partial f(0,y)}{\partial x}=-y
+        \end{equation*}
+        Тогда получим, что
+        \begin{equation*}
+            \frac{\partial^2f(0,0)}{\partial y\partial x}=-1
+        \end{equation*}
+        Аналогичным способом рассмотрим $\frac{\partial f(0,0)}{\partial x\partial y}$ и получим, что
+        \begin{equation*}
+            \frac{\partial^2 f(0,0)}{\partial x\partial y}=1
+        \end{equation*}
+        Видим, что вообще переставлять производные нельзя. Однако мы знаем и примеры функций, в которых это делать можно.
+        \par
+        \noindent\hrulefill\noindent
+        \par{\ }
+        \par{\textbf{Теорема (перестановка производных)}\\
+        Пусть $f$ определена на $V\subset\mathbb{R}^n$ и $V$ является открытым, существуют $f'_x$, $f'_y$, $f''_{xy}$, $f''_{yx}$ на $V$, причём $f''_{xy}$ и $f''_{yx}$ непрерывны в точке $(x_0,y_0)\in V$. Тогда $f''_{xy}(x_0,y_0)=f''_{yx}(x_0,y_0)$. \\
+        \textbf{Доказательство: } рассмотрим функцию $W$
+        \begin{equation}
+            W=\bigg(f(x_0+\Delta x,y_0+\Delta y)-f(x_0+\Delta x,y_0)-f(x_0,y_0+\Delta y)+f(x_0,y_0)\bigg)\frac{1}{\Delta x\Delta y}
+        \end{equation}
+        \underline{\textit{1. Рассмотрим функцию $\varphi$:}}
+        \begin{equation}
+            \varphi(x)=\frac{f(x,y_0+\Delta y)-f(x,y_0)}{\Delta y}
+        \end{equation}
+        В силу существования первых проивзодных функции $f$ $\exists\varphi'(x)$
+        \begin{equation}
+            \varphi'(x)=\frac{f'_x(x,y_0+\Delta y)-f'_x(x,y_0)}{\Delta y}
+        \end{equation}
+        Подставим (2) в (1) и получим, что
+        \begin{equation}
+            W=\frac{\varphi(x_0+\Delta x)-\varphi(x_0)}{\Delta x}
+        \end{equation}
+        Так как $\varphi$ непрерывна и дифференцируема во внутр. точках, то по теореме Лагранжа
+        \begin{equation}
+            W=\varphi'(x_0+\theta_1\Delta x)
+        \end{equation}
+        Сейчас в (5) подставим формулу (3):
+        \begin{equation}
+            W=\frac{f'_x(x_0+\theta_1\Delta x,y_0+\Delta y)-f'_x(x_0+\theta_1\Delta x,y_0)}{\Delta y}=f''_{xy}(x_0+\theta_1\Delta x,y_0+\theta_2\Delta y)
+        \end{equation}
+        \underline{\textit{2. Рассмотрим функцию $\psi$:}}
+        \begin{equation}
+            \psi(y)=\frac{f(x_0+\Delta x, y)-f(x_0,y)}{\Delta x}
+        \end{equation}
+        В силу существования первых проивзодных функции $f$ $\exists\psi'(x)$
+        \begin{equation}
+            \psi'(x)=\frac{f'_y(x_0+\Delta x, y)-f'_y(x_0,y)}{\Delta x}
+        \end{equation}
+        Подставим (8) в (1) и получим, что
+        \begin{equation}
+            W=\frac{\psi(y_0+\Delta y)-\psi(y_0)}{\Delta y}
+        \end{equation}
+        Так как $\psi$ непрерывна и дифференцируема во внутр. точках, то по теореме Лагранжа
+        \begin{equation}
+            W=\psi'(y_0+\theta_3\Delta y)
+        \end{equation}
+        }
+        Сейчас в (10) подставим формулу (8):
+        \begin{equation}
+            W=\frac{f'_y(x_0+\Delta x,y_0+\theta_3\Delta y)-f'_y(x_0,y_0+\theta_3\Delta y)}{\Delta x}=f''_{yx}(x_0+\theta_4\Delta x, y_0+\theta_3\Delta y)
+        \end{equation}
+        \underline{\textit{3. Перейдём к пределу:}}\\
+        Пусть $\Delta x\to0$ и $\Delta y\to0$ - переход к пределу (он возможен, т.к. $f''_{xy}$ и $f''_{yx}$ непрерывны в точке $(x_0,y_0)$): из $W=(6)=(11)$ следует $f''_{xy}(x_0,y_0)=f''_{yx}(x_0,y_0)$.
+        \par{{\raggedleft ч.т.д.\par}}
+        \setcounter{equation}{0}
+        \vspace{0.5cm}
+        \par{\textbf{Обобщение: }Пусть $V\subset\mathbb{R}^n$. $C^k(V)$ - множество всех функций, имеющих все непрерывные частные производные до порядка $k$ включительно. По индукции из предыдущей теоремы можно показать, что порядок дифференцирования функции $f\in C^k(V)$ не важен.        
+        }
+        \subsection*{7. Мультииндексы}
+        \addcontentsline{toc}{subsection}{7. Мультииндексы}
+        \setcounter{equation}{0}
+        \par{\ }
+        \par{Введём следующие обозначения (мультииндексы): }
+        \begin{itemize}
+            \item \par{$\alpha=(\alpha_1,\ldots,\alpha_n)$, $\alpha_j=0,1,\ldots,n$}
+            \item \par{$|\alpha|=\displaystyle\sum_{i=1}^n\alpha_i$}
+            \item \par{$\displaystyle\partial^{\alpha}f(x)=\frac{\partial^{|\alpha|}f}{\partial x_1^{\alpha_1}\cdot\ldots\cdot\partial x_n^{\alpha_n}}$}
+            \item \par{$\alpha+\beta=(\alpha_1+\beta_1,\ldots,\alpha_n+\beta_n)$}
+            \item \par{$\alpha>\beta\Leftrightarrow\beta<\alpha\Leftrightarrow\alpha_i>\beta_i$ $\forall i=1,\ldots,n$}
+            \item \par{$\alpha\geq\beta\Leftrightarrow\beta\leq\alpha\Leftrightarrow\alpha_i\geq\beta_i$ $\forall i=1,\ldots,n$}
+            \item \par{$\alpha!=\alpha_1!\cdot\ldots\cdot\alpha_n!$}
+            \item \par{$x^{\alpha}=x_1^{\alpha_1}\cdot\ldots\cdot x_n^{\alpha_n}$}
+        \end{itemize}
+        \vspace{0.5cm}
+        \par{\textbf{Пример: }\\
+        $\displaystyle(x+y)^{\alpha}=\sum_{\beta\leq\alpha}\frac{\alpha!}{\beta!(\alpha-\beta)!}x^{\beta}y^{\alpha-\beta}$\\
+        \par{Что значит $\displaystyle\sum_{\beta\leq\alpha}$? Это означает, что мы рассматриваем все такие наборы $\beta=(\beta_1,\ldots,\beta_n)$, что $\beta_i\leq\alpha_i$, т.е. любую такую комбинацию. В итоге мы рассматриваем сумму по всем $\alpha_i$, где $\beta_i$ меняется от $0$ до $\alpha_i$.}
+        \begin{equation*}
+            (x+y)^{\alpha}=(x_1+y_1)^{\alpha_1}\cdot\ldots\cdot(x_n+y_n)^{\alpha_n}=\prod_{i=1}^n\bigg(\sum_{\beta_i=0}^{\alpha_i}\frac{\alpha_i!}{\beta_i!(\alpha_i-\beta_i)!}x_i^{\beta_i}y_i^{\alpha_i-\beta_i}\bigg)
+        \end{equation*}
+        Пусть $n=1$ - очевидно, что $\alpha=(\alpha_1)$, тогда
+        \begin{equation*}
+            (x+y)^{\alpha}=(x_1+y_1)^{\alpha_1}=\sum_{\beta_1=0}^{\alpha_1}\frac{\alpha_1!}{\beta_1!(\alpha_1-\beta_1)!}x_1^{\beta_1}y_1^{\alpha_1-\beta_1}
+        \end{equation*}
+        Это мы знаем из обычного бинома Ньютона. Ну очевидно, что это сводится к нашим мультииндексам, ведь суммируем по всем $\beta\leq\alpha$, где $\beta=(\beta_1)$, $\alpha=(\alpha_1)$ и $\beta_1$ пробегает от 0 до $\alpha_1$, т.е. как раз по $\beta_1\leq\alpha_1$.
+        Пусть $n=2$, тогда $\alpha=(\alpha_1,\alpha_2)$ и $\beta=(\beta_1,\beta_2)$, тогда
+        \begin{equation*}
+            (x+y)^{\alpha}=(x_1+y_1)^{\alpha_1}\cdot(x_2+y_2)^{\alpha_2}=\sum_{\beta_1=0}^{\alpha_1}\frac{\alpha_1!}{\beta_1!(\alpha_1-\beta_1)!}x_1^{\beta_1}y_1^{\alpha_1-\beta_1}\cdot\sum_{\beta_2=0}^{\alpha_2}\frac{\alpha_2!}{\beta_2!(\alpha_2-\beta_2)!}x_2^{\beta_2}y_2^{\alpha_2-\beta_2}=
+        \end{equation*}
+        \begin{equation*}
+            =\sum_{\beta_1=0}^{\alpha_1}\sum_{\beta_2=0}^{\alpha_2}\frac{\alpha_1!}{\beta_1!(\alpha_1-\beta_1)!}x_1^{\beta_1}y_1^{\alpha_1-\beta_1}\cdot\frac{\alpha_2!}{\beta_2!(\alpha_2-\beta_2)!}x_2^{\beta_2}y_2^{\alpha_2-\beta_2}=
+        \end{equation*}
+        \begin{equation*}
+            =\sum_{\beta_1=0}^{\alpha_1}\sum_{\beta_2=0}^{\alpha_2}\frac{\alpha_1!\alpha_2!}{\beta_1!\beta_2!(\alpha_1-\beta_1)!(\alpha_2-\beta_2)!}x_1^{\beta_1}x_2^{\beta_2}y_1^{\alpha_1-\beta_1}y_2^{\alpha_2-\beta_2}
+        \end{equation*}
+        А сейчас внимательно посмотрим на определения мультииндексов: факториалы сворачиваются в мультииндекс, степени сворачиваются аналогично. Альфа и бета в степенях $x$ и $y$ заносятся в сумму по определению суммы, а суммирование превращается в $\beta\leq\alpha$. Ведь что такое суммирование по $\beta_1$, а затем по $\beta_2$? Это комбинации $(0,0)$, $(0,1)$, $\ldots$, $(0,\alpha_2)$, $(1,0)$, $(1,1)$, $\ldots$, $(1,\alpha_2)$, $\ldots$, $(\alpha_1,0)$, $(\alpha_1,1)$, $\ldots$, $(\alpha_1,\alpha_2)$ - а это и есть определение всевозможных комбинаций, что $\beta\leq\alpha$. Ну и всё, отсюда получаем формулу для $n=2$:
+        \begin{equation*}
+             \displaystyle(x+y)^{\alpha}=\sum_{\beta\leq\alpha}\frac{\alpha!}{\beta!(\alpha-\beta)!}x^{\beta}y^{\alpha-\beta}
+        \end{equation*}
+        }
+        \vspace{0.4cm}
+        \subsection*{8. Формула Тейлора}
+        \addcontentsline{toc}{subsection}{8. Формула Тейлора}
+        \setcounter{equation}{0}
+        \par{\ }
+        \par{Пусть $f$ определена в шаре $B_{\delta}(x_0)\subset\mathbb{R}^n$ и в нём $N+1$ раз непрерывно дифференцируема ($f\in C^{N+1}[B_{\delta}(x_0)]$), тогда $\forall x\in B_{\delta}(x_0)$ справедлива формула Тейлора:
+        \begin{equation}
+            f(x)=\sum_{|\alpha|\leq N}\frac{1}{\alpha!}\frac{\partial^{|\alpha|}f(x_0)}{\partial x_1^{\alpha_1}\cdot\ldots\cdot\partial x_n^{\alpha_n}}(x-x_0)^{\alpha}+R_{N+1}(x)
+        \end{equation}
+        где $R_{N+1}(x)$ - остаточный член равен
+        \begin{equation}
+            R_{N+1}(x)=\sum_{|\alpha|=N+1}\frac{N+1}{\alpha!}\cdot\int_0^1(1-s)^N\frac{\partial^{|\alpha|}f(x_0+s(x-x_0))}{\partial x_1^{\alpha_1}\cdot\ldots\cdot\partial x_n^{\alpha_n}}\cdot(x-x_0)^{\alpha}ds
+        \end{equation}
+        }
+        \par
+        \noindent\hrulefill\noindent
+        \par{\ }
+        \par{Разберёмся с формулой Тейлора и мультииндексами: давайте запишем формулу тейлора в привычной формулой: в привычной формуле $i$-ой производной соответствует деление на $i!$ и возведение в степень $i$.
+        \newpage
+        Обозначим за $p=x-x_0$ и ведём производные следующим образом:
+        \begin{equation*}
+            \varphi'(t)=\sum_{i=1}^n\frac{\partial f}{\partial x_i}(x_0+tp)\cdot p_i
+        \end{equation*}
+        \begin{equation*}
+            \varphi^{(2)}(t)=\sum_{i=1}^n\sum_{j=1}^n\frac{\partial^2 f}{\partial x_i\partial x_j}(x_0+tp)\cdot p_ip_j
+        \end{equation*}
+        Тогда для производной порядка $s$ верна следующая формула:
+        \begin{equation}
+            \varphi^{(m)}(t)=\underbrace{\sum_{i=1}^n\ldots\sum_{k=1}^n}_{m}\frac{\partial^m f}{\underbrace{\partial x_i\ldots\partial x_k}_{m}}(x_0+tp)\cdot \underbrace{p_i\ldots p_k}_{m}
+        \end{equation}
+        Т.о. мы расписали $p$ и $x$ по координатам $p_i$ и $x_i$ в $\mathbb{R}^n$. В итоге наша формула Тейлора превращается в следующее, где соответствующая производная определяется формулой (3):
+        \begin{equation}
+            f(x)=f(x_0)+\frac{\varphi'(0)}{1!}+\frac{\varphi^{(2)}(0)}{2!}+\ldots+\frac{\varphi^{(N)}(0)}{N!}+\frac{1}{N!}\int_{0}^{1}(1-s)^N\varphi^{N+1}(s)ds
+        \end{equation}
+        Теперь рассмотрим нашу формулу: в нашей формуле $|\alpha|$ играет роль $m$ в формуле, а суммирование по $|\alpha|\leq N$ - это аналог суммы производных (4) и (3). Объяснить, почему факториалы у наших производных совпадают будет сложнее, но общая идея заключается в том, что в формуле (3) можно переставлять производные местами, а из-за этого фактически наша производная встречается много раз. \\
+        \\
+        Рассмотрим пример для функции двух переменных в разложении до третьей производной (остаток рассматривать не будем - это упражнение):\\
+        $\displaystyle \varphi'(0)=\frac{\partial f(x_0)}{\partial x_1}\cdot p_1+\frac{\partial f(x_0)}{\partial x_2}\cdot p_2$ \\
+        \\ \\
+        $\displaystyle \varphi^{(2)}(0)=\frac{\partial^2f(x_0)}{\partial x_{1}\partial x_{1}}\cdot p_1p_1+\frac{\partial^2f(x_0)}{\partial x_{1}\partial x_{2}}\cdot p_1p_2+\frac{\partial^2f(x_0)}{\partial x_{2}\partial x_{1}}\cdot p_2p_1+\frac{\partial^2f(x_0)}{\partial x_{2}\partial x_{2}}\cdot p_2p_2=$\\ \\
+        $\displaystyle=\frac{\partial^2f(x_0)}{\partial x_{1}^2}\cdot p_1^2+2\frac{\partial^2f(x_0)}{\partial x_{1}\partial x_{2}}\cdot p_1p_2+\frac{\partial^2f(x_0)}{\partial x_{2}^2}\cdot p_2^2$ \\ \\ \\
+        - здесь мы воспользовались тем, что производные можно переставлять, а ещё сгруппировали члены. Аналогично получим формулу для третей производной (но расспишем её менее подробно):\\
+        $\displaystyle \varphi^{(3)}(0)=\frac{\partial^3f(x_0)}{\partial x_1^3}\cdot p_1^3+3\frac{\partial^3f(x_0)}{\partial x_1^2\partial x_2}\cdot p_1^2p_2+3\frac{\partial^3f(x_0)}{\partial x_1\partial x_2^2}\cdot p_1p_2^2+\frac{\partial^3f(x_0)}{\partial x_2^3}\cdot p_2^3$
+        \\
+        Тогда разложение Тейлора в точке $x$ будет выглядеть:
+        \begin{equation*}
+            f(x)=f(x_0)+\frac{\partial f(x_0)}{\partial x_1}\cdot p_1+\frac{\partial f(x_0)}{\partial x_2}\cdot p_2+\frac{1}{2}\frac{\partial^2f(x_0)}{\partial x_{1}^2}\cdot p_1^2+\frac{\partial^2f(x_0)}{\partial x_{1}\partial x_{2}}\cdot p_1p_2+\frac{1}{2}\frac{\partial^2f(x_0)}{\partial x_{2}^2}\cdot p_2^2+ \\
+        \end{equation*}
+        \begin{equation*}
+            +\frac{1}{3}\frac{\partial^3f(x_0)}{\partial x_1^3}\cdot p_1^3+\frac{\partial^3f(x_0)}{\partial x_1^2\partial x_2}\cdot p_1^2p_2+\frac{\partial^3f(x_0)}{\partial x_1\partial x_2^2}\cdot p_1p_2^2+\frac{1}{3}\frac{\partial^3f(x_0)}{\partial x_2^3}\cdot p_2^3
+        \end{equation*}
+        \newpage
+        Сейчас рассмотрим наш вариант записи производной (сразу скажем, что при $|\alpha|=0$ соответствующий член будет равен $f(x_0)$):
+        \begin{equation*}
+            f(x)=\sum_{|\alpha|\leq3}\frac{1}{\alpha!}\frac{\partial^{|\alpha|}f(x_0)}{\partial x_1^{\alpha_1}\partial x_2^{\alpha_2}}\cdot p^{\alpha}=\sum_{|\alpha|\leq3}\frac{1}{\alpha!}\frac{\partial^{|\alpha|}f(x_0)}{\partial x_1^{\alpha_1}\partial x_2^{\alpha_2}}\cdot p_1^{\alpha_1}p_1^{\alpha_2}
+        \end{equation*}
+        \\
+        \\
+        Тогда все возможными $\alpha: |\alpha|\leq 3$ будут $(\alpha_1,\alpha_2)=$ $(0,0)$, $(0,1)$, $(1, 0)$, $(0,2)$, $(2, 0)$, $(1,1)$, $(0,3)$, $(3,0)$, $(2,1)$, $(1,2)$ и $f(x)$ будет выглядеть как та, которую мы получили до этого (распишите мультииндексы, если не поняли). \\
+        На примере убедились, что наша "интуитивная" (привычная) формула совпадает с той, что предложена выше.\\
+        Попробуем вывести формулу в мультииндексах из "привычной" формулы: 
+        \begin{equation*}
+            f(x)=\sum_{m=0}^N\frac{1}{m!}\bigg(\underbrace{\sum_{i=1}^n\ldots\sum_{k=1}^n}_{m}\frac{\partial^m f(x_0)}{\underbrace{\partial x_i\ldots\partial x_k}_{m}}\cdot \underbrace{p_i\ldots p_k}_{m}\bigg)
+        \end{equation*}
+        Очевидно, что $0\leq|\alpha| = m \leq N$, сумма $\underbrace{\sum_{i=1}^n\ldots\sum_{k=1}^n}_{m}$ даёт нам мультииндекс альфа (посмотрите на формулу с мультииндесами и увидите, что в сумме заложены всевозможные перестановки, а ещё их $m$ штук, т.е. как раз определение мультииндекса). Однако всё ещё непонятно, почему факториал превращается в мультииндекс (это самое сложное). \\ \\
+        Давайте разбираться: на примере для двух переменных мы увидели, что из-за перестановки производных мы можем привести подобные слагаемые. Заметим (можете посмотреть на пример), что мультииндекс содержит только уникальные слагаемые, поэтому для получения нужной формулы мы должны сосчитать количество повторов. Из комбинаторики знаем формулу для перестановок: на $m$ позиций ставим $\alpha_i$ штук $x_i$, тогда число перестановок = $\frac{m!}{\alpha_1!\cdot\ldots\cdot a_n!}=\frac{m!}{\alpha!}$ по определению мультииндекса. Тогда в итоговой формуле $m!$ скоращаются и остаётся только $\frac{1}{\alpha!}$. Формулы эквивалентны.}
+        \par
+        \noindent\hrulefill\noindent
+        \par{\ }
+        \par{\textbf{Лемма.} Пусть $f$ определена в шаре $B_\delta(x_0)$ и в нём $N+1$ непрерывно дифференцируема. Зафиксируем точку $x\in B_\delta(x_0)$, тогда при малых $\varepsilon>0$ функция
+        \begin{equation}
+            g(t)=f[x_0+t(x-x_0)]
+        \end{equation}
+        имеет $N+1$ производную на интервале $(-\varepsilon,1+\varepsilon)$, причём $k$-ая производная выражается формулой
+        \begin{equation}
+            g^{(k)}(t)=\sum_{|\alpha|=k}\frac{k!}{\alpha!}\partial_x^{\alpha}f[x_0+t(x-x_0)]\cdot(x-x_0)^{\alpha}
+        \end{equation}
+        \textbf{Доказательство: }Докажем по индукции: рассмотрим $\varepsilon>0$ такой, что $x_0+t(x-x_0)\in B_\delta(x_0)$ $\forall t\in(-\varepsilon,1+\varepsilon)$. \\
+        База: $k=1$ - совпадает с доказательством формулы Лагранжа. \\
+        \\
+        Пусть существует производная $g^{(k)}$ и формула для неё при некотором $k<N+1$. Докажем, что $\exists g^{(k+1)}$: \\
+        По умолчанию существуют все первые частные производные $\partial^{\alpha}f$ (при $|\alpha|=k$) и они непрерывны $\Rightarrow$ $\partial^{\alpha}f$ диФФеренцируема $\Rightarrow$ $g^{(k)}$ дифференцируема. Рассмотрим производную $g^{(k+1)}(t)$:
+        \begin{equation}
+            g^{(k+1)}(t)=\frac{d}{dt}\bigg(\sum_{|\alpha|=k}\frac{k!}{\alpha!}\partial^{\alpha}f(x_0+t[x-x_0])(x-x_0)^{\alpha}\bigg)
+        \end{equation}
+        \begin{equation}
+            (7)=\sum_{|\alpha|=k}\frac{k!}{\alpha!}\sum_{i=1}^n\partial_i\partial^\alpha f(x_0+t[x-x_0])(x-x_0)_i(x-x_0)^{\alpha}
+        \end{equation}
+        Дифференцирование по каждому элементу $i$ расширяет модуль нашего мультииндекса на единицу. Обозначим новое дифференцирование мультииндексом $\beta$. Во-первых, мультииндекс $\alpha!$ изменится, а ещё он будет зависеть от $i$, поэтому формула (8) превращается в 
+        \begin{equation}
+	       (8)=\sum_{|\beta|=k+1}\bigg(\sum_{i=1}^n\frac{k!}{\alpha(i)!}\bigg)\partial^{\beta}f(x_0+t[x-x_0])(x-x_0)^{\beta}
+        \end{equation}
+        где $\alpha(i)=(\alpha_1,\ldots,\alpha_{i-1},\alpha_i+1,\alpha_{i+1},\ldots,\alpha_n)$ и 0 стоит на $i$-ом месте. Это берётся из складывания мультииндексов, т.к. ещё одно дифференцирование мы применяем к уже имеющейся производной. \\
+        Распишем $\displaystyle\sum_{i=1}\frac{k!}{\alpha(i)!}$: во-первых, $k!$ выносится за знак суммы и получается $\displaystyle k!\sum_{i=1}\frac{1}{\alpha(i)!}$. Поймём, что наш $\beta!=\alpha(i)!\cdot\beta_i$ в силу того, что мы ровно в одном месте увеличили на 1, а когда брали от этого факториал, то мы должны старый факториал умножить ровно на $\beta_i$( по определению факториала мультииндекса он равен произведению факториалов элементов мультииндекса, а изменился лишь $\beta_i$ и $\displaystyle\underbrace{(\beta_i-1)!}_{\text{было}}\cdot\beta_i=\beta_i!$). Тогда $\displaystyle k!\sum_{i=1}^n\frac{1}{\alpha(i)!}=k!\sum_{i=1}^n\frac{\beta_i}{\beta!}=\frac{k!}{\beta!}\sum_{i=1}^{n}\beta_i$. Заметим, что сумма $\beta_i$ по i равна $k+1$, т.к. взяли ровно $k+1$ производную. Отсюда следует, что $\displaystyle\sum_{i=1}^n\frac{k!}{\alpha(i)!}=\frac{k!}{\beta!}\cdot k+1=\frac{(k+1)!}{\beta!}$. Ну теперь осталось лишь подставить в нашу формулу и получить, что 
+        \begin{equation}
+	       (9)=\sum_{|\beta|=k+1}\frac{(k+1)!}{\beta!}\partial^{\beta}f(x_0+t[x-x_0])(x-x_0)^{\beta}
+        \end{equation}
+        }
+    \par{{\raggedleft ч.т.д.\par}}
+    \setcounter{equation}{0}
+    \par{
+    \text{\ }\\
+    \textbf{Доказательство формулы Тейлора:}\\
+    \begin{equation*}
+        g(1) = \sum_{i=1}^N\frac{1}{k!}g^{(k)}(0)+\frac{1}{N!}\int_{0}^1(1-s)^Ng^{(N+1)}(s)ds
+    \end{equation*}
+    Воспользуемся леммой выше и вместо $t$ будем подставлять различные параметры, тогда получим нужное.
+    }
+    \par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+    \subsection*{9. Экстремум}
+    \addcontentsline{toc}{subsection}{9. Экстремум}
+    \par{\ }
+    \par{\textbf{Def 1:} пусть $f$ определена на $V\subset\mathbb{R}^n$ и шар $B_\delta(x_0)\subset V$ при некотором $\delta > 0$, т.е. $x_0$ - внутренняя точка. Точка $x_0$ называется точкой локального максимума [минимума], если $f(x_0)\geq f(x) [f(x_0)\leq f(x)]$ $\forall x\in B_\delta(x_0)$.}
+    \par{Несколько слов про экстремумы: точки максимумов и минимумов называются экстремумами, однако можно выделить собственные и несобственные экстремумы.}
+    \par{
+    \textbf{Def 2:} Если в любой проколотой окрестности $\mathring{U}_\delta(x_0)$ верно строгое неравенство (в определении 1), то экстремум называется собственным. У эллипса есть собственные экстремумы (2 шт.), а у седла вообще нет собственных экстремумов.
+    }
+    \vspace{0.5cm}
+    \par{\textbf{Теорема (необходимое условие экстремума)}\\
+    Пусть точка $x_0$ является точкой экстремума функции $f$. Если в точке $x_0$ $\exists\partial_if(x_0)$, то $\partial_if(x_0)=0$, т.е. градиент функции равен 0. \\ 
+    \textbf{Доказательство: } Пусть наша частная производная существует. $x=(x_1,\ldots,x_n).$ Зафиксируем все $x_k=x_{0_k}$ при $k\ne i$, т.е. все переменные функции константы кроме той, по которой дифференцировали. Рассмотрим функцию $g(x_i)=f(x_{0_1}, \ldots,x_{0_{i-1}}, x_i,x_{0_{i+1}},\ldots, x_{0_n})$. Заметим, что функция $g(x_i)$ тоже имеет экстремум в точке $x_0$, т.к. если подставить $x_i=x_{0_i}$, то это будет экстремум функции $f$. Ещё $\exists g'(x_0)=\partial_if(x_0)$ по уже сказанным причинам, тогда по теореме Ферма для одномерной функции $g'(x_{0_i})=\partial_if(x_0)=0$. Если перебрать все i, то получим, что градиент обращается в 0.
+    }
+    \par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+    \par{
+    \textbf{Теорема (максимум/минимум через 2-ую производную)} \\
+    Пусть $f\in C^2[B_\delta(x_0)]$ и пусть $\nabla f(x_0)=0$. Если квадратичная форма \\ $\displaystyle H(\xi, \xi)=\sum_{i,j=1}^n\frac{\partial^2f(x_0)}{\partial x_i\partial x_j}\xi_i\xi_j$ положительно (отрицательно) определена, то $x_0$ является точкой минимума (максимума). \\ Замечание: квадратиная форма $H(\xi, \xi)$ определена положительно, если $H(\xi, \xi)\geq c_0|\xi^2|$.\\ \textbf{Доказательство: } по формуле Тейлора с поправкой на то, что первые производные 0 (необходимое условие экстремума).
+    \begin{equation}
+        f(x)-f(x_0)=\sum_{i,j=1}^n\int_0^1(1-s)\frac{\partial^2 f(x_0+s[x-x_0])}{\partial x_i\partial x_j}(x-x_0)_i(x-x_0)_jds
+    \end{equation}
+    Распишем производные: вначале добавим и вычтем, а затем обозначим результат за функцию $\varphi(x,x_0,s)$
+    \begin{equation}
+        \frac{\partial^2 f(x_0+s[x-x_0])}{\partial x_i\partial_j}=\underbrace{\frac{\partial^2f(x_0)}{\partial x_i\partial x_j}}_{\text{не зависит от s}}+\underbrace{\bigg(\frac{\partial^2 f(x_0+s[x-x_0])}{\partial x_i\partial x_j}-\frac{\partial^2f(x_0)}{\partial x_i\partial x_j}\bigg)}_{\text{малый остаток, зависящий от s}}
+    \end{equation}
+    Обозначим малый остаток, зависящий от $s$, за функцию $\varphi(x,x_0,s)$. \\
+    Перепишем нашу функцию в терминах квадратичной формы, предварительно подставив (2) в (1):
+    \begin{equation}
+        \sum_{i,j=1}^n\int_0^1(1-s)\frac{\partial^2 f(x_0)}{\partial x_i\partial x_j}={1\over 2}H(x-x_0,x-x_0)={1\over2}H\bigg(\frac{x-x_0}{||x-x_0||},\frac{x-x_0}{||x-x_0||}\bigg)||x-x_0||^2
+    \end{equation}
+    (3) верно в силу того, что производная в интеграле - это константа, а интегрированием по $ds$ получим $\frac{(1-s)^2}{2}|^1_0$, что даёт половинку. А ещё интеграл суммы равен сумме интегралов, т.к. функция хорошая.\\
+    Вместо производной в (1) подставим $\varphi_{ij}$ из (2):
+    \begin{equation*}
+        \sum_{i,j=1}^n\int_0^1(1-s)\cdot\varphi_{ij} (x,x_0,s)\cdot(x-x_0)_i\cdot(x-x_0)_j\cdot ds=
+    \end{equation*}
+    \begin{equation}
+        =\sum_{i,j=1}^n\int_0^1(1-s)\varphi_{ij}\frac{(x-x_0)_i}{||x-x_0||}\frac{(x-x_0)_j}{||x-x_0||}||x-x_0||^2ds        
+    \end{equation}
+    Обозначим $(4)$ за $\Phi(\frac{x-x_0}{||x-x_0||}, \frac{x-x_0}{||x-x_0||})||x-x_0||^2$. Подставив результаты (3) и (4) в (1), получим
+	\begin{equation}
+		f(x)-f(x_0)=\bigg({1\over2}H(\xi,\xi)+\Phi(\xi,\xi)\bigg)||x-x_0||^2
+	\end{equation}
+	При этом $\Phi$ мала (покажем позже), а основной вклад даёт $H$.\\
+    \begin{itemize}
+        \item Пусть H определена положительно
+    \end{itemize}
+    Это означает, что $H(\xi,\xi)\geq c_0|\xi|^2$, сфера радиуса 1 с центром в точке 0, пусть $||\xi||=1$, т.е. $\xi\in S_1(0)$ - замкнута и ограничена, а ещё $H$ непрерывна, тогда $H(\xi,\xi)\geq m$, а $m>0$, т.к. является точкой на этой самой окружности.\\
+    Т.к. вторые производные функции $f$ непрерывны $B_\delta(x_0)$
+    }, то $\forall\varepsilon>0$ $\exists\delta_0<\delta:$ $\forall y\in B_\delta(x_0)$ и $\forall i,j=1,\ldots, n$ $\displaystyle\bigg|\frac{\partial^2f(y)}{\partial x_i\partial x_j}-\frac{\partial^2f(x_0)}{\partial x_i\partial x_j}\bigg|<\varepsilon$.
+    Т.к. верно для любых $y$ и $\varepsilon>0$, то пусть $y=x_0+s(x-x_0)$, $\varepsilon=\frac{m}{2n^2}$. $\delta_0$ выбрано для фикс. $i,j$, но т.к. $i,j$ - конечные числа, то всегда можно выбрать меньшее $\delta_0$. \\
+    А ещё стоит не забывать, что $\varepsilon=\frac{(x-x_0)_i}{||x-x_0||}\Rightarrow\varepsilon\leq1$.
+    \begin{equation}    |\Phi(\xi,\xi)|\leq\sum_{i,j=1}^n\int_0^1|\varphi(x,x_0,s)\xi_i\xi_j|ds\leq\sum_{i,j=1}^n\frac{m}{2n^2}\int_0^1(1-s)ds=\sum_{i,j=1}^n\frac{m}{4n^2}={m\over4}
+    \end{equation}
+    Теперь всё это добро подставим в (1):
+    \begin{equation}
+        f(x)-f(x_0)=\bigg({1\over2}H(\xi,\xi)-\Phi(\xi,\xi)\bigg)||x-x_0||^2\geq\bigg({m\over2}-{m\over4}\bigg)||x-x_0||^2={m\over4}||x-x_0||^2
+    \end{equation}
+    Тогда из (7) получим, что $x_0$ - точка минимума. Аналогично рассматривается и для максимума.
+    \par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+    \section*{$\S$3. Теорема о неявной функции}
+    \addcontentsline{toc}{section}{$\S$3. Теорема о неявной функции}
+    \par{$y=f(x)$ - явная функция, $F(x,y)=0$ - неявная. Сущетсвует ли окрестность точки $x_0$, что $\exists f(x):F(x, f(x))=0$?}
+    \begin{center}
+            \includegraphics[width=0.3\linewidth]{rispar3gl2.png}
+        \end{center}
+    \subsection*{1. Простейший случай}
+    \addcontentsline{toc}{subsection}{1. Простейший случай}
+    \par{\ }
+    \par{\textbf{Теорема.} Пусть $F$ задана и непрерывна в прямоугольнике \\ $\Pi=[x_0-\Delta, x_0+\Delta]\times[y_0-\varepsilon,y_0+\varepsilon]$, $F(x_0,y_0)=0$ и $\forall$ фикс. $x\in[x_0-\Delta,x_0+\Delta]$ функция $x\mapsto F(x,y)$ строго монотонна. Тогда $\exists 0<\delta\leq\Delta$, что на интервале $(x_0-\delta, x_0+\delta)$ определена функция $f$, удовлетворяющая тождеству $F(x,f(x))=0$, причём функция $f$ непрерывна и $y_0=f(x_0)$.\\
+    \textbf{Доказательство: }$y\mapsto F(x_0,y)$ - строго монотонна и обращается в 0 в точке $y_0$, а потому принимает значения разных знаков на разных концах отрезка $[y_0-\varepsilon,y_0+\varepsilon]$. Т.к. $F$ непрерывна на прямоугольнике $\Pi$, то $\exists\delta>0(\delta\leq\Delta)$, что $F(x,y_0\pm\varepsilon)$ сохраняет знак на интервале $(x_0-\delta,x_0+\delta)$ (есть такая теорема, что если значение некоторой непрерывной и строго монотонной функции в фиксированной точке неравно нулю, то существует промежуток знакопостоянства). \\ 
+    Фикс. $x\in(x_0-\delta,x_0+\delta)$ и рассмотрим $y\mapsto F(x,y)$, она принимает значения разных знаков в точках $y=y_0\pm\varepsilon$. Т.к. $f$ непрерывна, то $\exists y\in(y_0-\varepsilon,y_0+\varepsilon)$: $y\mapsto F(x,y)$ обращается в 0. Т.е. $\forall x\in(x_0-\delta,x_0+\delta)$ $\exists y\in(y_0-\varepsilon,y_0+\varepsilon)$: $F(x,y)=0$. Т.к. $y\mapsto F(x,y)$ строго монотонно, то $\exists!f$. Фикс. $\varepsilon>0$ $\exists\delta>0$: при $|x-x_0|<\delta$ $|y-y_0|<\varepsilon$ - доказали. Для любой другой точки посмотрим меньший прямоугольник, но там тоже выполняются непрерывность и монотонность.
+    }
+    \par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+    \setcounter{equation}{0}
+    \subsection*{2. Дифференцирование неявной функции}
+    \addcontentsline{toc}{subsection}{2. Дифференцирование неявной функции}
+    \par{\ }
+    \par{\textbf{Теорема. }Пусть $F$ определена и непрерывна в $\Pi=[x_0-\Delta,x_0+\Delta]\times[y_0-\varepsilon,y_0+\varepsilon]$ существуют непрерывные частные производные $F'_x, F'_y$ во внутренних точках $\Pi$, $F(x_0,y_0)=0$ и $F'_y(x_0,y_0)\ne0$. Тогда справедливы выводы предыдущей теоремы, причём $f$ имеет непрерывную производную. \\
+    \textbf{Доказательство: } т.к. $F'_y(x_0,y_0)\ne0$ и $F'_y$ непрерывна, то $\exists$ прямоугольник $[x_0-\delta,x_0+\delta]\times[y_0-\varepsilon',y_0+\varepsilon']\subset\Pi$, в котором $F'_y$ сохраняет знак. $F'_y$ непрерывна в точке $(x_0,y_0)\Leftrightarrow\forall\varepsilon>0$ $\exists\delta>0:$ $F'_y(B_\delta[x_0,y_0])\subset B_\varepsilon(F'_y[x_0,y_0])$. Если $F'_y(x_0,y_0)>0$, то $0<F'_y(x_0,y_0)-\varepsilon<F'_y(x,y)$, иначе $F'_y(x,y)<F'_y(x_0,y_0)+\varepsilon<0$. Тогда в пересечении шара $B$ и прямоугольника $\Pi$ выберем $\Pi'$, где верно, что производная сохраняет знак, т.е. $\forall$ фикс. $x$ $y\mapsto F(x,y)$ строго монотонна, т.е. выполнены все условия предыдущей теоремы. Тогда $\exists! f$ на [$x_0-\delta',x_0+\delta']$: $F(x,f(x))=0$, $y_0=f(x_0)$ и $f$ непрерывна на $[x_0-\delta',x_0+\delta']$. \\
+    Докажем, что $f$ непрерывно дифференцируема. Рассмотрим пары $(x,y)$ и $(x+\Delta x, y+\Delta y)$: $F(x,y)=F(x+\Delta x, y+\Delta y)=0$, следовательно $0=\Delta F(x,y)=F(x+\Delta x,y+\Delta y)-F(x,y).$
+    \begin{equation}
+        0=\Delta F(x,y)=F(x+\Delta x,y+\Delta y)-F(x+\Delta x,y)+F(x+\Delta x,y)-F(x,y)
+    \end{equation}
+    Т.к. функция непрерывна и её частные производные непрерывны, то можем применить формулу Лагранжа
+    \begin{equation}
+        (1)=F'_y(x+\Delta x,y+\theta_y\Delta y)\Delta y+F'_x(x+\theta_x\Delta x,y)\Delta x
+    \end{equation}
+    Воспользуемся хитростью: добавим и вычтем $F'_x(x,y)\Delta x$ и $F'_y(x,y)\Delta y$, а затем обозначим за $\alpha$ и $\beta$ удобные нам величины (если подставите их, то всё сократится).
+    \begin{equation}
+        \alpha=F'_y(x+\Delta x,y+\theta_y\Delta y)-F'_y(x,y)
+    \end{equation}
+    \begin{equation}
+        \beta=F'_x(x+\theta_x\Delta x,y)-F'_x(x,y)
+    \end{equation}
+    Тогда в наших новых обозначениях $\alpha$ и $\beta$ формула примет вид
+    \begin{equation}
+        0=(2)=F'_y(x,y)\Delta y+\alpha\Delta y+F'_x(x,y)\Delta x+\beta\Delta x
+    \end{equation}
+    Выразим из (5) $\Delta y\over\Delta x$:
+    \begin{equation}
+        \frac{\Delta y}{\Delta x}=-\frac{F'_x(x,y)+\beta}{F'_y(x,y)+\alpha}
+    \end{equation}
+    Вернёмся к $\alpha$ и $\beta$ из формул (3) и (4) соответственно. Т.к. $F'_x$ и $F'_y$ непрерывны (по предположению), то $\alpha=\beta=\bar{\bar{o}}(1)$, тогда
+    \begin{equation}
+        (6)=-\frac{F'_x(x,y)}{F'_y(x,y)}=\bar{\bar{o}}(1)
+    \end{equation}
+    (7) верно, т.к. мы в самом начале предположили, что $F'_y(x,y)\ne0$, но тогда
+    \begin{equation}
+        f'_x(x)=\frac{F'_x(x,f(x))}{F'_y(x,f(x))}
+    \end{equation}
+    А ещё в силу (8) $f'_x$ непрерывна, т.к. знаменатель не равен нулю.
+    }
+    \par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+    \setcounter{equation}{0}
+    \subsection*{3. Общий случай дифференцирования}
+    \addcontentsline{toc}{subsection}{3. Общий случай дифференцирования}
+    \par{\ }
+    \par{
+    $(x,y)\in\mathbb{R}^{n+m}$, $x\in\mathbb{R}^n$ и $y\in\mathbb{R}^m$. \\ Пусть дана функция $f:\mathbb{R}^n\to\mathbb{R}^m$ и наложено $m$ условий связи вида $F_i(x,y)=0$. \\ Пусть задана неявная функция $F:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^m$, т.ч. $F(x,f(x))=0$.\\ \\Рассмотрим производную $f'$: \\
+    $\Delta f(x,\Delta x)=f(x+\Delta x)-f(x)=A\Delta x+\bar{\bar{o}}(\Delta x)$, $A\in M^{m,n}=f'$. Рассмотрим $\Delta f_i$: для этого необходимо умножить строчку $i$ на столбец $\Delta x$. $i=1,\ldots,m$ и $k=1,\ldots,n$.
+    \begin{equation}
+        \displaystyle\Delta f_i=\sum_{k=1}^nA_{ik}\Delta x_k+\bar{\bar{o}}(\Delta x)
+    \end{equation}
+    Посмотрим внимательно на формулу 1 и заметим, что у нас $\Delta f_i$ состоит из суммы вида $\frac{\partial f_i}{\partial x_k}\Delta x_k$, т.е. элемент матрицы с номерами $ik$ $\displaystyle A_{ik}=\frac{\partial f_i}{\partial x_k}$. \\ \\ \\
+    \textbf{Def 1: } матрицу $A$ вида $\displaystyle A_{ik}=\frac{\partial f_i}{\partial x_k}$, где $i=1,\ldots,m$ и $k=1,\ldots,n$ называют матрицей Якоби (линейный оператор), а определитель этой матрицы $\det A$ (если $m=n$) - якобианом.}
+    \vspace{0.5cm}
+    \par{
+    \textbf{Случайный факт из матанализа № 1707: } $f:\mathbb{R}^n\to\mathbb{R}^m$ и $g:\mathbb{R}^m\to\mathbb{R}^d$. $h=g\circ f:\mathbb{R}^n\to\mathbb{R}^d$. Пусть $g$ и $f$ дифференцируемы, то $h$ тоже дифференцируема и $h'=g'(f(x))\circ f'(x)$. В терминах якобиана $J_h(x)=J_g(f(x))\cdot J_f(x)$, где $J_g(f(x))$ - якобиан функции $g$ по переменной $y = f(x)$, а $J_f(x)$ - якобиан фукнции $f$ по переменной $x$. Т.к. якобиан - это матрица, то мы имеем право перемножать. Удостоверьтесь сами, что размерности матриц правой и левой частей $J_h(x)=J_g(f(x))\cdot J_f(x)$ совпадают.
+    }
+    \vspace{2cm}
+    \par{\textcalligra{\Huge Théorème de dérivation des fonctions implicites} \\
+    Пусть $U\subset\mathbb{R}^n$, $V\subset\mathbb{R}^m$ - открытые множества. Отображение $F:U\times V\to\mathbb{R}^m$ непрерывно и $F(x_0,y_0)=0$ в некоторой точке $(x_0,y_0)\in U\times V$. Если $\exists$ непрерывная производная $F'_y$ в $U\times V$ и $\det F'_y(x_0,y_0)\ne0$, то в некотором шаре $B_\delta(x_0)$ непрерывную функцию $y=f(x):F(x,f(x))=0$ $\forall x\in B_\delta(x_0)$. Если $\exists$ непрерывная производная $F'_x$ в $U\times V$, то $f$ дифференцируема, причём
+    \begin{equation*}
+        f'(x)=-\frac{F'_x(x,f(x))}{F'_y(x,f(x))}
+    \end{equation*}
+    \textcalligra{\Huge Preuve:} (дисклеймер: доказательство взято из конспекта лекций факультета МКН СПбГУ, т.к. на лекциях в 2026 году оно не разбиралось, а следовательно к экзамену 2026 года учить его не надо)
+    \\ Разберём несколько важных определений, необходимых для доказательства теоремы:\\ 
+    }
+\par{\textbf{Def 2: }Хаудсдорфовое, со счётной базой, топологическое пространство $X$, у каждой точки которого есть окрестность, гомеоморфная $B^n$. Хаудсдорфовое пространство - это такое пространство, что в нём $\forall x,y\in X$ и $x\ne y$ $\exists B_{r_x}(x)$ и $B_{r_y}(y):$ $B_{r_x}(x)\cap B_{r_y}(y)=\varnothing$. Простым языком это значит, что для двух разных точек можно выделить две какие-нибудь (абсолютно любые, лишь бы были) непересекающиеся сферы.\\
+Пусть $F:(U\subset\mathbb{R}^n)\to\mathbb{R}^m$ - отображение.
+} 
+\vspace{0.5cm}
+\par{\textbf{Def 3: } Карта (локальная) - это отображение $h:B^n\to X$, являющееся гомеоморфизмом на свой образ. \\ Грубо говоря, это такое отображение, при помощи которого можно закартографировать маленький участочек пространства $X$ координатами из $\mathbb{R}^n$. Т.е. мы берём маленький кусочек из $X$ (это любое топологическое пространство) и натягиваем на него координаты из привычного нам пространства $\mathbb{R}^n$, а карта - это правило, по которому мы можем найтись в $X$, зная координаты в $\mathbb{R}^n$ (всё не так сложно, как видите).}
+\vspace{0.5cm}
+\par{\textbf{Def 4: }Атлас - это семейство локальных карт $\{h_\alpha\}_{\alpha\in\Lambda}$: $\displaystyle\bigcup_{\alpha\in\Lambda} h_\alpha(B^n)=X.$ \\
+Пояснительная бригада: пусть мы выбрали систему координат в $R^n$, по которой будем при помощи карт ориентироваться в пространстве $X$, но это не значит, что нам подойдёт ровно 1 карта. Вспомните уроки географии: есть атлас, в котором находятся карты южных и северных полушарий. Более понятный пример будет после всех определений. Однако говорят, что Эквестрию можно параметризовать лишь одной картой.}
+\vspace{0.5cm}
+\par{\textbf{Def 5: }Пусть $U_{\alpha}=h_{\alpha}(B^n)$, $U_{\beta}=h_{\beta}(B^n)$ и $U_{\alpha\beta}=U_\alpha\cap U_\beta$. Если $U_{\alpha\beta}\ne\varnothing$, то мы должны уметь переходить из одной карты в другую. Отображением перехода $\varphi$ называют функцию, позволяющую перейти из координат карты $h_\alpha$ в координаты карты $h_\beta$ на участке $U_{\alpha\beta}$:
+\begin{equation*}
+    \varphi_{\alpha\beta}=h^{-1}_\beta\circ h_\alpha
+\end{equation*}
+Пояснительная бригада от принцессы пространства: пусть координаты в карте $h_\alpha$ есть $p_\alpha\in B^n$, а в карте $h_\beta$ - $p_\beta\in B^n$, но они задают одну и ту же точку $x\in X$. Тогда $x=h_\alpha(p_\alpha)=h_\beta(p_\beta)$, но теперь осталось лишь применить обратное отображение и $p_\beta=h^{-1}_\beta(h_\alpha(p_\alpha))$, что даёт нам нужную $\varphi_{\alpha\beta}.$
+}
+\vspace{0.5cm}
+\par{
+\textbf{Def 6: }$X$ - гладкое многообразие класса $C^{(k)}$, если при фиксированном атласе все отображения перехода принадлежат $C^{(k)}$.
+}
+\vspace{0.5cm}
+\par{\textbf{Пример из 2Д: } $X$ - это окружность в $\mathbb{R}^2$, а координаты берём из $\mathbb{R}$. По условию наша окружность в $\mathbb{R}$ должна быть открыта, поэтому $t\in(-1,1)$. Ну тогда довольно просто построить атлас: он будет состоять из 2-х \sout{натальных} локальных карт $h_1:t\to\pi t$ и $h_2:t\to\pi(t+1)$. Сами подумайте, почему данные карты параметризуют окружность и почему одной картой не получается параметризовать окружность.}
+\vspace{0.5cm}
+\par{\textbf{Def 7: }Пусть $V\subset\mathbb{R}^n$ открыто, $F:V\to\mathbb{R}^m$. Скажем, что $F$ билипшицево на $V$, если $F$ инъективно на $V$ (т.е. разные точки переходят в разные точки) и существуют константы $c,C>0$: $\forall x,y\in V$ $c||x-y||\leq ||F(x)-F(y)||\leq C||x-y||$.} 
+\vspace{0.5cm}
+\par{Договоримся об обозначении: $dF((x_0,y_0),h)$ - линейный оператор дифференцирования, который на вход принимает фиксированное значение $(x_0,y_0)$ и приращение $h$ - вектор приращений. Например, $F(x,y)=x^2+y^2+xy$, $h=(h_x,h_y)$ - приращение. 
+\begin{equation*}
+    dF((x_0,y_0),h)=\begin{pmatrix} 
+        2x_0 & 2y_0 \\
+        y_0 & x_0
+    \end{pmatrix} \cdot \begin{pmatrix} h_x\\h_y \end{pmatrix}
+\end{equation*}
+А линейный оператор для всего этого дела обзовём $dF(x,\cdot)$ - $x$ в нашем случае $x$ впитает в себя $(x_0,y_0)$, а $\cdot$ - $h$.
+}
+\vspace{0.5cm}
+\par{Договоримся ещё об одном обозначении: $(\ldots,\ldots)$ - это кортеж в самом прямом его понимании.}
+\vspace{0.8cm}
+\par{\textbf{Случайный факт из матанализа № 1646: } Пусть $V\subset\mathbb{R}^n$ открыто, $F:V\to\mathbb{R}^m$ и $F\in C^1(V)$ и в точке $x_0$ выполнено, что $\det F'(x_0)\ne 0$ - производная обратима. Тогда $\exists\delta>0$: $F$ билипшицева в $B_\delta(x_0)\in V$. При том $c=\frac{m}{2}$ и $C=\sup_{z\in B_\delta(x_0)}||F'(z)||$.\\
+Доказательство следует из теоремы Вейерштрасса и теоремы Лагранжа. По теореме Вейерштрасса производная ограничена и достигает своего значения на замкнутом шаре, а теорема Лагранжа свзяывает конечные приращения производной и функции.
+}
+\vspace{0.5cm}
+\par
+\noindent\hrulefill\noindent
+\par{\ }
+\par{\textbf{Интересный факт о Вселенной: }если $F$ задана и непрерывна на открытом множестве $U\subset\mathbb{R}^n$ и принимает значения в $\mathbb{R}^n$. Если $\det F'(x_0)\ne0$ в некотором $x_0\in U$, то $\exists$ окрестность $V$ точки $y_0=F(x_0)$, в которой $\exists$ непрерывная функция $G$, т.ч. $F(G(y))=x$ $\forall y\in V$. Кроме того $G$ дифференцируема и $G'(y)=(F')^{-1}(G(y))$. \\
+\\ \textbf{Доказательство: }все уловия случайного факта № 1646 выполнены, поэтому $\exists\delta,c,C:\forall x,x'\in \bar{B}_\delta(x_0)$ верно $c||x-x'||\leq ||F(x)-F(x')||\leq C||x-x'||$. В частности, $F$ инъективна. Поэтому найдём такое $\Delta$, что $\bar{B}_{\Delta}(y_0)\subset F(\bar{B}_\delta(x_0))$. \\ \\Хотим решить уравнение $F(x)=y$ и $y\in\bar{B}_{\Delta}(y_0)$, $x\in\bar{B}_\delta(x_0)$. Для этого заведём функцию $\Phi(x)=||F(x)-y||^2$. Выполнены все условия для применения теоремы Вейерштрасса, поэтому пусть $\Phi$ достигает своего минимума в точке $z\in\bar{B}_\delta(x_0)$. \\
+Покажем, что для достаточно маленького $\Delta$ выполняется строгое неравенство $||x_0-z||<\Delta$: докажем от противного.\\
+Пусть $||x_0-z||=\Delta$ (нестрогое неравенство). Оценим: 
+\begin{equation}
+    \Phi(z)\leq\Phi(x_0)=||x_0-z||^2\leq\Delta^2
+\end{equation}
+Ещё оценим исходную функцию: (в данном случае фиксируем $y$)
+\begin{equation}
+    ||F(z)-y||\geq\bigg|||F(z)||-||y||\bigg|\geq\bigg|||F(z)||+||F(x_0)||-||y||-||y_0||\bigg|\geq\bigg|||F(z)-F(x_0)||-||y-y_0||\bigg|
+\end{equation}
+Но мы знаем, что $c||x-x'||\leq ||F(x)-F(x')||$ из билипшицевости и $-||y-y_0||\geq-\Delta$ из (2), тогда, подставив в (3), получим
+\begin{equation}
+    ||F(z)-y||\geq\bigg|c\delta-\Delta\bigg|
+\end{equation}
+Выберем настолько маленький $\Delta$, что $c\delta>2\Delta$, тогда из (4) получим
+\begin{equation}
+    ||F(z)-y||>|\Delta|=\Delta
+\end{equation}
+Ну тогда $\Phi(z)>\Delta^2$, что даёт $\lightning$ с (2). Это означает, что решение лежит не на границе. А если решение находится не на границе шара, то $\nabla\Phi(z)=0$, иначе мы должны пойти против градиента. \\
+\\
+Из предыдущего пункта скажем, что $\forall\varepsilon>0$ $\exists\delta>0$: $\forall z\in \bar{B}_\delta(x_0)$: $||dF(z,\cdot)-dF(x_0,\cdot)||<\varepsilon$, в силу этого оператор $dF(z,\cdot)$ обратим, т.к. достаточно близкий к нему оператор $dF(x_0,\cdot)$ обратим по условию теоремы. \\Тогда распишем $\frac{\partial\Phi}{\partial x_i}$:
+\begin{equation}
+    \frac{\partial\Phi}{\partial x_i}(z)=2\sum_{j=1}^n\frac{\partial F_j}{\partial x_i}(z)\cdot(F_j(z)-y_j)
+\end{equation}
+}
+Но т.к. матрица оператора $dF(z,\cdot)$ невырождена (он обратим), то невырождена и матрица из $\frac{\partial F_j}{\partial x_i}$, т.к. эта матрица та же, но транспонированная (т.к. в операторе мы вначале пробегали низ, а затем верх, а сейчас наоборот). Но это же градиент градиент, поэтому единственным условием зануления градиента будет $F(z)=y$. \\ Микровывод: при $\Delta<\frac{c\delta}{2}$ все решения $F(x)=y$ лежат в шаре $\bar{B}_\delta(x_0)$. Интуитивно сейчас это привязывается, т.к. $x\in\bar{B}_\delta(x_0)$ и $y\in\bar{B}_\Delta(y_0)$. Часть про окрестность $V\subset F(U)$ доказана. Но это же буквально обратная функция! Инъективность доказали вначале, а сюръективность доказали сейчас. Значит это биекция, а она \sout{наказуема} обратима.\\ \\
+Будем доказывать часть про саму производную: обозначим за $A$ матрицу оператора дифференцирования функции F и запишем производную
+\begin{equation}
+    F(x)-F(x_0)=A\cdot(x-x_0)+\varphi(x)
+\end{equation}
+где $|\varphi(x)|=\bar{\bar{o}}(||x-x_0||)$
+Но чем мы занимались всё доказательство? (так-то ничем, но опустим этот моментик) Да! Доказывали, что $\forall y\in\bar{B}_\Delta(y_0)$ $\exists x\in\bar{B}_\delta(x_0)$: $F(x)=y$. Очев-очев-очев, что нужно применить $F^{-1}$:
+\begin{equation}
+    y-y_0=A\cdot(F^{-1}(y)-F^{-1}(y_0))+\varphi(F^{-1}(y))
+\end{equation}
+Очев-очев-очев, что нужно применить $A^{-1}=B$ (обозначим это так) к (8) - это следует из обратимости оператора:
+\begin{equation}
+    B(y-y_0)=F^{-1}(y)-F^{-1}(y_0)+B\varphi(F^{-1}(y))
+\end{equation}
+Тогда переносом нужных слагаемых получим
+\begin{equation}
+    F^{-1}(y)-F^{-1}(y_0)= B(y-y_0)-B\varphi(F^{-1}(y))
+\end{equation}
+Покажем, что $B\varphi(F^{-1}(y))$ есть $\bar{\bar{o}}(||y-y_0||)$. 
+Вообще это очевидно, т.к. $B=A^{-1}$ - оператор билипшицев (всё ограничено), а ещё билипшицевы $F$ и $F^{-1}$. Т.к. $\varphi(x)=\bar{\bar{o}}(||x-x_0||)$ и всё билипшицево, то $B\varphi(F^{-1}(y))=\bar{\bar{o}}(||y-y_0||)$.\\ Но ВеДь ЭтО тО, чТо ХоТеЛи ПоЛуЧиТь В тЕоРеМе!!! ПОБЕДА НАД ЗДРАВЫМ СМЫСЛОМ!
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+\par
+\noindent\hrulefill\noindent
+\par{\ }
+\par{Продолжим доказательство: введём $G:V\to\mathbb{R}^n\times\mathbb{R}^m$; $G(x,y)=(x,F(x,y))$ - повторюсь, что это просто кортеж. Найдём дифференциал - точка $(x_0,y_0)$ из предположения:
+\begin{equation}
+    G(x,y)-G(x_0,y_0)=(x-x_0,F(x,y)-F(x_0,y_0))=?
+\end{equation}
+Обозначим матрицу линейного оператора дифференцирования $dF((x_0,y_0),\cdot)$ за $D$, обозначим матрицу $A=F'_x(x_0,y_0)$ и матрицу $B=F'_y(x_0,y_0)$
+\begin{equation}
+    (11)=(x-x_0, \ D(x,y)+\underbrace{\varphi(x,y)}_{\bar{\bar{o}}(||x-x_0||)})=(x-x_0, \ A(x-x_0)+B(y-y_0))+\bar{\bar{o}}(||x-x_0||)
+\end{equation}
+Тогда для любого малого приращения $(u,v)$ и $u\in U$, $v\in V$ верно, что можно записать оператор ввиде умножения матрицы на вектор приращения:
+\begin{equation}
+    dG((x_0,y_0),(u,v))=L(u,v)=(u,Au+Bv)
+\end{equation}
+Рассмотрим случай, когда $L(u,v)=0$, но тогда $u=0\Rightarrow Bv=0$, но оператор $B\ne0$ по условию, поэтому $v=0$. Т.е. из $L(u,v)=0\Rightarrow u=v=0$. Значит, оператор $L$ не вырожден, но тогда получается, что применим "интересный факт из жизни вселенной" (и нет это не теорема об обратной функции... честно-честно :) ). 
+\begin{equation}
+    G(x_0,y_0)=(x_0,F(x_0,y_0))=(x_0,0)
+\end{equation}
+Рассмотрим $W$ - окрестность $(a_0,b_0)$: $\exists G^{-1}$, заданная на в окрестности $W$. При этом $G^{-1}$ непрерывно дифференцируема в этой окрестности. \\
+По определению
+\begin{equation}
+    G(G^{-1}(u,v))=(u,v)
+\end{equation}
+Но ещё мы знаем структуру $G^{-1}(u,v)=(\alpha[u,v],\beta[u,v])$, тогда из (15) получим
+\begin{equation}
+    G(G^{-1}(u,v))=G(\alpha[u,v],\beta[u,v])=(\alpha[u,v],F[\alpha(u,v),\beta(u,v)])=(u,v)
+\end{equation}
+Тогда из (16) получим, что $\alpha(u,v)=u$. Т.к. $G^{-1}(u,v)=(u,\cdot)$, то $\exists\psi:W\to\mathbb{R}^n$ и $G(u,v)=(u,\psi[u,v])$. Т.к. функция $G^{-1}$ и компоненты её гладкие, то сами компоненты дифференцируемы, т.е. $\psi(u,v)$ дифференцируема на $W$.\\
+Т.о. $\forall(u,v)\in W$ $G(G^{-1}(u,v))=G(u,\psi[u,v])=(u,v)$. Но вернёмся к определнию $G$: Тогда $G(u,\psi[u,v])=(u,F(u,\psi[u,v]))=(u,v)$. \\
+Отсюда выуживаем, что $u=u$ и $F(u,\psi[u,v])=v$. А ещё мы знаем, что $F(x_0,y_0)=0$, но тогда мы должны принять $v$ = 0, чтобы получить решение исходного уравнения. Обозначим $\psi(u,0)=f(u)$.\\
+Отсюда получаем, что $\exists f(x)$: $F(x,f(x))=0$.\\ \\
+Обозначим $df(x,\cdot)=M$.
+Разберёмся с производной этой самой функции:
+\begin{equation}
+    dF(x,f(x))=A+BM=0
+\end{equation}
+Перенесём всё в левую часть и вспомним, что мы доказали, что $B\ne0$, тогда $\exists B^{-1}$
+\begin{equation}
+    M=A\cdot B^{-1}\Rightarrow f'(x)=-\frac{F'_x(x,f(x))}{F'_y(x,f(x))}
+\end{equation}
+А эТо Мы И хОтЕлИ пОлУчИтЬ!!! ПОБЕДА НАД ЗДРАВЫМ СМЫСЛОМ ОКОНЧАТЕЛЬНО ВОСТОРЖЕСТВОВАЛА!!! УРА, ТОВАГИЩИ!!!}
+\par{{\raggedleft \textcalligra{\Huge Ce qu'il fallait démontrer}.\par}}
+\setcounter{equation}{0}
+\vspace{0.8cm}
+\par{\textbf{Следствие (теорема об обратной функции)}\\
+если $F$ задана и непрерывна на открытом множестве $U\subset\mathbb{R}^n$ и принимает значения в $\mathbb{R}^n$. Если $\det F'(x_0)\ne0$ в некотором $x_0\in U$, то $\exists$ окрестность $V$ точки $y_0=F(x_0)$, в которой $\exists$ непрерывная функция $G$, т.ч. $F(G(y))=x$ $\forall y\in V$. Кроме того $G$ дифференцируема и $G'(y)=(F')^{-1}(G(y))$ \\
+\textbf{Доказательство: } $F(x,y)=f(x)-y$ и в формулировке предыдущей теоремы поменять $x$ и $y$ местами. $F'_x(x,y)=f'(x)$ - невырождена, тогда $\exists$ непрерывная $g$ и
+\begin{equation*}
+    g'(y)=-\frac{F'_y(x,y)}{F'_x(x,y)}=-(f')^{-1}(x)\cdot(-I)=(f')^{-1}(g(y))
+\end{equation*}
+}
+\par{{\raggedleft ч.т.д.\par}}
+\vspace{0.5cm}
+\subsection*{4. Условный экстремум}
+\addcontentsline{toc}{subsection}{4. Условный экстремум}
+\par{\ }
+\par{Рассмотрим $f:\mathbb{R}^{n+m}\to\mathbb{R}$ и наложено $m$ условий свзяи вида $F_i(x)=0$ $\Leftrightarrow$ $F(x)=0$, \\ где $F:\mathbb{R}^{n+m}\to\mathbb{R}^m$. \\
+Рассмотрим $\varphi=f+\lambda_1 f_1+\ldots+\lambda_mf_m$, $\lambda_i$ - множители Лагранжа.
+}
+\vspace{0.5cm}
+\par{\textbf{Пример: }$\Phi=x+y+\lambda(x^2+y^2-1)$\\
+\begin{equation*}
+    \frac{\partial\Phi}{\partial x}=1+2\lambda x=0, \ \ \ \ \ \frac{\partial\Phi}{\partial y}=1+2\lambda y=0
+\end{equation*}
+Выразим $x$, $y$ через $\lambda$ и подставим в уравнение связи $x^2+y^2-1=0$. Получим, что $\lambda=\pm\frac{1}{\sqrt{2}}$, тогда решением будет $x=y=-\frac{1}{\sqrt{2}}$ или $x=y=\frac{1}{\sqrt{2}}$. Через вторую производную можно будет узнать про максимум/минимум функции.
+}
+\par{
+\textbf{Теорема (множители Лагранжа)}\\
+Пусть $f:\mathbb{R}^{n+m}\to\mathbb{R}$ и $F:\mathbb{R}^{n+m}\to\mathbb{R}$ непрерывны, $\exists$ непрерывные производные $F'$ и $f'$. Если $f$ достигает в точке $x_0$ условного экстремума при соблюдении условий связи $F(x)=0$, в этой точке $\det F'_{(2)}(x_0)\ne0$, то $\exists\lambda_1,\ldots,\lambda_m$: градиент функции $\Phi=f+\lambda_1F_1+\ldots+\lambda_mF_m$ равен 0, т.е. $\nabla\Phi(x_0)=0$.\\
+Замечание: $x=(x_{1},x_{2})$, где $x_1\in\mathbb{R}^n$, $x_2\in\mathbb{R}^m$, а $F_{(2)}$ определяется $x_2$.\\
+\textbf{Доказательство: }по теореме о неявной функции $\exists$ такая окрестность точки $x_0$, что в ней из $F(x)=0$ следует $x_2=\varphi(x_1)$, т.ч. $F(x_1,\varphi(x_1))=0$ $\forall(x_1,\varphi(x_1))$ из данной окрестности.\\
+Рассмотрим $g(x_1)=f(x_1,\varphi(x_1))$. Необходимое условие: $\nabla g(x_0)=0$, тогда
+\begin{equation}
+    \frac{\partial g(x_{0_1})}{\partial x_i}=\frac{\partial f(x_0)}{\partial x_i}+\sum_{k=1}^m\frac{\partial f(x_0)}{\partial x_{n+k}}\cdot\frac{\partial\varphi(x_{0_1})}{\partial x_i}=0
+\end{equation}
+Запишем это в матричном виде:
+\begin{equation}
+    (I_{n,n} \ \ \nabla\varphi(x_{0_1})^T)\nabla f(x_0)=0
+\end{equation}
+Обозначим $A=(I_{n,n} \ \ \nabla\varphi(x_{0_1})^T)$.\\
+Поясним переход $(1)\to(2)$: $\displaystyle(\nabla\varphi)_{i,j}=\frac{\partial\varphi_i}{\partial x_j}$, $i=1,\ldots,n$, $j=1,\ldots,m$ - матрица размера $n\times m$, т.е. размерность матрицы $A$ = $n\times(n+m)$. Размерность градиента $f$ равна $(n+m)\times1$ - вектор-столбец. Тогда градиент $g$ (из правила умножения) - это вектор-столбец из $n$ элементов, что совпадает с действительностью.\\
+Поэтому при умножении по правилу строка на столбец умножение на $I_{n,n}$ даст нам первый член, а умножение градиентов (а оно начнётся только с номера $n+1$ и закончится на номере $n+m$) даст нам сумму. \\ \\
+Ещё знаем, что $F(x_1,\varphi(x_1))=0$, тогда
+\begin{equation}
+    \frac{\partial F_l}{\partial x_i}+\sum_{k=1}^m\frac{\partial F_l(x)}{\partial x_{n+k}}\cdot\frac{\partial\varphi_k(x_1)}{\partial x_i}=0
+\end{equation}
+Это означает, что
+\begin{equation}
+    A\cdot\nabla F_l(x_0)=0
+\end{equation}
+Из (4) $\nabla F_l(x_0)\in\ker A$ и $\dim\ker A=n+m-rank A=m$ и $\det F'_{(2)}\ne0$, тогда $\nabla F_l$ - линейно независимый набор размера $m$, но тогда это есть базис в ядре. Но в силу (2) $\nabla f(x_0)\in\ker A$, т.е. $\exists\lambda_1,\ldots,\lambda_m$:
+\begin{equation}
+    \nabla f(x_0)+\lambda_1\nabla F_1(x_0)+\ldots+\lambda_m\nabla F_m(x_0)=0
+\end{equation}
+А ещё знаем из условия
+\begin{equation}
+    \Phi=f+\sum_{k=1}^m\lambda_k F_k
+\end{equation}
+Но тогда из (5) и (6) следует, что $\nabla\Phi(x_0)=0$. Тогда $x_0$ - точка, подозрительная на экстремум.
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+\section*{$\S$4. Интегралы, зависящие от параметра}
+\addcontentsline{toc}{section}{$\S$4. Интегралы, зависящие от параметра}
+\par{$\displaystyle I(y)=\int_a^bf(x,y)dx$\\
+Зададимся следующими вопросами:
+\begin{enumerate}
+    \item $\displaystyle\lim_{y\to y_0}\int_a^bf(x,y)dx\overset{?}{=}\int_a^b\lim_{y\to y_0} f(x,y)dx$
+    \item $\displaystyle\frac{d}{dy}\int_a^bf(x,y)dx\overset{?}{=}\int_a^b\frac{\partial f(x,y)}{\partial y}dx$
+    \item $\displaystyle\int_c^ddy\int_a^bf(x,y)dx\overset{?}{=}\int_a^bdx\int_c^df(x,y)dy$
+\end{enumerate}
+}
+\vspace{0.5cm}
+\setcounter{equation}{0}
+\subsection*{1. Собственный интеграл}
+\addcontentsline{toc}{subsection}{1. Собственный интеграл}
+\par{\ }
+\par{\textbf{Def 1: }Пусть $f(x,y)$ задана на прямоугольнике $[a,b]\times[c,d]$. Функция $f$ сходится к $\varphi(x)$ при $y\to y_0$ равномерно по $x\in[a,b]$, если $\forall\varepsilon>0$ $\exists\delta>0$: $0<|y-y_0|<\delta$ $\Rightarrow$ $|f(x,y)-\varphi(x)|<\varepsilon$ $\forall x\in[a,b]$.}
+\vspace{0.5cm}
+\par{\textbf{Лемма. }Пусть $f$ задана и непрерывна на прямоугольнике $[a,b]\times[c,d]$, тогда $f(x,y)\rightrightarrows f(x,y_0)$ при $y\to y_0$.\\
+\textbf{Доказательство: }т.к. $[a,b]\times[c,d]$ замкнуто и ограничено, то $f$ равномерно непрерывна на $[a,b]\times[c,d]$ по теореме Кантора, т.е. $\forall\varepsilon>0$ $\exists\delta>0$: $|x-x'|<\delta$, $|y-y'|<\delta$ $\Rightarrow$ $|f(x,y)-f(x',y')|<\varepsilon$. Пусть $x'=x$, $y'=y_0$.
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+\par{
+\textbf{Теорема (о предельном переходе)}\\
+Пусть $f$ задана на $[a,b]\times[c,d]$ ($a<b$, $c<d$), интегрируема на $[a,b]$ $\forall y\in[c,d]$, $f(x,y)\rightrightarrows\varphi(x)$ при $y\to y_0$ относительно $x\in[a,b]$, где $y_0\in[c,d]$. Тогда $\displaystyle\exists\lim_{y\to y_0}\int_a^bf(x,y)dx=\int_a^b\varphi(x)dx$.\\
+\textbf{Доказательство: }т.к. $f$ интегрируема по $x\in[a,b]$ и $f(x,y)\rightrightarrows\varphi(x)$ при $y\to y_0$, то $\varphi$ интегрируема на $[a,b]$.\\
+Оценим разность этих интегралов:
+\begin{equation}
+    \bigg|\int_a^bf(x,y)dx-\int_a^b\varphi(x)dx\bigg|\leq\int_a^b|f(x,y)-\varphi(x)|dx
+\end{equation}
+Т.к. $f(x,y)\rightrightarrows\varphi(x)$, то $\forall\varepsilon>0$ $\exists\delta>0$: $0<|y-y_0|<\delta$ $\Rightarrow$ $|f(x,y)-\varphi(x)|<\varepsilon$ $\forall x\in[a,b]$. \\Оценим этим наш интеграл:
+\begin{equation}
+    (1)<\int_a^b\varepsilon\cdot dx=\varepsilon(b-a)
+\end{equation}
+\textbf{Замечание: }если $f$ непрерывна на $[a,b]\times[c,d]$, то из теоремы следует, что
+\begin{equation}
+    \lim_{y\to y_0}\int_a^bf(x,y)dx=\int_a^bf(x,y_0)dx
+\end{equation}
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{0.5cm}
+\par{\textbf{Теорема (о дифференцировании)}\\
+Пусть функция $x\mapsto f(x,y)$ непрерывна на $[a,b]$ $\forall y\in[c,d]$ и производная $\frac{\partial f}{\partial y}$ непрерывна на $[a,b]\times[c,d]$, то
+\begin{equation*}
+    \exists\frac{d}{dy}\int_a^bf(x,y)dx=\int_a^b\frac{\partial f(x,y)}{\partial y}dx
+\end{equation*}
+\textbf{Доказательство: } честно распишем производную:
+\begin{equation}
+    \frac{\displaystyle\int_a^bf(x,y+\Delta y)dx-\int_a^bf(x,y)dx}{\Delta y}=\int_a^b\frac{f(x,y+\Delta y)-f(x,y)}{\Delta y}dx
+\end{equation}
+Т.к. $\frac{\partial f}{\partial y}$ непрерывна на замкнутом отрезке, то и $f$ непрерывна на замкнутом отрезке, тогда
+\begin{equation}
+    (4)=\int_a^b\frac{\partial f}{\partial y}(x,y+\theta\Delta y)dx\to\int_a^b\frac{\partial f}{\partial y}(x,y)dx
+\end{equation}
+}
+\par{{\raggedleft ч.т.д.\par}}
+\newpage
+\par{
+\textbf{Теорема (об интегрировании по параметру)}\\
+Пусть $f$ задана и непрерывна на $[a,b]\times[c,d]$. Тогда
+\begin{equation}
+    y\mapsto\int_a^bf(x,y)dx
+\end{equation}
+интегрируема и $\displaystyle\int_c^ddy\int_a^bf(x,y)dx=\int_a^bdx\int_c^df(x,y)dy$.\\
+\textbf{Доказательство: }пусть $\eta\in[c,d]$. Т.к. $f$ непрерывна по двум переменным, то по замечанию (3) из теоремы о предельном переходе функция (6) непрерывна, а это значит, что она непрерывна. Т.к. функция (6) непрерывна, то по теореме о дифференцировании по переменному верхнему пределу 
+\begin{equation}
+    \frac{d}{d\eta}\int_c^\eta dy\int_a^bf(x,y)dx=\int^b_af(x,\eta)dx
+\end{equation}
+Введём следующее обозначение:
+\begin{equation}
+    H(x,\eta)=\int_c^\eta f(x,y)dy
+\end{equation}
+Тогда из (8) получим, что
+\begin{equation}
+    \int_a^bdx\int_c^\eta f(x,y)dy=\int_a^bH(x,\eta)dx
+\end{equation}
+Но ровно также $\exists\frac{\partial H}{\partial y}=f(x,\eta)$, непрерывная на целом прямоугольнике.\\
+Т.к. $x\mapsto H(x,\eta)$ непрерывна, то по теореме о дифференцировании 
+\begin{equation}
+    \frac{d}{d\eta}\int_a^b H(x,\eta)dx=\int_a^b\frac{\partial H(x,\eta)}{\partial\eta}dx=\int_a^bf(x,\eta)dx
+\end{equation}
+А сейчас объединим все наши знания: (10)=(7), а (7) и (9) отличаются лишь взятием производной по $\eta$, тогда, взяв неопределённый интеграл
+\begin{equation}
+    \int_c^\eta dy\int_a^bf(x,y)dx=\int_a^bdx\int_c^\eta f(x,y)dy+c_0
+\end{equation}
+Определим константу: $\eta=c$, тогда $0=0+c_0\Rightarrow c_0=0$. Осталось лишь подставить $\eta = d$.
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{1.5cm}
+\setcounter{equation}{0}
+\subsection*{2. Несобственный интеграл}
+\addcontentsline{toc}{subsection}{2. Несобственный интеграл}
+\par{\ }
+\par{$\displaystyle\int_a^{+\infty}f(x,y)dx=\lim_{N\to\infty}\int_a^Nf(x,y)dx$}
+\par{\textbf{Def 2: }интеграл $\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно относительно $y\in[c,d]$, если $\forall\varepsilon>0$ $\exists A=A(\varepsilon)$: $\forall N>A$ $\forall y\in[c,d]$ $\displaystyle\bigg|\int_N^{+\infty}f(x,y)dx\bigg|<\varepsilon$}
+\newpage
+\par{\textbf{Пример: }
+$\displaystyle I=\int_a^{+\infty}y\cdot e^{-xy}dx=-e^{-xy}\bigg|_a^{+\infty}$
+\begin{itemize}
+    \item Если $y<0$, то $I$ расходится
+    \item Если $y=0$, то $I=0+e^{-ay}$
+    \item Если $y=0$, то $I=0$
+\end{itemize}
+Пусть $y\in(0,1)$, но тогда равномерной сходимости всё равно нет, т.к. пусть $A$ фиксировано, тогда $I=e^{-Ay}\to1$ при $y\to0$. Да, сходится, но не равномерно.
+}
+\vspace{0.6cm}
+\par{\textbf{Лемма (критерий равномерной сходимости)}\\
+$\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно относительно $y\in[c,d]$ $\Leftrightarrow$ $\forall\varepsilon>0$ $\exists A=A(\varepsilon)$: $\forall N_1,N_2>A$ $\forall y\in[c,d]$ $\displaystyle\bigg|\int_{N_1}^{N_2}f(x,y)dx\bigg|<\varepsilon$.
+}
+\vspace{1.0cm}
+\par{\textbf{Теорема (признак равномерной сходимости)}\\
+Пусть $f$ задана на $[a,+\infty)\times[c,d]$ и справедливо неравенство $|f(x,y)|\leq\varphi(x)$ \\$\forall(x,y)\in[a,+\infty)\times[c,d]$, где $\varphi$ непрерывна на $[a,+\infty)$, а ещё интеграл $\displaystyle\int_a^{+\infty}\varphi(x)dx$ сходится.\\ Тогда $\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно относительно $y\in[c,d]$.\\
+\textbf{Доказательство: }т.к. $\displaystyle\int_a^{+\infty}\varphi(x)dx$ сходится, то $\forall\varepsilon>0$ $\exists A=A(\varepsilon)$: $\forall N_1,N_2>A$ \\$\displaystyle\bigg|\int_{N_1}^{N_2}\varphi(x)dx\bigg|<\varepsilon$. Для тех же $N_1$ и $N_2$ $\forall y\in[c,d]$ имеем
+\begin{equation*}
+    \bigg|\int_{N_1}^{N_2}f(x,y)dx\bigg|\leq\int_{N_1}^{N_2}|f(x,y)|dx\leq\int_{N_1}^{N_2}\varphi(x)dx<\varepsilon
+\end{equation*}
+Следовательно интеграл сходится равномерно относительно $y\in[c,d]$.
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{1.5cm}
+\par{\textbf{Теорема (о предельном переходе в несобственных интегралах)}\\
+Пусть $f$ непрерывна на $[a,+\infty)\times[c,d]$ и $\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно относительно $y\in[c,d]$. Тогда $\displaystyle\exists\lim_{y\to y_0}\int_a^{+\infty}f(x,y)dx=\int_a^{+\infty}f(x,y_0)dx$. В частности, функция $\displaystyle y\mapsto\int_a^{+\infty}f(x,y)dx$ непрерывна на $[c,d]$. \\
+\textbf{Доказательство: } Рассмотрим разность интегралов
+\begin{equation}
+    \int_a^{+\infty}f(x,y)dx-\int_a^{+\infty}f(x,y_0)dx=\underbrace{\int_a^N\bigg(f(x,y)-f(x,y_0)\bigg)dx}_{(2)}+\underbrace{\int_N^{+\infty}\bigg(f(x,y)-f(x,y_0)\bigg)dx}_{(3)}
+\end{equation}
+Фиксируем $\varepsilon>0$: т.к. $\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно, то $\exists A=A(\varepsilon)$, т.ч. $\forall N>A$ $\forall y\in[c,d]$
+\setcounter{equation}{3}
+\begin{equation}
+\bigg|\int_N^{+\infty}f(x,y)dx\bigg|<\frac{\varepsilon}{3}
+\end{equation}
+Фикс. $N>A$, тогда
+\begin{equation}
+    \bigg|\int_N^{+\infty}(f(x,y)-f(x,y_0))dx\bigg|\leq\bigg|\int_N^{+\infty}f(x,y)dx\bigg|+\bigg|\int_N^{+\infty}f(x,y_0)dx\bigg|<\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\frac{2\varepsilon}{3}
+\end{equation}
+Оценим (2): т.к. $f$ непрерывна на $[a,N]\times[c,d]$, т.е. $\exists\delta=\delta(\varepsilon)>0$: $|x-x'|<\delta$, $|y-y'|<\delta$ $\Rightarrow$ $|f(x,y)-f(x,y_0)|<\frac{\varepsilon}{3(N-a)}$. Для таких $y$
+\begin{equation}
+    (2)\leq\int_a^N|f(x,y_-f(x,y_0)|dx<\int_a^N\frac{\varepsilon}{3(N-a)}dx=\frac{\varepsilon}{3}
+\end{equation}
+Объединив (5) и (6), получим, что $|(1)|<\varepsilon$. А это то, что требовалось доказать.
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{1.5cm}
+\setcounter{equation}{0}
+\par{\textbf{Теорема (дифференцирование по параметру)}\\ 
+$\displaystyle I(y)=\int_a^{+\infty}f(x,y)dx$. Пусть $f$ определена и непрерывна на $[a,+\infty)\times[c,d]$, $\displaystyle\frac{\partial f}{\partial y}$ непрерывна на $[a,+\infty)\times[c,d]$ и $\displaystyle\int_a^{+\infty}\frac{\partial f}{\partial y}(x,y)dx$ сходится равномерно. Тогда $\displaystyle\exists I'(y)=\int_a^{+\infty}\frac{\partial f(x,y)}{\partial y}dx$.\\
+\textbf{Доказательство: } т.к. производная непрерывна, а ещё интеграл от неё сходится равномерно, то
+\begin{equation}
+    \frac{I(y+\Delta y)-I(y)}{\Delta y}=\int_a^{+\infty}\frac{f(x,y+\Delta y)-f(x,y)}{\Delta y}dx=\int_a^{+\infty}f'_y(x,y+\theta\Delta y)dx
+\end{equation}
+Но в пределе при $\Delta y\to0$ из (1) получаем
+\begin{equation}
+    I'(y)=\lim_{\Delta y\to0}(1)=\int_a^{+\infty}f'_y(x,y)dx
+\end{equation}
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{1.5cm}
+    \setcounter{equation}{0}
+\par{\textbf{Теорема (интегрирование по параметру)}\\
+Пусть $f$ задана и непрерывна на $[a,+\infty)\times[c,d]$ и $\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно относительно $y\in[c,d]$. Тогда
+\begin{equation}
+    \exists\int_c^ddy\int_a^{+\infty}f(x,y)dx=\int_a^{+\infty}dx\int_c^df(x,y)dy
+\end{equation}
+\textbf{Доказательство: }
+\begin{equation}
+    \int_c^ddy\int_a^{A}f(x,y)dx=\int_a^{A}dx\int_c^df(x,y)dy
+\end{equation}
+Рассмотрим $\displaystyle H(y,A)=\int_a^Af(x,y)dx$, тогда левая часть (2) равна $\displaystyle=\int_c^dH(y,A)dy$.\\
+Т.к. $\displaystyle\int_a^{+\infty}f(x,y)dx$ сходится равномерно относительно $y\in[c,d]$, т.е. $\displaystyle H(y,A)\rightrightarrows\int_a^{+\infty}f(x,y)dx$ относительно $y\in[c,d]$ при $A\to+\infty$. \\Сейчас вернёмся к равенству (2) и применим теорему о предельном переходе, тогда получим утверждение (1). 
+}
+\par{{\raggedleft ч.т.д.\par}}
+    \vspace{3cm}
+\setcounter{equation}{0}
+\noindent{\LargeНа этом курс матанализа на лекциях 2026 года был завершён! \\Всем удачи на экзамене!}
+\end{document}
+%*****************END*********
